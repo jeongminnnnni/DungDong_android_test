@@ -1,36 +1,58 @@
+import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router';
+import { defineAsyncComponent } from "vue";
 
-/**
- * router/index.ts
- *
- * Automatic routes for `./src/pages/*.vue`
+/* INFO rule
+ * path
+    1. camelCase 로 작성
+    2. 파일 path와 동일하게 작성 예) folder1/folder2/my-file
+ * name
+    1. 파일명 작성 -> PascalCase 사용.
+ * component
+    1. 파일 path 작성
  */
 
-// Composables
-import { createRouter, createWebHistory } from 'vue-router/auto'
-import { routes } from 'vue-router/auto-routes'
+const routes = [
+  {
+    path: '/',
+    redirect: '/home' // Redirect root path to dashboard
+  },
+  {
+    path: '/home',
+    name: 'Home',
+    component: defineAsyncComponent(() => import(/* webpackChunkName: "home" */ "@/pages/Home.vue"))
+  },
+  {
+    path: '/dashboard',
+    name: 'Dashboard',
+    component: defineAsyncComponent(() => import(/* webpackChunkName: "dashboard" */ "@/pages/SurveyPage/SurveyPage1"))
+  },
+];
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory('/'),
   routes,
-})
+});
 
-// Workaround for https://github.com/vitejs/vite/issues/11804
-router.onError((err, to) => {
-  if (err?.message?.includes?.('Failed to fetch dynamically imported module')) {
-    if (!localStorage.getItem('vuetify:dynamic-reload')) {
-      console.log('Reloading page to fix dynamic import error')
-      localStorage.setItem('vuetify:dynamic-reload', 'true')
-      location.assign(to.fullPath)
-    } else {
-      console.error('Dynamic import error, reloading page did not fix it', err)
-    }
-  } else {
-    console.error(err)
-  }
-})
+// router.beforeEach((to, from, next) => {
+//   if(to.path !== '/admin/loginPage' && to.path !== '/admin/registerAdminPage' && to.path !== '/admin/adminSignupSuccPage') {
+//     if(needLogin()) {
+//       next('/admin/loginPage');
+//     } else {
+//       next();
+//     }
+//   } else {
+//     next();
+//   }
+// })
 
-router.isReady().then(() => {
-  localStorage.removeItem('vuetify:dynamic-reload')
-})
+export default router;
 
-export default router
+// function needLogin() {
+//   if (localStorage.getItem("requireLogin") === 'false') {
+//       return false
+//   } else {
+//       return true
+//   }
+// }
+
+export { routes }
