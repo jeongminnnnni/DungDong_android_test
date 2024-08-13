@@ -57,62 +57,6 @@
      </v-btn-toggle>
     </v-row>
 
-    <v-row justify="center">
-      <v-btn-toggle
-        divided
-      >
-        <v-btn prepend-icon="mdi-plus">비흡연자</v-btn>
-        <v-btn prepend-icon="mdi-plus">전자담배</v-btn>
-        <v-btn prepend-icon="mdi-plus">연초</v-btn>
-     </v-btn-toggle>
-    </v-row>
-
-    <v-row>
-      <v-text-field
-        variant="outlined"
-      >
-      </v-text-field>
-      <v-select
-        label="년월"
-        :items="['년', '개월', '주']"
-        variant="outlined"
-      >
-      </v-select>
-      <v-label>
-        에
-      </v-label>
-      <v-text-field
-        variant="outlined"
-      >
-      </v-text-field>
-      <v-label>
-        번
-      </v-label>
-    </v-row>
-
-    <v-row>
-      <v-slider
-        :max="2"
-        :ticks="noiseLabel"
-        show-ticks="always"
-        step="1"
-        tick-size="4"
-      ></v-slider>
-    </v-row>
-
-    <v-row>
-      <v-chip
-        v-for="(tag, index) in tagItem"
-        :key="index"
-        :class="{'v-chip--selected': selectTag.includes(tag.value)}"
-        :variant="selectTag.includes(tag.value) ? 'elevated' : 'tonal'"
-        prepend-icon="mdi-plus"
-        @click="handleClickTag(tag.value)"
-      >
-        {{ tag.title }}
-      </v-chip>
-    </v-row>
-
   </v-container>
 </template>
 
@@ -166,21 +110,6 @@ const collegeItem = ref([
   { title: '공과', value: 5},
 ])
 
-const selectTag = ref([])
-const tagItem = ref([
-  { title: '비공개', value: 0},
-  { title: '예술', value: 1},
-  { title: '체육', value: 2},
-  { title: '예공', value: 3},
-  { title: '생공', value: 4},
-  { title: '공과', value: 5},
-])
-
-const noiseLabel = ref({
-  0: '둔감',
-  1: '민감',
-  2: '보통',
-})
 
 // ----- 라이프 사이클 ----- //
 onMounted(() => {
@@ -192,20 +121,6 @@ onUnmounted(() => {
 })
 
 // ----- 함수 정의 ----- //
-
-function handleClickTag(value) {
-  const index = selectTag.value.indexOf(value);
-
-  // 이미 선택된 태그라면 선택을 해제하고, 아니라면 선택 추가
-  if (index !== -1) {
-    selectTag.value.splice(index, 1); // 선택 해제
-  } else {
-    selectTag.value.push(value); // 선택 추가
-  }
-
-  console.log('Selected tags:', selectTag.value);
-}
-
 
 
 </script>
