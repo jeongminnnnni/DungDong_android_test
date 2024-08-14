@@ -22,9 +22,39 @@ const routes = [
     component: defineAsyncComponent(() => import(/* webpackChunkName: "home" */ "@/pages/Home.vue"))
   },
   {
-    path: '/dashboard',
-    name: 'Dashboard',
+    path: '/survey1',
+    name: 'SurveyPage1',
     component: defineAsyncComponent(() => import(/* webpackChunkName: "dashboard" */ "@/pages/SurveyPage/SurveyPage1"))
+  },
+  {
+    path: '/survey2',
+    name: 'SurveyPage2',
+    component: defineAsyncComponent(() => import(/* webpackChunkName: "dashboard" */ "@/pages/SurveyPage/SurveyPage2"))
+  },
+  {
+    path: '/survey3',
+    name: 'SurveyPage3',
+    component: defineAsyncComponent(() => import(/* webpackChunkName: "dashboard" */ "@/pages/SurveyPage/SurveyPage3"))
+  },
+  {
+    path: '/survey4',
+    name: 'SurveyPage4',
+    component: defineAsyncComponent(() => import(/* webpackChunkName: "dashboard" */ "@/pages/SurveyPage/SurveyPage4"))
+  },
+  {
+    path: '/survey5',
+    name: 'SurveyPage5',
+    component: defineAsyncComponent(() => import(/* webpackChunkName: "dashboard" */ "@/pages/SurveyPage/SurveyPage5"))
+  },
+  {
+    path: '/survey6',
+    name: 'SurveyPage6',
+    component: defineAsyncComponent(() => import(/* webpackChunkName: "dashboard" */ "@/pages/SurveyPage/SurveyPage6"))
+  },
+  {
+    path: '/survey7',
+    name: 'SurveyPage7',
+    component: defineAsyncComponent(() => import(/* webpackChunkName: "dashboard" */ "@/pages/SurveyPage/SurveyPage7"))
   },
 ];
 

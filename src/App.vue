@@ -1,18 +1,66 @@
 <template>
   <v-app>
-    <v-app-bar app color="primary" dark>
-      <v-toolbar-title>My App</v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn text @click="$router.push('/')">Home</v-btn>
-      <v-btn text @click="$router.push('/dashboard')">Dashboard</v-btn>
+    <v-app-bar app color="#FBFBFB" flat height="140">
+      <v-row class="align-center | justify-space-between | padding-32 | padding-top-76 | padding-bottom-16">
+        <!-- 로고 -->
+        <v-col cols="auto">
+          <v-row class="align-center">
+            <v-img 
+            src="@/assets/logo.svg"
+            :width="84" :height="30"
+            min-width="84px" min-height="30px" 
+            ></v-img>
+          </v-row>
+        </v-col>
+        <v-col cols="8">
+          <v-row class="align-center | justify-end">
+            test
+            <!-- <v-stepper 
+              class="custom-stepper" 
+              >
+              <v-stepper-header>
+                <v-stepper-item v-for="step in steps" :key="step" :value="step"></v-stepper-item>
+                <template v-for="step in steps.length - 1">
+                  <v-divider class="step-divider"></v-divider>
+                </template>
+              </v-stepper-header>
+            </v-stepper> -->
+          </v-row>
+        </v-col>
+        <v-divider class="margin-top-16" />
+      </v-row>
     </v-app-bar>
 
     <v-main>
       <router-view style="margin-bottom: 100px;"></router-view>
     </v-main>
 
-    <v-footer fixed padless>
-      <v-col class="text-center">©2025 칸타르동방구함위원회</v-col>
+    <v-footer color="#FBFBFB" flat>
+      <v-row 
+        class="align-center | justify-space-between | pl-6 | pr-6" 
+        no-gutters
+      >
+        <v-btn 
+          prepend-icon="mdi-arrow-left" 
+          variant="text"
+          @click="handleClickGoPage('back')"
+        >
+          <template v-slot:prepend>
+            <v-icon color="#FF5858"></v-icon>
+          </template>
+          Back
+        </v-btn>
+        <v-btn 
+          append-icon="mdi-arrow-right" 
+          variant="text"
+          @click="handleClickGoPage('next')"
+        >
+          <template v-slot:append>
+            <v-icon color="#FF5858"></v-icon>
+          </template>
+          Next
+        </v-btn>
+      </v-row>
     </v-footer>
   </v-app>
 </template>
@@ -22,6 +70,24 @@
 import { onMounted, onUnmounted, ref, computed, watch} from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { routes } from "@/router"
+
+const router = useRouter();
+const route = useRoute();
+
+const steps = [1, 2, 3, 4, 5, 6, 7]
+const surveyPage = ref([
+  "/home",
+  "/survey1",
+  "/survey2",
+  "/survey3",
+  "/survey4",
+  "/survey5",
+  "/survey6",
+  "/survey7",
+]);
+
+const sBackBtn = ref(false)
+const sNextBtn = ref(false)
 
 const survey = ref({
   dorm: "",           // 기숙사 (문자열)
@@ -57,8 +123,53 @@ onUnmounted(() => {
 
 // ----- 함수 정의 ----- //
 
+function handleClickGoPage(state) {
+  const currentIndex = surveyPage.value.indexOf(route.path);
+
+  switch (state) {
+    case "back":
+      if (currentIndex > 0) {
+        const previousPage = surveyPage.value[currentIndex - 1]; // 이전 페이지
+        console.log("현재 페이지:", route.path);
+        console.log("이동한 페이지:", previousPage);
+        router.push(previousPage); // 이전 페이지로 이동
+      }
+      break;
+
+    case "next":
+      if (currentIndex < surveyPage.value.length - 1) {
+        const nextPage = surveyPage.value[currentIndex + 1]; // 다음 페이지
+        console.log("현재 페이지:", route.path);
+        console.log("이동한 페이지:", nextPage);
+        router.push(nextPage); // 다음 페이지로 이동
+      }
+      break;
+
+    default:
+      console.warn("Invalid state:", state);
+      break;
+  }
+}
+
+
 </script>
 
-<style>
+<style scoped>
+
+.margin-top-16 {
+  margin-top: 16px;
+}
+
+.padding-32 {
+  padding: 32px;
+}
+
+.padding-top-76 {
+  padding-top: 76px;
+}
+
+.padding-bottom-16 {
+  padding-bottom: 16px;
+}
 
 </style>
