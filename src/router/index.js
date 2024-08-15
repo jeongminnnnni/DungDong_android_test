@@ -56,6 +56,11 @@ const routes = [
     name: 'SurveyPage7',
     component: defineAsyncComponent(() => import(/* webpackChunkName: "dashboard" */ "@/pages/SurveyPage/SurveyPage7"))
   },
+  {
+    path: '/end',
+    name: 'End',
+    component: defineAsyncComponent(() => import(/* webpackChunkName: "dashboard" */ "@/pages/End"))
+  },
 ];
 
 const router = createRouter({
