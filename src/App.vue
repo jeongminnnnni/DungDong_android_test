@@ -67,7 +67,7 @@
 
 <script setup>
 // ----- 선언부 ----- //
-import { onMounted, onUnmounted, ref, computed, watch} from "vue";
+import { onMounted, onUnmounted, onBeforeMount, ref, computed, watch} from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { routes } from "@/router"
 
@@ -113,15 +113,27 @@ const survey = ref({
 });
 
 // ----- 라이프 사이클 ----- //
+onBeforeMount(() => {
+
+
+});
+
 onMounted(() => {
-  localStorage.setItem('survey', JSON.stringify(survey.value));
+  if (!localStorage.getItem('appInitialized')) {
+    initSurvey()
+  }
+
 });
 
 onUnmounted(() => {
 
-})
+});
 
 // ----- 함수 정의 ----- //
+function initSurvey() {
+  localStorage.setItem('appInitialized', 'true');
+  localStorage.setItem('userProgress', JSON.stringify({ currentStep: 0, completedSurveys: survey.value }));
+}
 
 function handleClickGoPage(state) {
   const currentIndex = surveyPage.value.indexOf(route.path);
