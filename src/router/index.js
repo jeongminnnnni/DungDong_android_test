@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
 import { defineAsyncComponent } from "vue";
 
 /* INFO rule
@@ -19,47 +19,47 @@ const routes = [
   {
     path: '/home',
     name: 'Home',
-    component: defineAsyncComponent(() => import(/* webpackChunkName: "home" */ "@/pages/Home.vue"))
+    component: () => import(/* webpackChunkName: "home" */ "@/pages/Home.vue")
   },
   {
     path: '/survey1',
     name: 'SurveyPage1',
-    component: defineAsyncComponent(() => import(/* webpackChunkName: "dashboard" */ "@/pages/SurveyPage/SurveyPage1"))
+    component: () => import(/* webpackChunkName: "survey1" */ "@/pages/SurveyPage/SurveyPage1")
   },
   {
     path: '/survey2',
     name: 'SurveyPage2',
-    component: defineAsyncComponent(() => import(/* webpackChunkName: "dashboard" */ "@/pages/SurveyPage/SurveyPage2"))
+    component: () => import(/* webpackChunkName: "survey2" */ "@/pages/SurveyPage/SurveyPage2")
   },
   {
     path: '/survey3',
     name: 'SurveyPage3',
-    component: defineAsyncComponent(() => import(/* webpackChunkName: "dashboard" */ "@/pages/SurveyPage/SurveyPage3"))
+    component: () => import(/* webpackChunkName: "survey3" */ "@/pages/SurveyPage/SurveyPage3")
   },
   {
     path: '/survey4',
     name: 'SurveyPage4',
-    component: defineAsyncComponent(() => import(/* webpackChunkName: "dashboard" */ "@/pages/SurveyPage/SurveyPage4"))
+    component: () => import(/* webpackChunkName: "survey4" */ "@/pages/SurveyPage/SurveyPage4")
   },
   {
     path: '/survey5',
     name: 'SurveyPage5',
-    component: defineAsyncComponent(() => import(/* webpackChunkName: "dashboard" */ "@/pages/SurveyPage/SurveyPage5"))
+    component: () => import(/* webpackChunkName: "survey5" */ "@/pages/SurveyPage/SurveyPage5")
   },
   {
     path: '/survey6',
     name: 'SurveyPage6',
-    component: defineAsyncComponent(() => import(/* webpackChunkName: "dashboard" */ "@/pages/SurveyPage/SurveyPage6"))
+    component: () => import(/* webpackChunkName: "survey6" */ "@/pages/SurveyPage/SurveyPage6")
   },
   {
     path: '/survey7',
     name: 'SurveyPage7',
-    component: defineAsyncComponent(() => import(/* webpackChunkName: "dashboard" */ "@/pages/SurveyPage/SurveyPage7"))
+    component: () => import(/* webpackChunkName: "survey7" */ "@/pages/SurveyPage/SurveyPage7")
   },
   {
     path: '/end',
     name: 'End',
-    component: defineAsyncComponent(() => import(/* webpackChunkName: "dashboard" */ "@/pages/End"))
+    component: () => import(/* webpackChunkName: "end" */ "@/pages/End")
   },
 ];
 
@@ -68,26 +68,5 @@ const router = createRouter({
   routes,
 });
 
-// router.beforeEach((to, from, next) => {
-//   if(to.path !== '/admin/loginPage' && to.path !== '/admin/registerAdminPage' && to.path !== '/admin/adminSignupSuccPage') {
-//     if(needLogin()) {
-//       next('/admin/loginPage');
-//     } else {
-//       next();
-//     }
-//   } else {
-//     next();
-//   }
-// })
-
 export default router;
-
-// function needLogin() {
-//   if (localStorage.getItem("requireLogin") === 'false') {
-//       return false
-//   } else {
-//       return true
-//   }
-// }
-
 export { routes }

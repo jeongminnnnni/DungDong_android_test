@@ -90,7 +90,7 @@ const sBackBtn = ref(false)
 const sNextBtn = ref(false)
 
 const survey = ref({
-  dorm: "",           // 기숙사 (문자열)
+  dorm: 0,           // 기숙사 (문자열)
   birth: "",          // 생년월일 8자리 (문자열 권장)
   studentId: "",      // 학번 8자리 (문자열 권장)
   college: "",        // 단과대 (문자열)
@@ -124,6 +124,7 @@ onMounted(() => {
   }
 
 });
+
 
 onUnmounted(() => {
 
