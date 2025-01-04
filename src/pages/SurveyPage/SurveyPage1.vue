@@ -1,46 +1,62 @@
 <template>
   <v-container>
-    <v-row no-gutters justify="start">
-      <v-label>기숙사</v-label>
-    </v-row>
-    <v-row no-gutters justify="center">
+    <v-row justify="center">
       <v-select
-        :items="dormItem"
-        placeholder="기숙사를 선택해주세요"
-        v-model="dorm"
+        label="기숙사"
+        :items=dormItem
+        v-model="survey.dorm"
         variant="outlined"
       ></v-select>
-    </v-row>
-    <v-row no-gutters justify="start">
-      <v-label>기숙사</v-label>
-    </v-row>
-    <v-row no-gutters justify="center">
-      <v-select
-        :items="birthItem"
-        v-model="birth"
+
+      <v-autocomplete
+        label="생년"
+        :items=birthItem
+        v-model="survey.birth"
         variant="outlined"
-      ></v-select>
-    </v-row>
-    <v-row no-gutters justify="start">
-      <v-label>기숙사</v-label>
-    </v-row>
-    <v-row no-gutters justify="center">
-      <v-select
-        :items="studentIdItem"
-        v-model="studentId"
+      ></v-autocomplete>
+
+      <v-autocomplete
+        label="학번"
+        :items=studentIdItem
+        v-model="survey.studentId"
         variant="outlined"
-      ></v-select>
-    </v-row>
-    <v-row no-gutters justify="start">
-      <v-label>기숙사</v-label>
-    </v-row>
-    <v-row no-gutters justify="center">
-      <v-select
-        :items="collegeItem"
-        v-model="college"
+      ></v-autocomplete>
+
+      <v-autocomplete
+        label="단과대"
+        :items=collegeItem
+        v-model="survey.college"
         variant="outlined"
-      ></v-select>
+      ></v-autocomplete>
     </v-row>
+
+    <v-row justify="center">
+      <v-btn-toggle
+        rounded="xl"
+      >
+        <v-btn>I</v-btn>
+        <v-btn>E</v-btn>
+      </v-btn-toggle>
+      <v-btn-toggle
+        rounded="xl"
+      >
+        <v-btn>S</v-btn>
+        <v-btn>N</v-btn>
+      </v-btn-toggle>
+      <v-btn-toggle
+        rounded="xl"
+      >
+        <v-btn>T</v-btn>
+        <v-btn>F</v-btn>
+      </v-btn-toggle>
+      <v-btn-toggle
+        rounded="xl"
+      >
+        <v-btn>P</v-btn>
+        <v-btn>J</v-btn>
+     </v-btn-toggle>
+    </v-row>
+
   </v-container>
 </template>
 
@@ -50,14 +66,13 @@ import { onMounted, onUnmounted, ref, computed, watch} from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { routes } from "@/router"
 
-
-const dorm = ref(0);          // 기숙사
-const birth = ref("");      // 생년월일 8자리 (문자열 권장)
-const studentId = ref("");     // 학번 8자리 (문자열 권장)
-const college = ref("");     // 단과대 (문자열)
-const mbti = ref("");         // MBTI (문자열)
-
-
+const survey = ref({
+  dorm: "",           // 기숙사 (문자열)
+  birth: "",          // 생년월일 8자리 (문자열 권장)
+  studentId: "",      // 학번 8자리 (문자열 권장)
+  college: "",        // 단과대 (문자열)
+  mbti: "",           // MBTI (문자열)
+})
 
 const dormItem = ref([
   { title: '예지 1동', value: 0},
@@ -95,39 +110,15 @@ const collegeItem = ref([
   { title: '공과', value: 5},
 ])
 
+
 // ----- 라이프 사이클 ----- //
 onMounted(() => {
-  const existingSurvey = localStorage.getItem('survey1');
-  if (existingSurvey) {
-    const parsedSurvey = JSON.parse(existingSurvey);
-    dorm.value = parsedSurvey.dorm || 0;
-    birth.value = parsedSurvey.birth || '';
-    studentId.value = parsedSurvey.studentId || '';
-    college.value = parsedSurvey.college || '';
-    mbti.value = parsedSurvey.mbti || '';
-  }
+
 });
 
 onUnmounted(() => {
 
 })
-
-
-watch(dorm, (newValue, oldValue) => {
-  console.log(`Dorm changed from ${oldValue} to ${newValue}`);
-});
-
-watch(birth, (newValue, oldValue) => {
-  console.log(`Birth year changed from ${oldValue} to ${newValue}`);
-});
-
-watch(studentId, (newValue, oldValue) => {
-  console.log(`Student ID changed from ${oldValue} to ${newValue}`);
-});
-
-watch(college, (newValue, oldValue) => {
-  console.log(`College changed from ${oldValue} to ${newValue}`);
-});
 
 // ----- 함수 정의 ----- //
 
