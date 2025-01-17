@@ -1,30 +1,48 @@
 <template>
   <v-container>
     <v-row justify="center">
-      <v-btn-toggle
-        rounded="xl"
-      >
-        <v-btn>I</v-btn>
-        <v-btn>E</v-btn>
-      </v-btn-toggle>
-      <v-btn-toggle
-        rounded="xl"
-      >
-        <v-btn>S</v-btn>
-        <v-btn>N</v-btn>
-      </v-btn-toggle>
-      <v-btn-toggle
-        rounded="xl"
-      >
-        <v-btn>T</v-btn>
-        <v-btn>F</v-btn>
-      </v-btn-toggle>
-      <v-btn-toggle
-        rounded="xl"
-      >
-        <v-btn>P</v-btn>
-        <v-btn>J</v-btn>
-     </v-btn-toggle>
+      <v-label>내향적</v-label>
+      <v-switch
+        v-model="mbti0"
+        inset
+        hide-details
+        :value="1"
+        :false-value="0"
+      ></v-switch>
+      <v-label>외향적</v-label>
+    </v-row>
+    <v-row justify="center">
+      <v-label>이상적</v-label>
+      <v-switch
+        v-model="mbti1"
+        inset
+        hide-details
+        :value="1"
+        :false-value="0"
+      ></v-switch>
+      <v-label>현실적</v-label>
+    </v-row>
+    <v-row justify="center">
+      <v-label>사고형</v-label>
+      <v-switch
+        v-model="mbti2"
+        inset
+        hide-details
+        :value="1"
+        :false-value="0"
+      ></v-switch>
+      <v-label>감정형</v-label>
+    </v-row>
+    <v-row justify="center">
+      <v-label>계획성</v-label>
+      <v-switch
+        v-model="mbti3"
+        inset
+        hide-details
+        :value="1"
+        :false-value="0"
+      ></v-switch>
+      <v-label>융통성</v-label>
     </v-row>
   </v-container>
 </template>
@@ -37,10 +55,11 @@ import { routes } from "@/router"
 
 const title = 'MBTI'
 
-const mbti0 = ref(0);
-const mbti1 = ref(0);
-const mbti2 = ref(0);
-const mbti3 = ref(0);
+const mbti = ref(null);
+const mbti0 = ref(0); // 0: I, 1: E
+const mbti1 = ref(0); // 0: N, 1: S
+const mbti2 = ref(0); // 0: T, 1: F
+const mbti3 = ref(0); // 0: J, 1: P
 
 // ----- 라이프 사이클 ----- //
 onMounted(() => {
@@ -52,24 +71,10 @@ onUnmounted(() => {
 })
 
 // 변경값 확인 및 업데이트
-watch(mbti0, (newValue, oldValue) => {
-  console.log(`--- mbti0 changed from ${oldValue} to ${newValue}`);
-  updateLocalStorage("mbti0", newValue);
-});
-
-watch(mbti1, (newValue, oldValue) => {
-  console.log(`--- mbti1 changed from ${oldValue} to ${newValue}`);
-  updateLocalStorage("mbti1", newValue);
-});
-
-watch(mbti2, (newValue, oldValue) => {
-  console.log(`--- mbti2 changed from ${oldValue} to ${newValue}`);
-  updateLocalStorage("mbti2", newValue);
-});
-
-watch(mbti3, (newValue, oldValue) => {
-  console.log(`--- mbti3 changed from ${oldValue} to ${newValue}`);
-  updateLocalStorage("mbti3", newValue);
+watch([mbti0, mbti1, mbti2, mbti3], () => {
+  const mbtiString = formatMbtiString();
+  console.log(`--- MBTI updated to: ${mbtiString}`);
+  updateLocalStorage("mbti", mbtiString);
 });
 
 // ----- 함수 정의 ----- //
@@ -84,10 +89,11 @@ function setCurrentSurvey() {
   
   if (existingSurvey) {
     const survey = JSON.parse(existingSurvey);
-    mbti0.value = survey.mbti[0] || 0;
-    mbti1.value = survey.mbti[1] || 0;
-    mbti2.value = survey.mbti[2] || 0;
-    mbti3.value = survey.mbti[3] || 0;
+    const mbtiString = survey.mbti || "INTJ";
+    mbti0.value = mbtiString[0] === "I" ? 0 : 1;
+    mbti1.value = mbtiString[1] === "N" ? 0 : 1;
+    mbti2.value = mbtiString[2] === "T" ? 0 : 1;
+    mbti3.value = mbtiString[3] === "J" ? 0 : 1;
   }
 }
 
@@ -97,6 +103,17 @@ function updateLocalStorage(field, value) {
   existingSurvey[field] = value;
   localStorage.setItem("userSurvey", JSON.stringify(existingSurvey));
   console.log(`Updated localStorage userSurvey: ${field} = ${value}`);
+}
+
+// mbti문자열로 포맷팅
+function formatMbtiString() {
+  const parts = [
+    mbti0.value === 0 ? "I" : "E",
+    mbti1.value === 0 ? "N" : "S",
+    mbti2.value === 0 ? "T" : "F",
+    mbti3.value === 0 ? "J" : "P",
+  ];
+  return parts.join("");
 }
 
 

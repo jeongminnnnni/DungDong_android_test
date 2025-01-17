@@ -94,7 +94,7 @@ const survey = ref({
   birth: null,          // 생년월일 8자리 (문자열 권장)
   studentId: null,      // 학번 8자리 (문자열 권장)
   college: null,        // 단과대 (문자열)
-  mbti: [0,0,0,0],           // MBTI List
+  mbti: null,           // MBTI List
   smoke: null,           // 흡연 여부 0,1,2 (int)
   drink: "",          // 음주 정보 (예: "120000")
   sdEtc: "",  // 음주/흡연 관련 기타 (서술형 문자열)
