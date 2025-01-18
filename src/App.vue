@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app class="background">
     <v-app-bar app color="#FBFBFB" flat height="140">
       <v-row class="align-center | justify-space-between | padding-32 | padding-top-76 | padding-bottom-16">
         <!-- 로고 -->
@@ -192,4 +192,7 @@ function handleClickRestartBtn() {
   padding-bottom: 16px;
 }
 
+/* .background {
+  background-color: #FBFBFB;
+} */
 </style>
