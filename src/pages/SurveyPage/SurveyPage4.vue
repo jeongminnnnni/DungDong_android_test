@@ -1,68 +1,73 @@
 <template>
   <v-container>
     <v-row no-gutters justify="start">
-      <v-label>기숙사</v-label>
+      <v-label>기상시간을 입력해주세요</v-label>
     </v-row>
     <v-row no-gutters justify="center">
       <v-select
+        variant="outlined" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858" 
         :items="hourItem"
         placeholder=""
         v-model="wakeUpHour"
-        variant="outlined"
       ></v-select>
+      <v-label>시</v-label>
       <v-select
+        variant="outlined" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858" 
         :items="minItem"
         placeholder=""
         v-model="wakeUpMin"
-        variant="outlined"
       ></v-select>
+      <v-label>분</v-label>
     </v-row>
 
     <v-row no-gutters justify="start">
-      <v-label>기숙사</v-label>
+      <v-label>소등시간을 입력해주세요</v-label>
     </v-row>
     <v-row no-gutters justify="center">
       <v-select
+        variant="outlined" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858" 
         :items="hourItem"
         placeholder=""
         v-model="lightOffHour"
-        variant="outlined"
       ></v-select>
+      <v-label>시</v-label>
       <v-select
+        variant="outlined" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858" 
         :items="minItem"
         placeholder=""
         v-model="lightOffMin"
-        variant="outlined"
       ></v-select>
+      <v-label>분</v-label>
     </v-row>
 
     <v-row no-gutters justify="start">
-      <v-label>기숙사</v-label>
+      <v-label>취침시간을 입력해주세요</v-label>
     </v-row>
     <v-row no-gutters justify="center">
       <v-select
+        variant="outlined" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858" 
         :items="hourItem"
         placeholder=""
         v-model="bedTimeHour"
-        variant="outlined"
       ></v-select>
+      <v-label>시</v-label>
       <v-select
+        variant="outlined" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858" 
         :items="minItem"
         placeholder=""
         v-model="bedTimeMin"
-        variant="outlined"
       ></v-select>
+      <v-label>분</v-label>
     </v-row>
 
     <v-row no-gutters justify="start">
-      <v-label>기숙사</v-label>
+      <v-label>잠버릇이 있다면 선택해주세요</v-label>
     </v-row>
     <v-row no-gutters justify="center">
       <v-select
+        variant="outlined" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858" 
         :items="sleepHabitItem"
-        placeholder=""
         v-model="sleepHabit"
-        variant="outlined"
       ></v-select>
     </v-row>
 
@@ -77,14 +82,17 @@ import { routes } from "@/router"
 
 const title = '수면시간'
 
-const wakeUpHour = ref(null);
-const wakeUpMin = ref(null);
+const wakeUp = ref(null);
+const wakeUpHour = ref('00');
+const wakeUpMin = ref('00');
 
-const lightOffHour = ref(null);
-const lightOffMin = ref(null);
+const lightOff = ref(null);
+const lightOffHour = ref('00');
+const lightOffMin = ref('00');
 
-const bedTimeHour = ref(null);
-const bedTimeMin = ref(null);
+const bedTime = ref(null);
+const bedTimeHour = ref('00');
+const bedTimeMin = ref('00');
 
 // 01시부터 24시까지 (title: 01, value: '01' 형태)
 const hourItem = ref(
@@ -102,7 +110,7 @@ const minItem = ref(
   })
 );
 
-const sleepHabit = ref(null);
+const sleepHabit = ref(0);
 const sleepHabitItem = ref([
   { title: '없음', value: 0},
   { title: '잠꼬대', value: 1},
@@ -167,10 +175,13 @@ function setCurrentSurvey() {
   
   if (existingSurvey) {
     const survey = JSON.parse(existingSurvey);
-    wakeUp.value = survey.wakeUp || null;
-    lightOff.value = survey.lightOff || null;
-    bedTime.value = survey.bedTime || null;
-    sleepHabit.value = survey.sleepHabit || null;
+
+    wakeUp.value = survey.wakeUp || '00-00';
+
+    lightOff.value = survey.lightOff || '00-00';
+    bedTime.value = survey.bedTime || '00-00';
+
+    sleepHabit.value = survey.sleepHabit || 0;
   }
 }
 
@@ -182,10 +193,22 @@ function updateLocalStorage(field, value) {
   console.log(`Updated localStorage userSurvey: ${field} = ${value}`);
 }
 
+function parseTimeValues(item) {
+  const [hour, min] = item.value.split('-');
+  let itemHour = hour || '00';
+  let itemMin = min || '00';
+  return itemHour, itemMin
+};
+
 // ----- 함수 정의 ----- //
 
 
 </script>
 
 <style scoped>
+/* 토글 버튼 아이콘 색상 */
+:deep(.v-input__control .v-icon) {
+  color: #FF5858 !important; /* 아이콘 색상 */
+}
+
 </style>

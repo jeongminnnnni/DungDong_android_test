@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <BoxContainer>
     <v-row justify="center">
       <v-label>내향적</v-label>
       <v-switch
@@ -11,6 +11,7 @@
       ></v-switch>
       <v-label>외향적</v-label>
     </v-row>
+
     <v-row justify="center">
       <v-label>이상적</v-label>
       <v-switch
@@ -22,6 +23,7 @@
       ></v-switch>
       <v-label>현실적</v-label>
     </v-row>
+
     <v-row justify="center">
       <v-label>사고형</v-label>
       <v-switch
@@ -33,6 +35,7 @@
       ></v-switch>
       <v-label>감정형</v-label>
     </v-row>
+
     <v-row justify="center">
       <v-label>계획성</v-label>
       <v-switch
@@ -44,7 +47,8 @@
       ></v-switch>
       <v-label>융통성</v-label>
     </v-row>
-  </v-container>
+    
+  </BoxContainer>
 </template>
 
 <script setup>
@@ -52,6 +56,8 @@
 import { onMounted, onUnmounted, ref, computed, watch} from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { routes } from "@/router"
+
+import BoxContainer from "@/components/BoxContainer.vue";
 
 const title = 'MBTI'
 
@@ -121,4 +127,6 @@ function formatMbtiString() {
 </script>
 
 <style scoped>
+
+
 </style>

@@ -5,10 +5,10 @@
     </v-row>
     <v-row no-gutters justify="center">
       <v-select
+        variant="outlined" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858" 
         :items="dormItem"
         placeholder="기숙사를 선택해주세요"
-        v-model="dorm"
-        variant="outlined"
+        v-model="dorm" 
       ></v-select>
     </v-row>
 
@@ -17,9 +17,9 @@
     </v-row>
     <v-row no-gutters justify="center">
       <v-select
+        variant="outlined" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858"
         :items="birthItem"
         v-model="birth"
-        variant="outlined"
       ></v-select>
     </v-row>
     
@@ -28,19 +28,20 @@
     </v-row>
     <v-row no-gutters justify="center">
       <v-select
+        variant="outlined" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858"
         :items="studentIdItem"
         v-model="studentId"
-        variant="outlined"
       ></v-select>
     </v-row>
+    
     <v-row no-gutters justify="start">
       <v-label>기숙사</v-label>
     </v-row>
     <v-row no-gutters justify="center">
       <v-select
+        variant="outlined" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858"
         :items="collegeItem"
         v-model="college"
-        variant="outlined"
       ></v-select>
     </v-row>
   </v-container>
@@ -157,4 +158,9 @@ function updateLocalStorage(field, value) {
 </script>
 
 <style scoped>
+/* 토글 버튼 아이콘 색상 */
+:deep(.v-input__control .v-icon) {
+  color: #FF5858 !important; /* 아이콘 색상 */
+}
+
 </style>

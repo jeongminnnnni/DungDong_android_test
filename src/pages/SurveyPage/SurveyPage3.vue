@@ -5,38 +5,50 @@
     </v-row>
     <v-row no-gutters justify="center">
       <v-select
+        variant="outlined" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858"
         :items="smokeItem"
         placeholder="기숙사를 선택해주세요"
         v-model="smoke"
-        variant="outlined"
       ></v-select>
     </v-row>
 
-    <v-row>
+    <v-row no-gutters justify="center">
       <v-text-field
-        placeholder="00"
+        variant="underlined" base-color="#FF5858" color="#FF5858" item-color="#FF5858"
+        class="custom-text-field"
+        placeholder="0"
         v-model="dymCnt"
-        variant="outlined"
       ></v-text-field>
 
       <v-select
+        variant="outlined" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858"
         :items="dmyItem"
-        placeholder="기숙사를 선택해주세요"
         v-model="dym"
-        variant="outlined"
       ></v-select>
       <v-label>
         에
       </v-label>
 
       <v-text-field
-        placeholder="00"
+        variant="underlined" base-color="#FF5858" color="#FF5858" item-color="#FF5858"
+        class="custom-text-field"
+        placeholder="0"
         v-model="drinkCnt"
-        variant="outlined"
       ></v-text-field>
       <v-label>
         번
       </v-label>
+    </v-row>
+
+    <v-row no-gutters justify="start">
+      <v-label>흡연/음주와 관련하여 하고 싶은 말이 있다면 적어주세요</v-label>
+    </v-row>
+    <v-row no-gutters justify="center">
+      <v-text-field
+        variant="outlined" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858"
+        placeholder="술 주사, 흡연 습관 등"
+        maxlength="30"
+      ></v-text-field>
     </v-row>
 
   </v-container>
@@ -59,7 +71,7 @@ const smokeItem = ref([
 
 const drink = ref(null);
 const dymCnt = ref(null);
-const dym = ref(null);
+const dym = ref(0);
 const dmyItem = ref([
   { title: '주', value: 0},
   { title: '월', value: 1},
@@ -114,4 +126,9 @@ function updateLocalStorage(field, value) {
 </script>
 
 <style scoped>
+/* 토글 버튼 아이콘 색상 */
+:deep(.v-input__control .v-icon) {
+  color: #FF5858 !important; /* 아이콘 색상 */
+}
+
 </style>
