@@ -177,9 +177,13 @@ function setCurrentSurvey() {
     const survey = JSON.parse(existingSurvey);
 
     wakeUp.value = survey.wakeUp || '00-00';
+    [wakeUpHour.value, wakeUpMin.value] = parseTimeValues(wakeUp);
 
     lightOff.value = survey.lightOff || '00-00';
+    [lightOffHour.value, lightOffMin.value] = parseTimeValues(lightOff);
+
     bedTime.value = survey.bedTime || '00-00';
+    [bedTimeHour.value, bedTimeMin.value] = parseTimeValues(bedTime);
 
     sleepHabit.value = survey.sleepHabit || 0;
   }
@@ -197,7 +201,7 @@ function parseTimeValues(item) {
   const [hour, min] = item.value.split('-');
   let itemHour = hour || '00';
   let itemMin = min || '00';
-  return itemHour, itemMin
+  return [itemHour, itemMin];
 };
 
 // ----- 함수 정의 ----- //
