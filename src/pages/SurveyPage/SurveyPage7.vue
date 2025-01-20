@@ -25,7 +25,7 @@
     </v-row>
     <v-row no-gutters justify="center">
       <v-text-field
-        variant="outlined" bg-color="#FFFFFF" base-color="#CCCCCC" color="#CCCCCC" item-color="#CCCCCC" 
+        variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#CCCCCC" color="#CCCCCC" item-color="#CCCCCC" 
         :items="dormItem"
         placeholder="위에 선택한 태그 부가 설명 등"
         v-model="dorm"

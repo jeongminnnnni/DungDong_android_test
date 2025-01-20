@@ -5,14 +5,14 @@
     </v-row>
     <v-row no-gutters justify="center">
       <v-select
-        variant="outlined" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858" 
+        variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858" 
         :items="hourItem"
         placeholder=""
         v-model="wakeUpHour"
       ></v-select>
       <v-label>시</v-label>
       <v-select
-        variant="outlined" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858" 
+        variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858" 
         :items="minItem"
         placeholder=""
         v-model="wakeUpMin"
@@ -25,14 +25,14 @@
     </v-row>
     <v-row no-gutters justify="center">
       <v-select
-        variant="outlined" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858" 
+        variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858" 
         :items="hourItem"
         placeholder=""
         v-model="lightOffHour"
       ></v-select>
       <v-label>시</v-label>
       <v-select
-        variant="outlined" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858" 
+        variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858" 
         :items="minItem"
         placeholder=""
         v-model="lightOffMin"
@@ -45,14 +45,14 @@
     </v-row>
     <v-row no-gutters justify="center">
       <v-select
-        variant="outlined" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858" 
+        variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858" 
         :items="hourItem"
         placeholder=""
         v-model="bedTimeHour"
       ></v-select>
       <v-label>시</v-label>
       <v-select
-        variant="outlined" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858" 
+        variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858" 
         :items="minItem"
         placeholder=""
         v-model="bedTimeMin"
@@ -65,7 +65,7 @@
     </v-row>
     <v-row no-gutters justify="center">
       <v-select
-        variant="outlined" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858" 
+        variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858" 
         :items="sleepHabitItem"
         v-model="sleepHabit"
       ></v-select>

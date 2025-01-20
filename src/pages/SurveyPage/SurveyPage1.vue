@@ -5,7 +5,7 @@
     </v-row>
     <v-row no-gutters justify="center">
       <v-select
-        variant="outlined" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858" 
+        variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858" 
         :items="dormItem"
         placeholder="기숙사를 선택해주세요"
         v-model="dorm" 
@@ -17,7 +17,7 @@
     </v-row>
     <v-row no-gutters justify="center">
       <v-select
-        variant="outlined" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858"
+        variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858"
         :items="birthItem"
         v-model="birth"
       ></v-select>
@@ -28,18 +28,18 @@
     </v-row>
     <v-row no-gutters justify="center">
       <v-select
-        variant="outlined" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858"
+        variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858"
         :items="studentIdItem"
         v-model="studentId"
       ></v-select>
     </v-row>
-    
+
     <v-row no-gutters justify="start">
       <v-label>기숙사</v-label>
     </v-row>
     <v-row no-gutters justify="center">
       <v-select
-        variant="outlined" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858"
+        variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858"
         :items="collegeItem"
         v-model="college"
       ></v-select>

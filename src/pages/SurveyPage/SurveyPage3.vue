@@ -5,7 +5,7 @@
     </v-row>
     <v-row no-gutters justify="center">
       <v-select
-        variant="outlined" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858"
+        variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858"
         :items="smokeItem"
         placeholder="기숙사를 선택해주세요"
         v-model="smoke"
@@ -21,7 +21,7 @@
       ></v-text-field>
 
       <v-select
-        variant="outlined" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858"
+        variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858"
         :items="dmyItem"
         v-model="dym"
       ></v-select>
@@ -45,7 +45,7 @@
     </v-row>
     <v-row no-gutters justify="center">
       <v-text-field
-        variant="outlined" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858"
+        variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858"
         placeholder="술 주사, 흡연 습관 등"
         maxlength="30"
       ></v-text-field>
