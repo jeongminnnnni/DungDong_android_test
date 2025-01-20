@@ -1,19 +1,38 @@
 <template>
   <v-container>
 
-    <v-row>
-      <v-chip
-        v-for="(tag, index) in tagItem"
-        :key="index"
-        :class="{'v-chip--selected': selectTag.includes(tag.value)}"
-        :variant="selectTag.includes(tag.value) ? 'elevated' : 'tonal'"
-        prepend-icon="mdi-plus"
-        @click="handleClickTag(tag.value)"
-      >
-        {{ tag.title }}
-      </v-chip>
+    <v-row no-gutters justify="start">
+      <v-label>이중 해당하는 것이 있다면 선택해주세요 (최대5개)</v-label>
+    </v-row>
+    <v-row no-gutters justify="start">
+      <v-col>
+        <v-chip
+          v-for="(tag, index) in tagItem"
+          :key="index"
+          :class="{'v-chip--selected': selectTag.includes(tag.value)}"
+          class="custom-chip"
+          :color="selectTag.includes(tag.value) ? '#FF5858' : '#B1B1B1'"
+          variant="outlined"
+          @click="handleClickTag(tag.value)"
+        >
+          {{ tag.title }}
+        </v-chip>
+      </v-col>
     </v-row>
 
+    <v-row no-gutters justify="start">
+      <v-label>더 하고 싶은 말이 있다면 작성해주세요</v-label>
+    </v-row>
+    <v-row no-gutters justify="center">
+      <v-text-field
+        variant="outlined" bg-color="#FFFFFF" base-color="#CCCCCC" color="#CCCCCC" item-color="#CCCCCC" 
+        :items="dormItem"
+        placeholder="위에 선택한 태그 부가 설명 등"
+        v-model="dorm"
+        maxlength="100"
+      ></v-text-field>
+    </v-row>
+    
   </v-container>
 </template>
 
@@ -28,11 +47,17 @@ const title = '기타참고사항'
 const selectTag = ref([])
 const tagItem = ref([
   { title: '매트선호', value: 0},
-  { title: '예술', value: 1},
-  { title: '체육', value: 2},
-  { title: '예공', value: 3},
-  { title: '생공', value: 4},
-  { title: '공과', value: 5},
+  { title: '고요를 즐김', value: 1},
+  { title: '배달음식러버', value: 2},
+  { title: '룸메와 거리두기 필요', value: 3},
+  { title: '길고 잦은 전화통화', value: 4},
+  { title: '특이습관', value: 5},
+  { title: '추위 많이 탐', value: 6},
+  { title: '더위 많이 탐', value: 7},
+  { title: '알러지', value: 8},
+  { title: '짐이 많음', value: 9},
+  { title: '잦은 밤샘', value: 10},
+  { title: '잠귀 밝음', value: 11},
 ])
 
 // ----- 라이프 사이클 ----- //
@@ -95,4 +120,7 @@ function handleClickTag(value) {
 </script>
 
 <style scoped>
+.custom-chip{
+  background-color: #FFFFFF;
+}
 </style>

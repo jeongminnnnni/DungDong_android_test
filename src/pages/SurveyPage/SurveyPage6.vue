@@ -1,9 +1,41 @@
 <template>
   <v-container>
+    <v-row no-gutters justify="start">
+      <v-label>휴대전화 소리는 어떻게 틀고 있나요? (기숙사 생활시)</v-label>
+    </v-row>
+    <v-row no-gutters justify="center">
+      <v-slider
+        :max="4" :step="1"
+        v-model="noise"
+        color="#FF5858" thumb-color="#FF5858" track-color="#D9D9D9" track-fill-color="#FF5858" tick-size="5" show-ticks="always" 
+      ></v-slider>
+    </v-row>
 
+    <v-row no-gutters justify="start">
+      <v-label>룸메이트와의 물건공유는 어느정도로 하나요?</v-label>
+    </v-row>
+    <v-row no-gutters justify="center">
+      <v-slider
+        :max="4" :step="1"
+        v-model="share"
+        color="#FF5858" thumb-color="#FF5858" track-color="#D9D9D9" track-fill-color="#FF5858" tick-size="5" show-ticks="always" 
+      ></v-slider>
+    </v-row>
+
+    <v-row no-gutters justify="start">
+      <v-label>본가로 귀가주기는 어느정도로 생각하세요?</v-label>
+    </v-row>
+    <v-row no-gutters justify="center">
+      <v-slider
+        :max="4" :step="1"
+        v-model="home"
+        color="#FF5858" thumb-color="#FF5858" track-color="#D9D9D9" track-fill-color="#FF5858" tick-size="5" show-ticks="always" 
+      ></v-slider>
+    </v-row>
 
   </v-container>
 </template>
+
 
 <script setup>
 // ----- 선언부 ----- //
@@ -27,9 +59,19 @@ onUnmounted(() => {
 })
 
 // 변경값 확인 및 업데이트
-watch(dorm, (newValue, oldValue) => {
-  console.log(`--- Dorm changed from ${oldValue} to ${newValue}`);
-  updateLocalStorage("dorm", newValue);
+watch(noise, (newValue, oldValue) => {
+  console.log(`--- noise changed from ${oldValue} to ${newValue}`);
+  updateLocalStorage("noise", newValue);
+});
+
+watch(share, (newValue, oldValue) => {
+  console.log(`--- share changed from ${oldValue} to ${newValue}`);
+  updateLocalStorage("share", newValue);
+});
+
+watch(home, (newValue, oldValue) => {
+  console.log(`--- home changed from ${oldValue} to ${newValue}`);
+  updateLocalStorage("home", newValue);
 });
 
 // ----- 함수 정의 ----- //
@@ -61,4 +103,10 @@ function updateLocalStorage(field, value) {
 </script>
 
 <style scoped>
+/* 슬라이더 틱의 색상 고정 */
+:deep(.v-slider__ticks) {
+  background-color: #ffffff !important; /* 틱을 하얀색으로 고정 */
+  border-radius: 100%; /* 둥근 모양 */
+}
+
 </style>

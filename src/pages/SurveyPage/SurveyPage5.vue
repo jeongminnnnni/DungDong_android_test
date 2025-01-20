@@ -104,8 +104,9 @@ function updateLocalStorage(field, value) {
 
 <style scoped>
 /* 슬라이더 틱의 색상 고정 */
-.v-slider__ticks {
+:deep(.v-slider__ticks) {
   background-color: #ffffff !important; /* 틱을 하얀색으로 고정 */
   border-radius: 100%; /* 둥근 모양 */
 }
+
 </style>
