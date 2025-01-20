@@ -1,6 +1,6 @@
 <template>
   <v-app class="background">
-    <v-app-bar app color="#FBFBFB" flat height="140">
+    <v-app-bar app color="#FBFBFB" flat height="140" v-if="sAppBar">
       <v-row class="align-center | justify-space-between | padding-32 | padding-top-76 | padding-bottom-16">
         <!-- 로고 -->
         <v-col cols="auto">
@@ -32,10 +32,15 @@
     </v-app-bar>
 
     <v-main>
-      <router-view style="margin-bottom: 100px;"></router-view>
+      <router-view
+        @start-survey="emitStartSurvey"
+        @restart-survey="emitRestartSurvey"
+        @continue-survey="emitContinueSurvey"
+        @hide-appbar="emitHideAppbar"
+      ></router-view>
     </v-main>
 
-    <v-footer color="#FBFBFB" flat>
+    <v-footer color="#FBFBFB" flat v-if="sAppBar">
       <v-row 
         class="align-center | justify-space-between | pl-6 | pr-6" 
         no-gutters
@@ -88,6 +93,7 @@ const surveyPage = ref([
 
 const sBackBtn = ref(false)
 const sNextBtn = ref(false)
+const sAppBar = ref(false)
 
 const survey = ref({
   dorm:  null,           // 기숙사 (문자열)
@@ -120,10 +126,9 @@ onBeforeMount(() => {
 
 onMounted(() => {
   if (!localStorage.getItem('appInitialized')) {
-    initSurvey()
+    initSurvey();
   }
 });
-
 
 onUnmounted(() => {
 
@@ -132,8 +137,9 @@ onUnmounted(() => {
 // ----- 함수 정의 ----- //
 function initSurvey() {
   localStorage.setItem('appInitialized', 'true');
-  localStorage.setItem('userProgress', JSON.stringify({ currentStep: 0, lastStep: 0}));
+  localStorage.setItem('userProgress', JSON.stringify({ currentStep: 0}));
   localStorage.setItem('userSurvey', JSON.stringify(survey.value));
+
   console.log("set localStorage appInitialized:", localStorage.getItem('appInitialized'))
   console.log("set localStorage userProgress:", localStorage.getItem('userProgress'))
   console.log("set localStorage userProgress:", localStorage.getItem('userSurvey'))
@@ -143,12 +149,20 @@ function handleClickGoPage(state) {
   const currentIndex = surveyPage.value.indexOf(route.path);
 
   switch (state) {
+    case "home":
+      console.log("현재 페이지:", route.path);
+      console.log("이동한 페이지: /home");
+      router.push("/home"); // 항상 /home으로 이동
+      sAppBar.value = false; // currentStep이 0이면 AppBar 숨김
+      break;
+
     case "back":
       if (currentIndex > 0) {
         const previousPage = surveyPage.value[currentIndex - 1]; // 이전 페이지
         console.log("현재 페이지:", route.path);
         console.log("이동한 페이지:", previousPage);
         router.push(previousPage); // 이전 페이지로 이동
+        sAppBar.value = true;
       }
       break;
 
@@ -158,7 +172,15 @@ function handleClickGoPage(state) {
         console.log("현재 페이지:", route.path);
         console.log("이동한 페이지:", nextPage);
         router.push(nextPage); // 다음 페이지로 이동
+        sAppBar.value = true;
       }
+      break;
+
+    case "finish":
+      console.log("현재 페이지:", route.path);
+      console.log("이동한 페이지: /end");
+      router.push("/end"); // 항상 /end로 이동
+      sAppBar.value = false;
       break;
 
     default:
@@ -167,8 +189,36 @@ function handleClickGoPage(state) {
   }
 }
 
-function handleClickRestartBtn() {
-  localStorage.setItem('appInitialized', 'false');
+function emitHideAppbar() {
+  console.log('Event Received: hide appbar');
+  sAppBar.value = false;
+}
+
+function emitStartSurvey() {
+  console.log('Event Received: Start Survey');
+  initSurvey();
+  sAppBar.value = true;
+  router.push("/survey1");
+}
+
+function emitRestartSurvey() {
+  console.log('Event Received: Restart Survey');
+  initSurvey();
+  sAppBar.value = true;
+  router.push("/survey1");
+}
+
+function emitContinueSurvey(payload) {
+  console.log('Event Received: Continue Survey', payload);
+
+  const targetPath = surveyPage.value[payload.currentStep];
+
+  if (targetPath) {
+    console.log('Navigating to:', targetPath);
+    router.push(targetPath); // 해당 경로로 이동
+  } else {
+    console.error('Invalid currentStep:', payload.currentStep);
+  }
 }
 
 
