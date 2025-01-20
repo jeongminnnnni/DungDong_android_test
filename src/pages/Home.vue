@@ -14,7 +14,7 @@
     </v-row>
 
     <v-card
-      class="mx-auto | margin-top-80"
+      class="mx-auto | margin-top-72"
       max-width="344"
     >
       <v-card-text>
@@ -34,6 +34,7 @@
     <v-row no-gutters justify="center" class="margin-48">
       <v-btn 
         @click="handleClickStartBtn"
+        variant="flat" color="#FF6161" rounded="xl" size="large"
       >
         설문 시작
       </v-btn>
@@ -41,6 +42,7 @@
     <v-row no-gutters justify="center" class="margin-48">
       <v-btn 
         @click="handleClickRestartBtn"
+        variant="flat" color="#FF6161" rounded="xl" size="large"
       >
         다시 시작
       </v-btn>
@@ -48,6 +50,7 @@
     <v-row no-gutters justify="center" class="margin-48">
       <v-btn 
         @click="handleClickContBtn"
+        variant="flat" color="#FF6161" rounded="xl" size="large"
       >
         이어하기
       </v-btn>
@@ -116,8 +119,8 @@ function handleClickContBtn() {
   margin-right: 48px;
 }
 
-.margin-top-80 {
-  margin-top: 80px;
+.margin-top-72 {
+  margin-top: 72px;
 }
 
 .margin-88 {
