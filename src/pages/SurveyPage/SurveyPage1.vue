@@ -1,9 +1,12 @@
 <template>
-  <v-container>
+  <BoxContainer>
+
+    <SubTitle :title="title" :desc="desc"> </SubTitle>
+
     <v-row no-gutters justify="start">
-      <v-label>기숙사</v-label>
+      <v-label>기숙사를 선택해주세요</v-label>
     </v-row>
-    <v-row no-gutters justify="center">
+    <v-row no-gutters justify="center" class="mt-1">
       <v-select
         variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858" 
         :items="dormItem"
@@ -13,20 +16,20 @@
     </v-row>
 
     <v-row no-gutters justify="start">
-      <v-label>기숙사</v-label>
+      <v-label>단과대를 선택해주세요</v-label>
     </v-row>
-    <v-row no-gutters justify="center">
+    <v-row no-gutters justify="center" class="mt-1">
       <v-select
         variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858"
-        :items="birthItem"
-        v-model="birth"
+        :items="collegeItem"
+        v-model="college"
       ></v-select>
     </v-row>
     
     <v-row no-gutters justify="start">
-      <v-label>기숙사</v-label>
+      <v-label>학번을 선택해주세요</v-label>
     </v-row>
-    <v-row no-gutters justify="center">
+    <v-row no-gutters justify="center" class="mt-1">
       <v-select
         variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858"
         :items="studentIdItem"
@@ -35,16 +38,16 @@
     </v-row>
 
     <v-row no-gutters justify="start">
-      <v-label>기숙사</v-label>
+      <v-label>생년을 선택해주세요</v-label>
     </v-row>
-    <v-row no-gutters justify="center">
+    <v-row no-gutters justify="center" class="mt-1">
       <v-select
         variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858"
-        :items="collegeItem"
-        v-model="college"
+        :items="birthItem"
+        v-model="birth"
       ></v-select>
     </v-row>
-  </v-container>
+  </BoxContainer>
 </template>
 
 <script setup>
@@ -52,13 +55,16 @@
 import { onMounted, onUnmounted, ref, computed, watch} from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { routes } from "@/router"
+import BoxContainer from "@/components/BoxContainer.vue";
+import SubTitle from "@/components/SubTitle.vue";
 
 const title = '기본정보'
+const desc = '먼저, 가장 기본적인 것부터 작성해볼까요?<br>본인이 입실할 기숙사 등 나에 대한 정보를 기입해주세요.'
 
 const dorm = ref(0);          // 기숙사
 const birth = ref("");      // 생년월일 8자리 (문자열 권장)
 const studentId = ref("");     // 학번 8자리 (문자열 권장)
-const college = ref("");     // 단과대 (문자열)
+const college = ref('비공개');     // 단과대 숫자
 const mbti = ref("");         // MBTI (문자열)
 
 const dormItem = ref([
@@ -77,24 +83,24 @@ const dormItem = ref([
 const birthItem = ref(
   Array.from({ length: 21 }, (_, index) => {
     const year = 1990 + index;
-    return { title: `${year}`, value: year };
+    return { title: `${year}년`, value: year };
   })
 );
 
 const studentIdItem = ref(
   Array.from({ length: 16 }, (_, index) => {
     const year = 10 + index;
-    return { title: `${year}`, value: year };
+    return { title: `${year}학번`, value: year };
   })
 );
 
 const collegeItem = ref([
-  { title: '비공개', value: 0},
-  { title: '예술', value: 1},
-  { title: '체육', value: 2},
-  { title: '예공', value: 3},
-  { title: '생공', value: 4},
-  { title: '공과', value: 5},
+  { title: '비공개', value: '비공개'},
+  { title: '예술대학', value: '예술대학'},
+  { title: '체육대학', value: '체육대학'},
+  { title: '예술공학대학', value: '예술공학대학'},
+  { title: '생명공학대학', value: '생명공학대학'},
+  { title: '공과대학', value: '공과대학'},
 ])
 
 // ----- 라이프 사이클 ----- //
@@ -142,8 +148,7 @@ function setCurrentSurvey() {
     dorm.value = survey.dorm || null;
     birth.value = survey.birth || null;
     studentId.value = survey.studentId || null;
-    college.value = survey.college || null;
-    mbti.value = survey.mbti || null;
+    college.value = survey.college || '비공개';
   }
 }
 
@@ -161,6 +166,12 @@ function updateLocalStorage(field, value) {
 /* 토글 버튼 아이콘 색상 */
 :deep(.v-input__control .v-icon) {
   color: #FF5858 !important; /* 아이콘 색상 */
+}
+
+:deep(.v-label) {
+  color: #000000;
+  font-style: normal;
+  font-weight: 600;
 }
 
 </style>

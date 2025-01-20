@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <BoxContainer>
 
     <v-row no-gutters justify="start">
       <v-label>이중 해당하는 것이 있다면 선택해주세요 (최대5개)</v-label>
@@ -33,7 +33,7 @@
       ></v-text-field>
     </v-row>
     
-  </v-container>
+  </BoxContainer>
 </template>
 
 <script setup>
@@ -41,6 +41,7 @@
 import { onMounted, onUnmounted, ref, computed, watch} from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { routes } from "@/router"
+import BoxContainer from "@/components/BoxContainer.vue";
 
 const title = '기타참고사항'
 
@@ -122,5 +123,11 @@ function handleClickTag(value) {
 <style scoped>
 .custom-chip{
   background-color: #FFFFFF;
+}
+
+:deep(.v-label) {
+  color: #000000;
+  font-style: normal;
+  font-weight: 600;
 }
 </style>

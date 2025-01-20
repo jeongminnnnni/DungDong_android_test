@@ -1,23 +1,26 @@
 <template>
-    <v-row>
-        {{ props.title }}
+    <v-row 
+        no-gutters justify="start" 
+        class="text-title | mb-4"
+    >
+        <v-col>{{ title }}</v-col>
     </v-row>
-    <v-row>
-        {{ props.desc }}
+    <v-row 
+        no-gutters justify="start"
+        class="text-subtitle | mb-10"
+    >
+        <v-col v-col v-html="props.desc"></v-col>
     </v-row>
 </template>
 
 <script setup>
 // ----- 선언부 ----- //
 import { onMounted, onUnmounted, ref, computed, watch} from "vue";
-import { useRouter, useRoute } from "vue-router";
-import { routes } from "@/router"
 
 const props = defineProps({
     title: String,
     desc: String
-})
-
+});
 
 // ----- 라이프 사이클 ----- //
 onMounted(() => {
@@ -36,9 +39,20 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
+.text-title {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.5px;
+}
 
-.container-box {
-  padding: 20px;            /* 내부 여백 */
-  width: 100%;              /* 반응형 지원 */
+.text-subtitle {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.4px;
+    color: #404040;
 }
 </style>

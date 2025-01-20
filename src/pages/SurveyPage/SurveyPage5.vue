@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <BoxContainer>
     <v-row no-gutters justify="start">
       <v-label>방청소 주기는 어느정도가 적당하다 생각하나요?</v-label>
     </v-row>
@@ -33,7 +33,7 @@
       ></v-slider>
     </v-row>
 
-  </v-container>
+  </BoxContainer>
 </template>
 
 <script setup>
@@ -41,6 +41,7 @@
 import { onMounted, onUnmounted, ref, computed, watch} from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { routes } from "@/router"
+import BoxContainer from "@/components/BoxContainer.vue";
 
 const title = '청소/청결';
 
@@ -109,4 +110,9 @@ function updateLocalStorage(field, value) {
   border-radius: 100%; /* 둥근 모양 */
 }
 
+:deep(.v-label) {
+  color: #000000;
+  font-style: normal;
+  font-weight: 600;
+}
 </style>

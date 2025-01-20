@@ -127,6 +127,10 @@ function formatMbtiString() {
 </script>
 
 <style scoped>
-
+:deep(.v-label) {
+  color: #000000;
+  font-style: normal;
+  font-weight: 600;
+}
 
 </style>
