@@ -1,5 +1,7 @@
 <template>
   <BoxContainer>
+    <SubTitle :title="title" :desc="desc"> </SubTitle>
+    
     <v-row no-gutters justify="start">
       <v-label>방청소 주기는 어느정도가 적당하다 생각하나요?</v-label>
     </v-row>
@@ -44,6 +46,7 @@ import { routes } from "@/router"
 import BoxContainer from "@/components/BoxContainer.vue";
 
 const title = '청소/청결';
+const desc = '청결에 대한 의견도 공동생활에서 중요합니다.<br>솔직하고 현실적인 생각을 말해주세요.'
 
 const clean = ref(0);
 const bug = ref(0);

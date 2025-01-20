@@ -1,5 +1,6 @@
 <template>
   <BoxContainer>
+    <SubTitle :title="title" :desc="desc"> </SubTitle>
 
     <v-row no-gutters justify="start">
       <v-label>이중 해당하는 것이 있다면 선택해주세요 (최대5개)</v-label>
@@ -44,6 +45,7 @@ import { routes } from "@/router"
 import BoxContainer from "@/components/BoxContainer.vue";
 
 const title = '기타참고사항'
+const desc = '앞서 작성한 것 외에 더 하고 싶은 말이 있다면<br>이 페이지에서 자유롭게 말해주세요.'
 
 const selectTag = ref([])
 const tagItem = ref([

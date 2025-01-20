@@ -1,5 +1,7 @@
 <template>
   <BoxContainer>
+    <SubTitle :title="title" :desc="desc"> </SubTitle>
+
     <v-row justify="center">
       <v-label>내향적</v-label>
       <v-switch
@@ -60,6 +62,7 @@ import { routes } from "@/router"
 import BoxContainer from "@/components/BoxContainer.vue";
 
 const title = 'MBTI'
+const desc = 'MBTI로 100% 정확하게 나의 성격을 표현할 순 없지만<br>서로를 알아가기에는 유용한 방법 중 하나 아닐까요?'
 
 const mbti = ref(null);
 const mbti0 = ref(0); // 0: I, 1: E

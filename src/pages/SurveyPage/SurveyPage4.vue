@@ -1,5 +1,7 @@
 <template>
   <BoxContainer>
+    <SubTitle :title="title" :desc="desc"> </SubTitle>
+    
     <v-row no-gutters justify="start">
       <v-label>기상시간을 입력해주세요</v-label>
     </v-row>
@@ -82,6 +84,7 @@ import { routes } from "@/router"
 import BoxContainer from "@/components/BoxContainer.vue";
 
 const title = '수면시간'
+const desc = '수면시간은 함께 생활하며 중요한 요소 중 하나예요.<br>대체로 본인의 수면 패턴이 어떠한지 솔직하게 적어주세요.'
 
 const wakeUp = ref(null);
 const wakeUpHour = ref('00');

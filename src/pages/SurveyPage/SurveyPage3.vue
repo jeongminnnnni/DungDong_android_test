@@ -1,5 +1,6 @@
 <template>
   <BoxContainer>
+    <SubTitle :title="title" :desc="desc"> </SubTitle>
     <v-row no-gutters justify="start">
       <v-label>기숙사</v-label>
     </v-row>
@@ -62,6 +63,7 @@ import { routes } from "@/router"
 import BoxContainer from "@/components/BoxContainer.vue";
 
 const title = '흡연/음주'
+const desc = ''
 
 const smoke = ref(null);
 const smokeItem = ref([

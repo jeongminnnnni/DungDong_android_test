@@ -1,5 +1,7 @@
 <template>
   <BoxContainer>
+    <SubTitle :title="title" :desc="desc"> </SubTitle>
+
     <v-row no-gutters justify="start">
       <v-label>휴대전화 소리는 어떻게 틀고 있나요? (기숙사 생활시)</v-label>
     </v-row>
@@ -45,6 +47,7 @@ import { routes } from "@/router"
 import BoxContainer from "@/components/BoxContainer.vue";
 
 const title = '일상생활';
+const desc ='사소하지만 안맞으면 불편한 것들이 있죠.<br>그중 몇가지만 여쭤볼게요.'
 
 const noise = ref(0);    
 const share = ref(0);         
