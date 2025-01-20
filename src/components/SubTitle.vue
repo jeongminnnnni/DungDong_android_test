@@ -9,7 +9,7 @@
         no-gutters justify="start"
         class="text-subtitle | mb-10"
     >
-        <v-col v-col v-html="props.desc"></v-col>
+        <v-col v-html="props.desc"></v-col>
     </v-row>
 </template>
 
@@ -32,8 +32,6 @@ onUnmounted(() => {
 })
 
 // ----- 함수 정의 ----- //
-
-
 
 
 </script>
