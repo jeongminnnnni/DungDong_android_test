@@ -1,6 +1,37 @@
 <template>
   <v-container>
+    <v-row no-gutters justify="start">
+      <v-label>방청소 주기는 어느정도가 적당하다 생각하나요?</v-label>
+    </v-row>
+    <v-row no-gutters justify="center">
+      <v-slider
+        :max="4" :step="1"
+        v-model="clean"
+        color="#FF5858" thumb-color="#FF5858" track-color="#D9D9D9" track-fill-color="#FF5858" tick-size="5" show-ticks="always" 
+      ></v-slider>
+    </v-row>
 
+    <v-row no-gutters justify="start">
+      <v-label>벌레 잘 잡으시나요?</v-label>
+    </v-row>
+    <v-row no-gutters justify="center">
+      <v-slider
+        :max="4" :step="1"
+        v-model="bug"
+        color="#FF5858" thumb-color="#FF5858" track-color="#D9D9D9" track-fill-color="#FF5858" tick-size="5" show-ticks="always" 
+      ></v-slider>
+    </v-row>
+
+    <v-row no-gutters justify="start">
+      <v-label>방 안에서 음식물 섭취, 어떻게 생각하시나요? (간식제외)</v-label>
+    </v-row>
+    <v-row no-gutters justify="center">
+      <v-slider
+        :max="4" :step="1"
+        v-model="eatIn"
+        color="#FF5858" thumb-color="#FF5858" track-color="#D9D9D9" track-fill-color="#FF5858" tick-size="5" show-ticks="always" 
+      ></v-slider>
+    </v-row>
 
   </v-container>
 </template>
@@ -17,6 +48,7 @@ const clean = ref(0);
 const bug = ref(0);
 const eatIn = ref(0);    
 
+
 // ----- 라이프 사이클 ----- //
 onMounted(() => {
   setCurrentSurvey()
@@ -27,9 +59,19 @@ onUnmounted(() => {
 })
 
 // 변경값 확인 및 업데이트
-watch(dorm, (newValue, oldValue) => {
-  console.log(`--- Dorm changed from ${oldValue} to ${newValue}`);
-  updateLocalStorage("dorm", newValue);
+watch(clean, (newValue, oldValue) => {
+  console.log(`--- clean changed from ${oldValue} to ${newValue}`);
+  updateLocalStorage("clean", newValue);
+});
+
+watch(bug, (newValue, oldValue) => {
+  console.log(`--- bug changed from ${oldValue} to ${newValue}`);
+  updateLocalStorage("bug", newValue);
+});
+
+watch(eatIn, (newValue, oldValue) => {
+  console.log(`--- eatIn changed from ${oldValue} to ${newValue}`);
+  updateLocalStorage("eatIn", newValue);
 });
 
 // ----- 함수 정의 ----- //
@@ -44,11 +86,9 @@ function setCurrentSurvey() {
   
   if (existingSurvey) {
     const survey = JSON.parse(existingSurvey);
-    dorm.value = survey.dorm || null;
-    birth.value = survey.birth || null;
-    studentId.value = survey.studentId || null;
-    college.value = survey.college || null;
-    mbti.value = survey.mbti || null;
+    clean.value = survey.clean || 0;
+    bug.value = survey.bug || 0;
+    eatIn.value = survey.eatIn || 0;
   }
 }
 
@@ -63,4 +103,9 @@ function updateLocalStorage(field, value) {
 </script>
 
 <style scoped>
+/* 슬라이더 틱의 색상 고정 */
+.v-slider__ticks {
+  background-color: #ffffff !important; /* 틱을 하얀색으로 고정 */
+  border-radius: 100%; /* 둥근 모양 */
+}
 </style>
