@@ -80,7 +80,7 @@ const dormItem = ref([
 
 const birthItem = ref(
   [
-    { title: "비공개", value: null }, 
+    { title: "비공개", value: 0 }, 
     ...Array.from({ length: 15 }, (_, index) => {
       const year = 2010 - index;
       return { title: `${year}년`, value: year };
@@ -90,7 +90,7 @@ const birthItem = ref(
 
 const studentIdItem = ref(
   [
-    { title: "비공개", value: null }, 
+    { title: "비공개", value: 0 }, 
     ...Array.from({ length: 10 }, (_, index) => {
       const year = 25 - index;
       return { title: `${year}학번`, value: year };
@@ -150,8 +150,8 @@ function setCurrentSurvey() {
   if (existingSurvey) {
     const survey = JSON.parse(existingSurvey);
     dorm.value = survey.dorm || 0;
-    birth.value = survey.birth || 2006;
-    studentId.value = survey.studentId || 25;
+    birth.value = survey.birth || 0;
+    studentId.value = survey.studentId || 0;
     college.value = survey.college || '비공개';
   }
 }

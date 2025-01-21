@@ -114,8 +114,8 @@ const survey = ref({
   dorm:  null,           // 기숙사 숫자 int
   birth: null,          // 생년 int /2002
   studentId: null,      // 학번 2자리 / 25
-  college: null,        // 단과대 (문자열)
-  mbti: null,           // MBTI List
+  college: 0,        // 단과대 (문자열)
+  mbti: "",           // MBTI List
   smoke: null,           // 흡연 여부 0,1,2 (int)
   drink: "",          // 음주 정보 (예: "12-0-00")
   sdEtc: "",  // 음주/흡연 관련 기타 (서술형 문자열)
@@ -129,7 +129,7 @@ const survey = ref({
   noise: 0,           // 소음 허용/민감도 0,1,2 (int)
   share: 0,           // 공유·공용물품 성향 0,1,2,3 (int)
   home: 0,      // 귀가 주기 0,1,2,3 (int)
-  tags: [],           // 해시태그(태그) 배열 (문자열 리스트)
+  selectTag: [],           // 해시태그(태그) 배열 (문자열 리스트)
   notes: ""           // 기타 참고사항 (서술형 문자열)
 });
 

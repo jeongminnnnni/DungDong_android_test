@@ -141,7 +141,13 @@ function setCurrentSurvey() {
   if (existingSurvey) {
     const survey = JSON.parse(existingSurvey);
     smoke.value = survey.smoke || 0;
-    drink.value = survey.drink || null;
+    drink.value = survey.drink || '00-0-0';
+
+    const parts = drink.value.split('-');  // '00-0-0' 형식을 '-'로 분리
+    dymCnt.value = parts.length > 0 ? parseInt(parts[0], 10) : 0;
+    dym.value = parts.length > 1 ? parseInt(parts[1], 10) : 0;
+    drinkCnt.value = parts.length > 2 ? parseInt(parts[2], 10) : 0;
+
     sdEtc.value = survey.sdEtc || '';
   }
 }

@@ -81,8 +81,13 @@ onUnmounted(() => {
 
 // 변경값 확인 및 업데이트
 watch(selectTag, (newValue, oldValue) => {
-  console.log(`--- Dorm changed from ${oldValue} to ${newValue}`);
+  console.log(`--- selectTag changed from ${oldValue} to ${newValue}`);
   updateLocalStorage("selectTag", newValue);
+});
+
+watch(notes, (newValue, oldValue) => {
+  console.log(`--- notes changed from ${oldValue} to ${newValue}`);
+  updateLocalStorage("notes", newValue);
 });
 
 // ----- 함수 정의 ----- //
@@ -98,7 +103,7 @@ function setCurrentSurvey() {
   if (existingSurvey) {
     const survey = JSON.parse(existingSurvey);
     selectTag.value = survey.selectTag || [];
-    notes.value = notes.selectTag || '';
+    notes.value = survey.notes || '';
   }
 }
 
@@ -125,6 +130,7 @@ function handleClickTag(value) {
     }
   }
   console.log("Selected tags:", selectTag.value);
+  updateLocalStorage("selectTag", selectTag.value);
 }
 
 
