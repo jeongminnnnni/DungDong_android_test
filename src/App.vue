@@ -81,14 +81,14 @@ const route = useRoute();
 
 const steps = [1, 2, 3, 4, 5, 6, 7]
 const surveyPage = ref([
-  "/home",
-  "/survey1",
-  "/survey2",
-  "/survey3",
-  "/survey4",
-  "/survey5",
-  "/survey6",
-  "/survey7",
+  { path: "/home", meta: { appbar: false, index: 0 } },
+  { path: "/survey1", meta: { appbar: true, index: 1 } },
+  { path: "/survey2", meta: { appbar: true, index: 2 } },
+  { path: "/survey3", meta: { appbar: true, index: 3 } },
+  { path: "/survey4", meta: { appbar: true, index: 4 } },
+  { path: "/survey5", meta: { appbar: true, index: 5 } },
+  { path: "/survey6", meta: { appbar: true, index: 6 } },
+  { path: "/survey7", meta: { appbar: true, index: 7 } },
 ]);
 
 const sBackBtn = ref(false)
@@ -134,6 +134,14 @@ onUnmounted(() => {
 
 });
 
+watch(() => route.meta.appbar, (appbarStatus) => {
+    if (appbarStatus !== undefined) {
+      sAppBar.value = appbarStatus; // 앱바 표시 여부 설정
+    }
+  },
+  { immediate: true }
+);
+
 // ----- 함수 정의 ----- //
 function initSurvey() {
   localStorage.setItem('appInitialized', 'true');
@@ -146,41 +154,33 @@ function initSurvey() {
 }
 
 function handleClickGoPage(state) {
-  const currentIndex = surveyPage.value.indexOf(route.path);
+  // 현재 경로에 해당하는 인덱스를 찾음
+  const currentIndex = surveyPage.value.findIndex((page) => page.path === route.path);
+
+  if (currentIndex === -1) {
+    console.warn("현재 경로가 surveyPage에 없습니다.");
+    return;
+  }
 
   switch (state) {
-    case "home":
-      console.log("현재 페이지:", route.path);
-      console.log("이동한 페이지: /home");
-      router.push("/home"); // 항상 /home으로 이동
-      sAppBar.value = false; // currentStep이 0이면 AppBar 숨김
-      break;
-
     case "back":
       if (currentIndex > 0) {
-        const previousPage = surveyPage.value[currentIndex - 1]; // 이전 페이지
+        const previousPage = surveyPage.value[currentIndex - 1]; 
         console.log("현재 페이지:", route.path);
-        console.log("이동한 페이지:", previousPage);
-        router.push(previousPage); // 이전 페이지로 이동
-        sAppBar.value = true;
+        console.log("이동한 페이지:", previousPage.path);
+        router.push(previousPage.path); 
+        sAppBar.value = previousPage.meta.appbar; 
       }
       break;
 
     case "next":
       if (currentIndex < surveyPage.value.length - 1) {
-        const nextPage = surveyPage.value[currentIndex + 1]; // 다음 페이지
+        const nextPage = surveyPage.value[currentIndex + 1]; 
         console.log("현재 페이지:", route.path);
-        console.log("이동한 페이지:", nextPage);
-        router.push(nextPage); // 다음 페이지로 이동
-        sAppBar.value = true;
+        console.log("이동한 페이지:", nextPage.path);
+        router.push(nextPage.path); 
+        sAppBar.value = nextPage.meta.appbar; 
       }
-      break;
-
-    case "finish":
-      console.log("현재 페이지:", route.path);
-      console.log("이동한 페이지: /end");
-      router.push("/end"); // 항상 /end로 이동
-      sAppBar.value = false;
       break;
 
     default:
@@ -188,6 +188,7 @@ function handleClickGoPage(state) {
       break;
   }
 }
+
 
 function emitHideAppbar() {
   console.log('Event Received: hide appbar');

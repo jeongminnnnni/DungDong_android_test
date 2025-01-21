@@ -19,46 +19,55 @@ const routes = [
   {
     path: '/home',
     name: 'Home',
+    meta: { appbar: false },
     component: () => import(/* webpackChunkName: "home" */ "@/pages/Home.vue")
   },
   {
     path: '/survey1',
     name: 'SurveyPage1',
+    meta: { appbar: true },
     component: () => import(/* webpackChunkName: "survey1" */ "@/pages/SurveyPage/SurveyPage1")
   },
   {
     path: '/survey2',
     name: 'SurveyPage2',
+    meta: { appbar: true },
     component: () => import(/* webpackChunkName: "survey2" */ "@/pages/SurveyPage/SurveyPage2")
   },
   {
     path: '/survey3',
     name: 'SurveyPage3',
+    meta: { appbar: true },
     component: () => import(/* webpackChunkName: "survey3" */ "@/pages/SurveyPage/SurveyPage3")
   },
   {
     path: '/survey4',
     name: 'SurveyPage4',
+    meta: { appbar: true },
     component: () => import(/* webpackChunkName: "survey4" */ "@/pages/SurveyPage/SurveyPage4")
   },
   {
     path: '/survey5',
     name: 'SurveyPage5',
+    meta: { appbar: true },
     component: () => import(/* webpackChunkName: "survey5" */ "@/pages/SurveyPage/SurveyPage5")
   },
   {
     path: '/survey6',
     name: 'SurveyPage6',
+    meta: { appbar: true },
     component: () => import(/* webpackChunkName: "survey6" */ "@/pages/SurveyPage/SurveyPage6")
   },
   {
     path: '/survey7',
     name: 'SurveyPage7',
+    meta: { appbar: true },
     component: () => import(/* webpackChunkName: "survey7" */ "@/pages/SurveyPage/SurveyPage7")
   },
   {
     path: '/end',
     name: 'End',
+    meta: { appbar: false },
     component: () => import(/* webpackChunkName: "end" */ "@/pages/End")
   },
 ];
