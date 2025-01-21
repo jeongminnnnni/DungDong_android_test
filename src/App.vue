@@ -95,13 +95,13 @@ const sNextBtn = ref(true);
 const sAppBar = ref(false);
 
 const survey = ref({
-  dorm:  null,           // 기숙사 (문자열)
-  birth: null,          // 생년월일 8자리 (문자열 권장)
-  studentId: null,      // 학번 8자리 (문자열 권장)
+  dorm:  null,           // 기숙사 숫자 int
+  birth: null,          // 생년 int /2002
+  studentId: null,      // 학번 2자리 / 25
   college: null,        // 단과대 (문자열)
   mbti: null,           // MBTI List
   smoke: null,           // 흡연 여부 0,1,2 (int)
-  drink: "",          // 음주 정보 (예: "120000")
+  drink: "",          // 음주 정보 (예: "12-0-00")
   sdEtc: "",  // 음주/흡연 관련 기타 (서술형 문자열)
   wakeUp: "",         // 기상 시간 ("00-00")
   lightOff: "",       // 소등 시간 ("00-00")
