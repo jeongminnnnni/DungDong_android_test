@@ -23,7 +23,7 @@ const desc = '이미지를 저장하고 공유하여<br>마음에 맞는 룸메�
 // ----- 라이프 사이클 ----- //
 onMounted(() => {
   const existingSurvey = localStorage.getItem('userSurvey');
-  console('get existingSurvey', existingSurvey);
+  console.log('get existingSurvey', existingSurvey);
 });
 
 onUnmounted(() => {

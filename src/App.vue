@@ -65,7 +65,7 @@
           <template v-slot:append>
             <v-icon color="#FF5858"></v-icon>
           </template>
-          'Next'
+          Next
         </v-btn>
         <v-btn 
           v-else="sNextBtn"
@@ -76,7 +76,7 @@
           <template v-slot:append>
             <v-icon color="#FF5858"></v-icon>
           </template>
-          'Finish'
+          Finish
         </v-btn>
 
       </v-row>

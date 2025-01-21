@@ -61,10 +61,9 @@ const title = '기본정보'
 const desc = '먼저, 가장 기본적인 것부터 작성해볼까요?<br>본인이 입실할 기숙사 등 나에 대한 정보를 기입해주세요.'
 
 const dorm = ref(0);          // 기숙사
-const birth = ref(2006);      // 생년월일 8자리 (문자열 권장)
-const studentId = ref(25);     // 학번 8자리 (문자열 권장)
+const birth = ref(0);      // 생년월일 8자리 (문자열 권장)
+const studentId = ref(0);     // 학번 8자리 (문자열 권장)
 const college = ref('비공개');     // 단과대 숫자
-const mbti = ref("");         // MBTI (문자열)
 
 const dormItem = ref([
   { title: '예지 1동', value: 0},
