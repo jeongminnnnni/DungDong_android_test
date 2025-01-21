@@ -54,7 +54,11 @@
         placeholder="술 주사, 흡연 습관 등"
         v-model="sdEtc"
         maxlength="30"
-      ></v-text-field>
+      >
+        <template v-slot:append-inner>
+          <v-label class="count-label" :text="`${sdEtc.length}/30`"></v-label>
+        </template>
+      </v-text-field>
     </v-row>
 
   </BoxContainer>
@@ -87,7 +91,7 @@ const dmyItem = ref([
 ]);
 const drinkCnt = ref(null);
 
-const sdEtc = ref(null);
+const sdEtc = ref('');
 
 // ----- 라이프 사이클 ----- //
 onMounted(() => {
@@ -138,7 +142,7 @@ function setCurrentSurvey() {
     const survey = JSON.parse(existingSurvey);
     smoke.value = survey.smoke || null;
     drink.value = survey.drink || null;
-    sdEtc.value = survey.sdEtc || null;
+    sdEtc.value = survey.sdEtc || '';
   }
 }
 
@@ -162,5 +166,13 @@ function updateLocalStorage(field, value) {
   color: #000000;
   font-style: normal;
   font-weight: 600;
+}
+
+.count-label {
+  color: #000000;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: -0.4px;
 }
 </style>
