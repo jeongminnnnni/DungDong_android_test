@@ -19,6 +19,8 @@
         class="custom-text-field"
         placeholder="0"
         v-model="dymCnt"
+        maxlength="2"
+        @input="dymCnt = Util.getInstance().isNumeric(dymCnt)"
       ></v-text-field>
 
       <v-select
@@ -35,6 +37,8 @@
         class="custom-text-field"
         placeholder="0"
         v-model="drinkCnt"
+        maxlength="2"
+        @input="dymCnt = Util.getInstance().isNumeric(dymCnt)"
       ></v-text-field>
       <v-label>
         번
