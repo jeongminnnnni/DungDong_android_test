@@ -52,6 +52,7 @@
       <v-text-field
         variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858"
         placeholder="술 주사, 흡연 습관 등"
+        v-model="sdEtc"
         maxlength="30"
       ></v-text-field>
     </v-row>
@@ -103,6 +104,26 @@ watch(smoke, (newValue, oldValue) => {
   updateLocalStorage("smoke", newValue);
 });
 
+watch(
+  [dymCnt, dym, drinkCnt],
+  ([newDymCnt, newDym, newDrinkCnt], [oldDymCnt, oldDym, oldDrinkCnt]) => {
+    console.log(`dymCnt changed from ${oldDymCnt} to ${newDymCnt}`);
+    console.log(`dym changed from ${oldDym} to ${newDym}`);
+    console.log(`drinkCnt changed from ${oldDrinkCnt} to ${newDrinkCnt}`);
+
+    const formattedDrink = `${String(newDymCnt).padStart(2, "0")}-${newDym}-${String(newDrinkCnt).padStart(2, "0")}`;
+    drink.value = formattedDrink;
+    console.log(`Formatted drink: ${drink.value}`);
+
+    updateLocalStorage("drink", drink.value);
+  }
+);
+
+watch(sdEtc, (newValue, oldValue) => {
+  console.log(`--- sdEtc changed from ${oldValue} to ${newValue}`);
+  updateLocalStorage("sdEtc", newValue);
+});
+
 // ----- 함수 정의 ----- //
 
 // 최초 로딩
@@ -128,7 +149,6 @@ function updateLocalStorage(field, value) {
   localStorage.setItem("userSurvey", JSON.stringify(existingSurvey));
   console.log(`Updated localStorage userSurvey: ${field} = ${value}`);
 }
-
 
 </script>
 
