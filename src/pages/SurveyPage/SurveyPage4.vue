@@ -86,15 +86,15 @@ import BoxContainer from "@/components/BoxContainer.vue";
 const title = '수면시간'
 const desc = '수면시간은 함께 생활하며 중요한 요소 중 하나예요.<br>대체로 본인의 수면 패턴이 어떠한지 솔직하게 적어주세요.'
 
-const wakeUp = ref(null);
+const wakeUp = ref('00-00');
 const wakeUpHour = ref('00');
 const wakeUpMin = ref('00');
 
-const lightOff = ref(null);
+const lightOff = ref('00-00');
 const lightOffHour = ref('00');
 const lightOffMin = ref('00');
 
-const bedTime = ref(null);
+const bedTime = ref('00-00');
 const bedTimeHour = ref('00');
 const bedTimeMin = ref('00');
 
