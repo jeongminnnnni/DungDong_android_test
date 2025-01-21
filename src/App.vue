@@ -86,7 +86,7 @@
 
 <script setup>
 // ----- 선언부 ----- //
-import { onMounted, onUnmounted, onBeforeMount, ref, computed, watch} from "vue";
+import { onMounted, onUnmounted, ref, computed, watch} from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { routes } from "@/router"
 
@@ -134,11 +134,6 @@ const survey = ref({
 });
 
 // ----- 라이프 사이클 ----- //
-onBeforeMount(() => {
-
-
-});
-
 onMounted(() => {
   if (!localStorage.getItem('appInitialized')) {
     initSurvey();
