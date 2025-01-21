@@ -10,6 +10,7 @@
         <v-img 
           src="@/assets/line.svg"
           :width="30"
+          max-width="40px"
         ></v-img>
       </v-col>
       <v-col class="d-flex | justify-center | align-center | custom-text | padding-0">
@@ -28,6 +29,7 @@
         <v-img 
           src="@/assets/line.svg"
           :width="30"
+          max-width="40px"
           style="transform: scaleX(-1);"
         ></v-img>
       </v-col>
@@ -44,6 +46,7 @@
         <v-img 
           src="@/assets/line.svg"
           :width="30"
+          max-width="40px"
         ></v-img>
       </v-col>
       <v-col class="d-flex | justify-center | align-center | custom-text | padding-0">
@@ -62,6 +65,7 @@
         <v-img 
           src="@/assets/line.svg"
           :width="30"
+          max-width="40px"
           style="transform: scaleX(-1);"
         ></v-img>
       </v-col>
@@ -78,6 +82,7 @@
         <v-img 
           src="@/assets/line.svg"
           :width="30"
+          max-width="40px"
         ></v-img>
       </v-col>
       <v-col class="d-flex | justify-center | align-center | custom-text | padding-0">
@@ -96,6 +101,7 @@
         <v-img 
           src="@/assets/line.svg"
           :width="30"
+          max-width="40px"
           style="transform: scaleX(-1);"
         ></v-img>
       </v-col>
@@ -112,6 +118,7 @@
         <v-img 
           src="@/assets/line.svg"
           :width="30"
+          max-width="40px"
         ></v-img>
       </v-col>
       <v-col class="d-flex | justify-center | align-center | custom-text | padding-0">
@@ -130,6 +137,7 @@
         <v-img 
           src="@/assets/line.svg"
           :width="30"
+          max-width="40px"
           style="transform: scaleX(-1);"
         ></v-img>
       </v-col>
