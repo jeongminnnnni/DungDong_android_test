@@ -106,17 +106,17 @@ function loadSurveyData() {
     const parsedSurvey = JSON.parse(existingSurvey);
     
     // 데이터 매핑 및 할당
-    survey.value.dorm = parsedSurvey.dorm || 0;
-    survey.value.birth = parsedSurvey.birth || 2002;
+    survey.value.dorm = parsedSurvey.dorm || "";
+    survey.value.birth = parsedSurvey.birth || 0;
     survey.value.studentId = parsedSurvey.studentId || 0;
     survey.value.college = parsedSurvey.college || "";
     survey.value.mbti = parsedSurvey.mbti || "";
-    survey.value.smoke = parsedSurvey.smoke || 0;
-    survey.value.drink = parsedSurvey.drink || "00-0-00";
+    survey.value.smoke = parseSmokeStatus(parsedSurvey.smoke || 0);
+    survey.value.drink = parseDrinkFormat(parsedSurvey.drink);
     survey.value.sdEtc = parsedSurvey.sdEtc || "";
-    survey.value.wakeUp = parsedSurvey.wakeUp || "00-00";
-    survey.value.lightOff = parsedSurvey.lightOff || "00-00";
-    survey.value.bedTime = parsedSurvey.bedTime || "00-00";
+    survey.value.wakeUp = parsedSurvey.wakeUp || "00:00";
+    survey.value.lightOff = parsedSurvey.lightOff || "00:00";
+    survey.value.bedTime = parsedSurvey.bedTime || "00:00";
     survey.value.sleepHabit = parsedSurvey.sleepHabit || 0;
     survey.value.clean = parsedSurvey.clean || 0;
     survey.value.bug = parsedSurvey.bug || 0;
@@ -129,8 +129,55 @@ function loadSurveyData() {
 
     console.log('set survey object', survey.value);
   }
-
 }
+
+function parseDrinkFormat(drink) {
+  if (!drink) return "0주에 0번";  // 기본값 설정
+
+  const parts = drink.split('-');  // 'ab-c-de'를 '-'로 분리
+  if (parts.length !== 3) return "0주에 0번";  // 형식이 맞지 않는 경우 기본값 반환
+
+  // 정수 변환을 사용해 앞자리 '0' 제거
+  const ab = parseInt(parts[0], 10);  // 'ab' 정수로 변환하여 앞자리 '0' 제거
+  const c = parseInt(parts[1], 10);  // 'c' 정수로 변환
+  const de = parseInt(parts[2], 10);  // 'de' 정수로 변환하여 앞자리 '0' 제거
+
+  // 'c'의 값에 따라 '일', '개월', '년', '주' 단위 결정
+  let unit;
+  switch (c) {
+    case 0:
+      unit = "일";
+      break;
+    case 1:
+      unit = "개월";
+      break;
+    case 2:
+      unit = "년";
+      break;
+    case 3:
+      unit = "주";  // 주 단위 추가
+      break;
+    default:
+      unit = "일";  // 기본값 설정
+  }
+
+  return `${ab}${unit}에 ${de}번`;
+}
+
+
+function parseSmokeStatus(smoke) {
+  switch (smoke) {
+    case 0:
+      return "비흡연자";
+    case 1:
+      return "흡연자(연초)";
+    case 2:
+      return "흡연자(전자담배)";
+    default:
+      return "비흡연자";  // 기본값 설정
+  }
+}
+
 // const submitSurvey = async () => {
 //   const scriptURL = "1pnk6bSmCt5eo3bQ3NvOv87fY3xZ-RaeHFqFFDXEnxf6NVZmMzs8Z4b9n"; // Google Apps Script URL
 //   try {

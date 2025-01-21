@@ -92,15 +92,15 @@ import BoxContainer from "@/components/BoxContainer.vue";
 const title = '수면시간'
 const desc = '수면시간은 함께 생활하며 중요한 요소 중 하나예요.<br>대체로 본인의 수면 패턴이 어떠한지 솔직하게 적어주세요.'
 
-const wakeUp = ref('00-00');
+const wakeUp = ref('00:00');
 const wakeUpHour = ref('00');
 const wakeUpMin = ref('00');
 
-const lightOff = ref('00-00');
+const lightOff = ref('00:00');
 const lightOffHour = ref('00');
 const lightOffMin = ref('00');
 
-const bedTime = ref('00-00');
+const bedTime = ref('00:00');
 const bedTimeHour = ref('00');
 const bedTimeMin = ref('00');
 
@@ -144,7 +144,7 @@ watch(
   ([newHour, newMin], [oldHour, oldMin]) => {
     console.log(`--- wakeUpHour changed from ${oldHour} to ${newHour}`);
     console.log(`--- wakeUpMin changed from ${oldMin} to ${newMin}`);
-    let wakeup = `${newHour}-${newMin}`
+    let wakeup = `${newHour}:${newMin}`
     updateLocalStorage('wakeUp', wakeup)
   }
 );
@@ -154,7 +154,7 @@ watch(
   ([newHour, newMin], [oldHour, oldMin]) => {
     console.log(`--- lightOffHour changed from ${oldHour} to ${newHour}`);
     console.log(`--- lightOffMin changed from ${oldMin} to ${newMin}`);
-    let lightOff = `${newHour}-${newMin}`
+    let lightOff = `${newHour}:${newMin}`
     updateLocalStorage('lightOff', lightOff)
   }
 );
@@ -164,7 +164,7 @@ watch(
   ([newHour, newMin], [oldHour, oldMin]) => {
     console.log(`--- bedTimeHour changed from ${oldHour} to ${newHour}`);
     console.log(`--- bedTimeMin changed from ${oldMin} to ${newMin}`);
-    let bedTime = `${newHour}-${newMin}`
+    let bedTime = `${newHour}:${newMin}`
     updateLocalStorage('bedTime', bedTime)
   }
 );
@@ -186,13 +186,13 @@ function setCurrentSurvey() {
   if (existingSurvey) {
     const survey = JSON.parse(existingSurvey);
 
-    wakeUp.value = survey.wakeUp || '00-00';
+    wakeUp.value = survey.wakeUp || '00:00';
     [wakeUpHour.value, wakeUpMin.value] = parseTimeValues(wakeUp);
 
-    lightOff.value = survey.lightOff || '00-00';
+    lightOff.value = survey.lightOff || '00:00';
     [lightOffHour.value, lightOffMin.value] = parseTimeValues(lightOff);
 
-    bedTime.value = survey.bedTime || '00-00';
+    bedTime.value = survey.bedTime || '00:00';
     [bedTimeHour.value, bedTimeMin.value] = parseTimeValues(bedTime);
 
     sleepHabit.value = survey.sleepHabit || 0;
@@ -208,7 +208,7 @@ function updateLocalStorage(field, value) {
 }
 
 function parseTimeValues(item) {
-  const [hour, min] = item.value.split('-');
+  const [hour, min] = item.value.split(':');
   let itemHour = hour || '00';
   let itemMin = min || '00';
   return [itemHour, itemMin];
