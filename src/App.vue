@@ -40,7 +40,7 @@
       ></router-view>
     </v-main>
 
-    <v-footer color="#FBFBFB" flat v-if="sAppBar">
+    <v-footer color="#FBFBFB" flat v-if="sFooter">
       <v-row 
         class="align-center | justify-space-between | pl-6 | pr-6" 
         no-gutters
@@ -55,7 +55,9 @@
           </template>
           Back
         </v-btn>
+
         <v-btn 
+          v-if="sNextBtn"
           append-icon="mdi-arrow-right" 
           variant="text"
           @click="handleClickGoPage('next')"
@@ -63,8 +65,20 @@
           <template v-slot:append>
             <v-icon color="#FF5858"></v-icon>
           </template>
-          {{ sNextBtn ? 'Next' : 'Finish' }}
+          'Next'
         </v-btn>
+        <v-btn 
+          v-else="sNextBtn"
+          append-icon="mdi-arrow-right" 
+          variant="text"
+          @click="handleClickGoPage('finish')"
+        >
+          <template v-slot:append>
+            <v-icon color="#FF5858"></v-icon>
+          </template>
+          'Finish'
+        </v-btn>
+
       </v-row>
     </v-footer>
   </v-app>
@@ -89,9 +103,11 @@ const surveyPage = ref([
   { path: "/survey5", meta: { appbar: true, index: 5 } },
   { path: "/survey6", meta: { appbar: true, index: 6 } },
   { path: "/survey7", meta: { appbar: true, index: 7 } },
+  // { path: "/end", meta: { appbar: false, index: 8 } },
 ]);
 
 const sNextBtn = ref(true);
+const sFooter = ref(false);
 const sAppBar = ref(false);
 
 const survey = ref({
@@ -134,9 +150,16 @@ onUnmounted(() => {
 });
 
 watch(() => route.path, (path) => {
-    if (path === "/home" || path === "/end" || path === "/") {
+    if (path === "/home" || path === "/") {
+      sFooter.value = false;
       sAppBar.value = false;
+
+    } else if (path === "/end") {
+      sFooter.value = false;
+      sAppBar.value = true;
+
     } else {
+      sFooter.value = true;
       sAppBar.value = true;
     }
 
@@ -173,7 +196,6 @@ function handleClickGoPage(state) {
     case "back":
       if (currentIndex > 0) {
         const previousPage = surveyPage.value[currentIndex - 1]; 
-        sAppBar.value = previousPage.meta.appbar;
         console.log("현재 페이지:", route.path);
         console.log("이동한 페이지:", previousPage.path);
         router.push(previousPage.path); 
@@ -181,13 +203,16 @@ function handleClickGoPage(state) {
       break;
 
     case "next":
-      if (currentIndex < surveyPage.value.length - 2) {
+      if (currentIndex < surveyPage.value.length - 1) {
         const nextPage = surveyPage.value[currentIndex + 1]; 
-        sAppBar.value = nextPage.meta.appbar;
         console.log("현재 페이지:", route.path);
         console.log("이동한 페이지:", nextPage.path);
         router.push(nextPage.path); 
       } 
+      break;
+
+    case "finish":
+      router.push("/end");
       break;
 
     default:
@@ -199,20 +224,18 @@ function handleClickGoPage(state) {
 
 function emitHideAppbar() {
   console.log('Event Received: hide appbar');
-  sAppBar.value = false;
+  sFooter.value = false;
 };
 
 function emitStartSurvey() {
   console.log('Event Received: Start Survey');
   initSurvey();
-  sAppBar.value = true;
   router.push("/survey1");
 };
 
 function emitRestartSurvey() {
   console.log('Event Received: Restart Survey');
   initSurvey();
-  sAppBar.value = true;
   router.push("/survey1");
 };
 
