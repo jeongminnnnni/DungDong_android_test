@@ -63,7 +63,7 @@
           <template v-slot:append>
             <v-icon color="#FF5858"></v-icon>
           </template>
-          Next
+          {{ sNextBtn ? 'Next' : 'Finish' }}
         </v-btn>
       </v-row>
     </v-footer>
@@ -79,7 +79,7 @@ import { routes } from "@/router"
 const router = useRouter();
 const route = useRoute();
 
-const steps = [1, 2, 3, 4, 5, 6, 7]
+const steps = [1, 2, 3, 4, 5, 6, 7];
 const surveyPage = ref([
   { path: "/home", meta: { appbar: false, index: 0 } },
   { path: "/survey1", meta: { appbar: true, index: 1 } },
@@ -91,9 +91,8 @@ const surveyPage = ref([
   { path: "/survey7", meta: { appbar: true, index: 7 } },
 ]);
 
-const sBackBtn = ref(false)
-const sNextBtn = ref(false)
-const sAppBar = ref(false)
+const sNextBtn = ref(true);
+const sAppBar = ref(false);
 
 const survey = ref({
   dorm:  null,           // 기숙사 (문자열)
@@ -134,9 +133,17 @@ onUnmounted(() => {
 
 });
 
-watch(() => route.meta.appbar, (appbarStatus) => {
-    if (appbarStatus !== undefined) {
-      sAppBar.value = appbarStatus; // 앱바 표시 여부 설정
+watch(() => route.path, (path) => {
+    if (path === "/home" || path === "/end" || path === "/") {
+      sAppBar.value = false;
+    } else {
+      sAppBar.value = true;
+    }
+
+    if (path === "/survey7") {
+      sNextBtn.value = false;
+    } else {
+      sNextBtn.value = true;
     }
   },
   { immediate: true }
@@ -166,48 +173,48 @@ function handleClickGoPage(state) {
     case "back":
       if (currentIndex > 0) {
         const previousPage = surveyPage.value[currentIndex - 1]; 
+        sAppBar.value = previousPage.meta.appbar;
         console.log("현재 페이지:", route.path);
         console.log("이동한 페이지:", previousPage.path);
         router.push(previousPage.path); 
-        sAppBar.value = previousPage.meta.appbar; 
       }
       break;
 
     case "next":
-      if (currentIndex < surveyPage.value.length - 1) {
+      if (currentIndex < surveyPage.value.length - 2) {
         const nextPage = surveyPage.value[currentIndex + 1]; 
+        sAppBar.value = nextPage.meta.appbar;
         console.log("현재 페이지:", route.path);
         console.log("이동한 페이지:", nextPage.path);
         router.push(nextPage.path); 
-        sAppBar.value = nextPage.meta.appbar; 
-      }
+      } 
       break;
 
     default:
       console.warn("Invalid state:", state);
       break;
   }
-}
+};
 
 
 function emitHideAppbar() {
   console.log('Event Received: hide appbar');
   sAppBar.value = false;
-}
+};
 
 function emitStartSurvey() {
   console.log('Event Received: Start Survey');
   initSurvey();
   sAppBar.value = true;
   router.push("/survey1");
-}
+};
 
 function emitRestartSurvey() {
   console.log('Event Received: Restart Survey');
   initSurvey();
   sAppBar.value = true;
   router.push("/survey1");
-}
+};
 
 function emitContinueSurvey(payload) {
   console.log('Event Received: Continue Survey', payload);
@@ -220,7 +227,7 @@ function emitContinueSurvey(payload) {
   } else {
     console.error('Invalid currentStep:', payload.currentStep);
   }
-}
+};
 
 
 </script>
