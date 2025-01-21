@@ -2,52 +2,140 @@
   <BoxContainer>
     <SubTitle :title="title" :desc="desc"> </SubTitle>
 
-    <v-row justify="center">
-      <v-label>내향적</v-label>
+    <v-row no-gutter justify="center">
+      <v-col class="d-flex | justify-center | align-center">
+        <v-label>내향적</v-label>
+      </v-col>
+      <v-col class="d-flex | justify-center | align-center | padding-0">
+        <v-img 
+          src="@/assets/line.svg"
+          :width="30"
+        ></v-img>
+      </v-col>
+      <v-col class="d-flex | justify-center | align-center | custom-text | padding-0">
+        I
+      </v-col>
       <v-switch
         v-model="mbti0"
-        inset
-        hide-details
+        inset hide-details color="#FF6161" base-color="#FF6161" class="mr-5 | ml-5"
         :value="1"
         :false-value="0"
       ></v-switch>
-      <v-label>외향적</v-label>
+      <v-col class="d-flex | justify-center | align-center | custom-text | padding-0">
+        E
+      </v-col>
+      <v-col class="d-flex | justify-center | align-center | padding-0">
+        <v-img 
+          src="@/assets/line.svg"
+          :width="30"
+          style="transform: scaleX(-1);"
+        ></v-img>
+      </v-col>
+      <v-col class="d-flex | justify-center | align-center">
+        <v-label>외향적</v-label>
+      </v-col>
     </v-row>
 
-    <v-row justify="center">
-      <v-label>이상적</v-label>
+    <v-row no-gutter justify="center" class="margin-top-72">
+      <v-col class="d-flex | justify-center | align-center">
+        <v-label>이상적</v-label>
+      </v-col>
+      <v-col class="d-flex | justify-center | align-center | padding-0">
+        <v-img 
+          src="@/assets/line.svg"
+          :width="30"
+        ></v-img>
+      </v-col>
+      <v-col class="d-flex | justify-center | align-center | custom-text | padding-0">
+        N
+      </v-col>
       <v-switch
         v-model="mbti1"
-        inset
-        hide-details
+        inset hide-details color="#FF6161" base-color="#FF6161" class="mr-5 | ml-5"
         :value="1"
         :false-value="0"
       ></v-switch>
-      <v-label>현실적</v-label>
+      <v-col class="d-flex | justify-center | align-center | custom-text | padding-0">
+        S
+      </v-col>
+      <v-col class="d-flex | justify-center | align-center | padding-0">
+        <v-img 
+          src="@/assets/line.svg"
+          :width="30"
+          style="transform: scaleX(-1);"
+        ></v-img>
+      </v-col>
+      <v-col class="d-flex | justify-center | align-center">
+        <v-label>현실적</v-label>
+      </v-col>
     </v-row>
 
-    <v-row justify="center">
-      <v-label>사고형</v-label>
+    <v-row no-gutter justify="center" class="margin-top-72">
+      <v-col class="d-flex | justify-center | align-center">
+        <v-label>사고형</v-label>
+      </v-col>
+      <v-col class="d-flex | justify-center | align-center | padding-0">
+        <v-img 
+          src="@/assets/line.svg"
+          :width="30"
+        ></v-img>
+      </v-col>
+      <v-col class="d-flex | justify-center | align-center | custom-text | padding-0">
+        T
+      </v-col>
       <v-switch
         v-model="mbti2"
-        inset
-        hide-details
+        inset hide-details color="#FF6161" base-color="#FF6161" class="mr-5 | ml-5"
         :value="1"
         :false-value="0"
       ></v-switch>
-      <v-label>감정형</v-label>
+      <v-col class="d-flex | justify-center | align-center | custom-text | padding-0">
+        F
+      </v-col>
+      <v-col class="d-flex | justify-center | align-center | padding-0">
+        <v-img 
+          src="@/assets/line.svg"
+          :width="30"
+          style="transform: scaleX(-1);"
+        ></v-img>
+      </v-col>
+      <v-col class="d-flex | justify-center | align-center">
+        <v-label>감정형</v-label>
+      </v-col>
     </v-row>
 
-    <v-row justify="center">
-      <v-label>계획성</v-label>
+    <v-row no-gutter justify="center" class="margin-top-72">
+      <v-col class="d-flex | justify-center | align-center">
+        <v-label>계획성</v-label>
+      </v-col>
+      <v-col class="d-flex | justify-center | align-center | padding-0">
+        <v-img 
+          src="@/assets/line.svg"
+          :width="30"
+        ></v-img>
+      </v-col>
+      <v-col class="d-flex | justify-center | align-center | custom-text | padding-0">
+        J
+      </v-col>
       <v-switch
         v-model="mbti3"
-        inset
-        hide-details
+        inset hide-details color="#FF6161" base-color="#FF6161" class="mr-5 | ml-5"
         :value="1"
         :false-value="0"
       ></v-switch>
-      <v-label>융통성</v-label>
+      <v-col class="d-flex | justify-center | align-center | custom-text | padding-0">
+        P
+      </v-col>
+      <v-col class="d-flex | justify-center | align-center | padding-0">
+        <v-img 
+          src="@/assets/line.svg"
+          :width="30"
+          style="transform: scaleX(-1);"
+        ></v-img>
+      </v-col>
+      <v-col class="d-flex | justify-center | align-center">
+        <v-label>융통성</v-label>
+      </v-col>
     </v-row>
     
   </BoxContainer>
@@ -64,7 +152,6 @@ import BoxContainer from "@/components/BoxContainer.vue";
 const title = 'MBTI'
 const desc = 'MBTI로 100% 정확하게 나의 성격을 표현할 순 없지만<br>서로를 알아가기에는 유용한 방법 중 하나 아닐까요?'
 
-const mbti = ref(null);
 const mbti0 = ref(0); // 0: I, 1: E
 const mbti1 = ref(0); // 0: N, 1: S
 const mbti2 = ref(0); // 0: T, 1: F
@@ -133,7 +220,22 @@ function formatMbtiString() {
 :deep(.v-label) {
   color: #000000;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 400;
+  letter-spacing: -0.4px;
 }
 
+.custom-text {
+  color: #666;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.padding-0 {
+  padding: 0px;
+}
+
+.margin-top-72 {
+  margin-top: 72px;
+}
 </style>
