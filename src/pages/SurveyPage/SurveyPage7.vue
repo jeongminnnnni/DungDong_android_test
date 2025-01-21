@@ -5,13 +5,14 @@
     <v-row no-gutters justify="start">
       <v-label>이중 해당하는 것이 있다면 선택해주세요 (최대5개)</v-label>
     </v-row>
-    <v-row no-gutters justify="start" class="mt-1">
+    <v-row no-gutters justify="start" class="mt-4">
       <v-col>
         <v-chip
           v-for="(tag, index) in tagItem"
           :key="index"
           :class="{'v-chip--selected': selectTag.includes(tag.value)}"
-          class="custom-chip"
+          class="custom-chip | mb-2 | mr-2 | pr-3 | pl-3"
+          :style="{ backgroundColor: 'white' }"
           :color="selectTag.includes(tag.value) ? '#FF5858' : '#B1B1B1'"
           variant="outlined"
           @click="handleClickTag(tag.value)"
@@ -21,17 +22,21 @@
       </v-col>
     </v-row>
 
-    <v-row no-gutters justify="start">
+    <v-row no-gutters justify="start" class="margin-top-52">
       <v-label>더 하고 싶은 말이 있다면 작성해주세요</v-label>
     </v-row>
     <v-row no-gutters justify="center" class="mt-1">
       <v-text-field
         variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#CCCCCC" color="#CCCCCC" item-color="#CCCCCC" 
-        :items="dormItem"
         placeholder="위에 선택한 태그 부가 설명 등"
-        v-model="dorm"
+        v-model="notes"
         maxlength="100"
-      ></v-text-field>
+      >
+        <template v-slot:append-inner>
+          <v-label class="count-label" :text="`${notes.length}/100`"></v-label>
+        </template>
+
+      </v-text-field>
     </v-row>
     
   </BoxContainer>
@@ -63,6 +68,8 @@ const tagItem = ref([
   { title: '잠귀 밝음', value: 11},
 ])
 
+const notes = ref('')
+
 // ----- 라이프 사이클 ----- //
 onMounted(() => {
   setCurrentSurvey()
@@ -91,6 +98,7 @@ function setCurrentSurvey() {
   if (existingSurvey) {
     const survey = JSON.parse(existingSurvey);
     selectTag.value = survey.selectTag || [];
+    notes.value = notes.selectTag || '';
   }
 }
 
@@ -123,8 +131,8 @@ function handleClickTag(value) {
 </script>
 
 <style scoped>
-.custom-chip{
-  background-color: #FFFFFF;
+.margin-top-52{
+  margin-top: 52px;
 }
 
 :deep(.v-label) {
@@ -132,4 +140,14 @@ function handleClickTag(value) {
   font-style: normal;
   font-weight: 600;
 }
+
+.count-label {
+  color: #000000;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: -0.4px;
+}
+
+
 </style>
