@@ -5,69 +5,75 @@
     <v-row no-gutters justify="start">
       <v-label>기상시간을 입력해주세요</v-label>
     </v-row>
-    <v-row no-gutters justify="center" class="mt-1">
+    <v-row no-gutters justify="center" class="mt-3">
       <v-select
-        variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858" 
+        variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858" hide-details
+        max-width="84px" min-width="84px"
         :items="hourItem"
         placeholder=""
         v-model="wakeUpHour"
       ></v-select>
-      <v-label>시</v-label>
+      <v-label class="ml-2 | mr-4" >시</v-label>
       <v-select
-        variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858" 
+        variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858" hide-details
+        max-width="84px" min-width="84px" 
         :items="minItem"
         placeholder=""
         v-model="wakeUpMin"
       ></v-select>
-      <v-label>분</v-label>
+      <v-label class="ml-2 | mr-4" >분</v-label>
     </v-row>
 
-    <v-row no-gutters justify="start">
+    <v-row no-gutters justify="start" class="mt-8">
       <v-label>소등시간을 입력해주세요</v-label>
     </v-row>
-    <v-row no-gutters justify="center" class="mt-1">
+    <v-row no-gutters justify="center" class="mt-3">
       <v-select
-        variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858" 
+        variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858" hide-details
+        max-width="84px" min-width="84px" 
         :items="hourItem"
         placeholder=""
         v-model="lightOffHour"
       ></v-select>
-      <v-label>시</v-label>
+      <v-label class="ml-2 | mr-4" >시</v-label>
       <v-select
-        variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858" 
+        variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858" hide-details
+        max-width="84px" min-width="84px"
         :items="minItem"
         placeholder=""
         v-model="lightOffMin"
       ></v-select>
-      <v-label>분</v-label>
+      <v-label class="ml-2 | mr-4" >분</v-label>
     </v-row>
 
-    <v-row no-gutters justify="start">
+    <v-row no-gutters justify="start" class="mt-8">
       <v-label>취침시간을 입력해주세요</v-label>
     </v-row>
-    <v-row no-gutters justify="center" class="mt-1">
+    <v-row no-gutters justify="center" class="mt-3">
       <v-select
-        variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858" 
+        variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858" hide-details
+        max-width="84px" min-width="84px"
         :items="hourItem"
         placeholder=""
         v-model="bedTimeHour"
       ></v-select>
-      <v-label>시</v-label>
+      <v-label class="ml-2 | mr-4" >시</v-label>
       <v-select
-        variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858" 
+        variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858" hide-details
+        max-width="84px" min-width="84px"
         :items="minItem"
         placeholder=""
         v-model="bedTimeMin"
       ></v-select>
-      <v-label>분</v-label>
+      <v-label class="ml-2 | mr-4" >분</v-label>
     </v-row>
 
-    <v-row no-gutters justify="start">
+    <v-row no-gutters justify="start" class="mt-8">
       <v-label>잠버릇이 있다면 선택해주세요</v-label>
     </v-row>
-    <v-row no-gutters justify="center" class="mt-1">
+    <v-row no-gutters justify="center" class="mt-3">
       <v-select
-        variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858" 
+        variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858" hide-details
         :items="sleepHabitItem"
         v-model="sleepHabit"
       ></v-select>

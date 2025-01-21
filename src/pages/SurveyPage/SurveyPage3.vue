@@ -2,51 +2,51 @@
   <BoxContainer>
     <SubTitle :title="title" :desc="desc"> </SubTitle>
     <v-row no-gutters justify="start">
-      <v-label>기숙사</v-label>
+      <v-label>흡연여부를 선택해주세요</v-label>
     </v-row>
     <v-row no-gutters justify="center" class="mt-1">
       <v-select
         variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858"
         :items="smokeItem"
-        placeholder="기숙사를 선택해주세요"
         v-model="smoke"
       ></v-select>
     </v-row>
 
     <v-row no-gutters justify="center" class="mt-1">
-      <v-text-field
-        variant="underlined" base-color="#FF5858" color="#FF5858" item-color="#FF5858"
-        class="custom-text-field"
-        placeholder="0"
-        v-model="dymCnt"
-        maxlength="2"
-        @input="dymCnt = Util.getInstance().isNumeric(dymCnt)"
-      ></v-text-field>
-
-      <v-select
-        variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858"
-        :items="dmyItem"
-        v-model="dym"
-      ></v-select>
-      <v-label>
-        에
-      </v-label>
-
-      <v-text-field
-        variant="underlined" base-color="#FF5858" color="#FF5858" item-color="#FF5858"
-        class="custom-text-field"
-        placeholder="0"
-        v-model="drinkCnt"
-        maxlength="2"
-        @input="dymCnt = Util.getInstance().isNumeric(dymCnt)"
-      ></v-text-field>
-      <v-label>
-        번
-      </v-label>
+      <v-col class="d-flex | justify-center | align-center">
+        <v-text-field
+          variant="underlined" base-color="#FF5858" color="#FF5858" item-color="#FF5858" hide-details
+          class="custom-text-field" max-width="40px" min-width="40px"
+          placeholder="0"
+          v-model="dymCnt"
+          maxlength="2"
+          @input="dymCnt = Util.getInstance().isNumeric(dymCnt)"
+        ></v-text-field>
+        <v-select
+          variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858" hide-details
+          :items="dmyItem" max-width="80px" min-width="80px"
+          class="ml-2 | mr-2"
+          v-model="dym"
+        ></v-select>
+        <v-label>
+          에
+        </v-label>
+        <v-text-field
+          variant="underlined" base-color="#FF5858" color="#FF5858" item-color="#FF5858" hide-details
+          class="custom-text-field | ml-7 | mr-2" max-width="40px" min-width="40px"
+          placeholder="0"
+          v-model="drinkCnt"
+          maxlength="2"
+          @input="dymCnt = Util.getInstance().isNumeric(dymCnt)"
+        ></v-text-field>
+        <v-label>
+          번
+        </v-label>
+      </v-col>
     </v-row>
 
-    <v-row no-gutters justify="start">
-      <v-label>흡연/음주와 관련하여 하고 싶은 말이 있다면 적어주세요</v-label>
+    <v-row no-gutters justify="start" class="margin-top-52">
+      <label class="custom-label">흡연/음주에 대해 하고싶은 말이 있다면 적어주세요</label>
     </v-row>
     <v-row no-gutters justify="center" class="mt-1">
       <v-text-field
@@ -74,7 +74,7 @@ import BoxContainer from "@/components/BoxContainer.vue";
 const title = '흡연/음주'
 const desc = ''
 
-const smoke = ref(null);
+const smoke = ref(0);
 const smokeItem = ref([
   { title: '비흡연', value: 0},
   { title: '연초', value: 1},
@@ -140,7 +140,7 @@ function setCurrentSurvey() {
   
   if (existingSurvey) {
     const survey = JSON.parse(existingSurvey);
-    smoke.value = survey.smoke || null;
+    smoke.value = survey.smoke || 0;
     drink.value = survey.drink || null;
     sdEtc.value = survey.sdEtc || '';
   }
@@ -167,6 +167,11 @@ function updateLocalStorage(field, value) {
   font-style: normal;
   font-weight: 600;
 }
+.custom-label {
+  color: #646464;
+  font-style: normal;
+  font-weight: 600;
+}
 
 .count-label {
   color: #000000;
@@ -174,5 +179,13 @@ function updateLocalStorage(field, value) {
   font-style: normal;
   font-weight: 400;
   letter-spacing: -0.4px;
+}
+
+.padding-0 {
+  padding: 0px;
+}
+
+.margin-top-52 {
+  margin-top: 52px;
 }
 </style>
