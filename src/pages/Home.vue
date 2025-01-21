@@ -14,8 +14,8 @@
     </v-row>
 
     <v-card
-      class="mx-auto | margin-top-72"
-      max-width="344"
+      class="mx-auto | margin-top-72 | pt-2 pl-4 pr-4"
+      max-width="370" rounded="lg"
     >
       <v-card-text>
         <div class="text-medium-emphasis | text-align-center">
@@ -31,26 +31,38 @@
       </v-card-actions>
     </v-card>
 
-    <v-row no-gutters justify="center" class="margin-48">
+    <v-row 
+      v-if="sNewStart"
+      no-gutters justify="center" class="margin-48 | mt-10"
+    >
       <v-btn 
         @click="handleClickStartBtn"
-        variant="flat" color="#FF6161" rounded="xl" size="large"
+        variant="flat" color="#FF6161" rounded="xl" size="large" width="100%" height="52px"
+        class="text-btn"
       >
-        설문 시작
+        시작하기
       </v-btn>
     </v-row>
-    <v-row no-gutters justify="center" class="margin-48">
+    <v-row 
+      v-else="sNewStart"
+      no-gutters justify="center" class="margin-48 | mt-10"
+    >
       <v-btn 
         @click="handleClickRestartBtn"
-        variant="flat" color="#FF6161" rounded="xl" size="large"
+        variant="flat" color="#666666" rounded="xl" size="large" width="100%" height="52px"
+        class="text-btn"
       >
         다시 시작
       </v-btn>
     </v-row>
-    <v-row no-gutters justify="center" class="margin-48">
+    <v-row 
+      v-else="sNewStart"
+      no-gutters justify="center" class="margin-48 | mt-2"
+    >
       <v-btn 
         @click="handleClickContBtn"
-        variant="flat" color="#FF6161" rounded="xl" size="large"
+        variant="flat" color="#FF6161" rounded="xl" size="large" width="100%" height="52px"
+        class="text-btn"
       >
         이어하기
       </v-btn>
@@ -77,6 +89,8 @@ onMounted(() => {
 onUnmounted(() => {
 
 })
+
+const sNewStart = ref(true);
 
 // ----- 함수 정의 ----- //
 
@@ -135,6 +149,15 @@ function handleClickContBtn() {
   font-weight: 400;
   line-height: normal;
   letter-spacing: -0.5px;
+}
+
+.text-btn {
+  color: #FFF;
+  text-align: center;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: -0.7px;
 }
 
 
