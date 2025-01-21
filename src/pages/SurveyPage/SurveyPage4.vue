@@ -5,7 +5,7 @@
     <v-row no-gutters justify="start">
       <v-label>기상시간을 입력해주세요</v-label>
     </v-row>
-    <v-row no-gutters justify="center">
+    <v-row no-gutters justify="center" class="mt-1">
       <v-select
         variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858" 
         :items="hourItem"
@@ -25,7 +25,7 @@
     <v-row no-gutters justify="start">
       <v-label>소등시간을 입력해주세요</v-label>
     </v-row>
-    <v-row no-gutters justify="center">
+    <v-row no-gutters justify="center" class="mt-1">
       <v-select
         variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858" 
         :items="hourItem"
@@ -45,7 +45,7 @@
     <v-row no-gutters justify="start">
       <v-label>취침시간을 입력해주세요</v-label>
     </v-row>
-    <v-row no-gutters justify="center">
+    <v-row no-gutters justify="center" class="mt-1">
       <v-select
         variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858" 
         :items="hourItem"
@@ -65,7 +65,7 @@
     <v-row no-gutters justify="start">
       <v-label>잠버릇이 있다면 선택해주세요</v-label>
     </v-row>
-    <v-row no-gutters justify="center">
+    <v-row no-gutters justify="center" class="mt-1">
       <v-select
         variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858" 
         :items="sleepHabitItem"

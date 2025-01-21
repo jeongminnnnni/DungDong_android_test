@@ -5,7 +5,7 @@
     <v-row no-gutters justify="start">
       <v-label>휴대전화 소리는 어떻게 틀고 있나요? (기숙사 생활시)</v-label>
     </v-row>
-    <v-row no-gutters justify="center">
+    <v-row no-gutters justify="center" class="mt-1">
       <v-slider
         :max="4" :step="1"
         v-model="noise"
@@ -16,7 +16,7 @@
     <v-row no-gutters justify="start">
       <v-label>룸메이트와의 물건공유는 어느정도로 하나요?</v-label>
     </v-row>
-    <v-row no-gutters justify="center">
+    <v-row no-gutters justify="center" class="mt-1">
       <v-slider
         :max="4" :step="1"
         v-model="share"
@@ -27,7 +27,7 @@
     <v-row no-gutters justify="start">
       <v-label>본가로 귀가주기는 어느정도로 생각하세요?</v-label>
     </v-row>
-    <v-row no-gutters justify="center">
+    <v-row no-gutters justify="center" class="mt-1">
       <v-slider
         :max="4" :step="1"
         v-model="home"

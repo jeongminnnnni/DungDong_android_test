@@ -4,7 +4,7 @@
     <v-row no-gutters justify="start">
       <v-label>기숙사</v-label>
     </v-row>
-    <v-row no-gutters justify="center">
+    <v-row no-gutters justify="center" class="mt-1">
       <v-select
         variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858"
         :items="smokeItem"
@@ -13,7 +13,7 @@
       ></v-select>
     </v-row>
 
-    <v-row no-gutters justify="center">
+    <v-row no-gutters justify="center" class="mt-1">
       <v-text-field
         variant="underlined" base-color="#FF5858" color="#FF5858" item-color="#FF5858"
         class="custom-text-field"
@@ -44,7 +44,7 @@
     <v-row no-gutters justify="start">
       <v-label>흡연/음주와 관련하여 하고 싶은 말이 있다면 적어주세요</v-label>
     </v-row>
-    <v-row no-gutters justify="center">
+    <v-row no-gutters justify="center" class="mt-1">
       <v-text-field
         variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858"
         placeholder="술 주사, 흡연 습관 등"

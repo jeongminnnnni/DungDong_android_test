@@ -5,7 +5,7 @@
     <v-row no-gutters justify="start">
       <v-label>방청소 주기는 어느정도가 적당하다 생각하나요?</v-label>
     </v-row>
-    <v-row no-gutters justify="center">
+    <v-row no-gutters justify="center" class="mt-1">
       <v-slider
         :max="4" :step="1"
         v-model="clean"
@@ -16,7 +16,7 @@
     <v-row no-gutters justify="start">
       <v-label>벌레 잘 잡으시나요?</v-label>
     </v-row>
-    <v-row no-gutters justify="center">
+    <v-row no-gutters justify="center" class="mt-1">
       <v-slider
         :max="4" :step="1"
         v-model="bug"
@@ -27,7 +27,7 @@
     <v-row no-gutters justify="start">
       <v-label>방 안에서 음식물 섭취, 어떻게 생각하시나요? (간식제외)</v-label>
     </v-row>
-    <v-row no-gutters justify="center">
+    <v-row no-gutters justify="center" class="mt-1">
       <v-slider
         :max="4" :step="1"
         v-model="eatIn"

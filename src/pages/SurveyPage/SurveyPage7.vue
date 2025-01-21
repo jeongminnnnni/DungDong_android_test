@@ -5,7 +5,7 @@
     <v-row no-gutters justify="start">
       <v-label>이중 해당하는 것이 있다면 선택해주세요 (최대5개)</v-label>
     </v-row>
-    <v-row no-gutters justify="start">
+    <v-row no-gutters justify="start" class="mt-1">
       <v-col>
         <v-chip
           v-for="(tag, index) in tagItem"
@@ -24,7 +24,7 @@
     <v-row no-gutters justify="start">
       <v-label>더 하고 싶은 말이 있다면 작성해주세요</v-label>
     </v-row>
-    <v-row no-gutters justify="center">
+    <v-row no-gutters justify="center" class="mt-1">
       <v-text-field
         variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#CCCCCC" color="#CCCCCC" item-color="#CCCCCC" 
         :items="dormItem"
