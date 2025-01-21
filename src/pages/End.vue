@@ -2,17 +2,20 @@
   <BoxContainer>
     <SubTitle :title="title" :desc="desc"> </SubTitle>
     <v-row no-gutters justify="center">
+      <div ref="captureRef">
+        <ImageFrame :survey="survey"></ImageFrame>
+      </div>
       <v-img
+        :src="capturedImage"
         :width="300"
         aspect-ratio="1/1"
         cover
-        src="https://cdn.vuetifyjs.com/images/parallax/material.jpg"
       ></v-img>
     </v-row>
 
     <v-row no-gutters justify="center" class="margin-48 | mt-10 | pl-14 | pr-14">
       <v-btn 
-        @click="submitSurvey"
+        @click="captureAndSetImage"
         color="#FF6161" rounded="xl" width="100%" 
         class="text-btn"
       >
@@ -51,11 +54,16 @@ import { onMounted, onUnmounted, onBeforeMount, ref, computed, watch} from "vue"
 import { useRouter, useRoute } from "vue-router";
 import { routes } from "@/router"
 // import axios from "axios";
+import html2canvas from "html2canvas";
 
 import BoxContainer from "@/components/BoxContainer.vue";
+import ImageFrame from "@/components/ImageFrame.vue";
 
 const title = '짜잔! 결과 이미지가 나왔어요.'
 const desc = '이미지를 저장하고 공유하여<br>마음에 맞는 룸메이트를 구해보세요.'
+
+const captureRef = ref(null); // 캡처할 컴포넌트의 참조
+const capturedImage = ref(''); // 캡처된 이미지의 URL 저장
 
 const survey = ref({
   dorm:  null,
@@ -164,7 +172,6 @@ function parseDrinkFormat(drink) {
   return `${ab}${unit}에 ${de}번`;
 }
 
-
 function parseSmokeStatus(smoke) {
   switch (smoke) {
     case 0:
@@ -177,6 +184,17 @@ function parseSmokeStatus(smoke) {
       return "비흡연자";  // 기본값 설정
   }
 }
+
+function captureAndSetImage() {
+  if (captureRef.value) {
+    html2canvas(captureRef.value).then(canvas => {
+      capturedImage.value = canvas.toDataURL('image/png');
+    }).catch(error => {
+      console.error('Error capturing image:', error);
+    });
+  }
+}
+
 
 // const submitSurvey = async () => {
 //   const scriptURL = "1pnk6bSmCt5eo3bQ3NvOv87fY3xZ-RaeHFqFFDXEnxf6NVZmMzs8Z4b9n"; // Google Apps Script URL
