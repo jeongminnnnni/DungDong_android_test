@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-row no-gutters justify="center" class="margin-88 | margin-top-180">
+    <v-row no-gutters justify="center" class="margin-88 | margin-top-100">
       <v-img 
       src="@/assets/logo.svg"
       :width="207" :height="71"
@@ -17,18 +17,19 @@
       class="mx-auto | margin-top-72 | pt-2 pl-4 pr-4"
       max-width="370" rounded="lg"
     >
+      <v-card-title class="card-title-text">
+        <v-icon icon="mdi-information | pb-1 | mr-1"></v-icon>
+        응답내용 수집 안내
+      </v-card-title>
+      <v-divider></v-divider>
       <v-card-text>
-        <div class="text-medium-emphasis | text-align-center">
+        <div style="text-align: center;">
           본 서비스는 품질 향상과 인사이트 도출을 위해<br>
           응답을 수집하여 통계 및 데이터 분석에 활용합니다.<br>
           위 내용은 해당 목적 외에는 사용되지 않으며,<br>
           관련 법령을 준수하여 안전하게 관리됩니다.
         </div>
       </v-card-text>
-      <v-divider></v-divider>
-      <v-card-actions justify="center">
-        <v-checkbox label="응답내용 수집에 동의합니다" hide-details density="compact"></v-checkbox>
-      </v-card-actions>
     </v-card>
 
     <v-row 
@@ -124,8 +125,8 @@ function handleClickContBtn() {
 </script>
 
 <style scoped>
-.margin-top-180 {
-  margin-top: 180px;
+.margin-top-100 {
+  margin-top: 100px;
 }
 
 .margin-48 {
@@ -160,5 +161,14 @@ function handleClickContBtn() {
   letter-spacing: -0.7px;
 }
 
+.card-title-text {
+  padding-left: 8px;
+  color: #000000 !important; /* 아이콘 색상 */
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
 
 </style>
