@@ -53,6 +53,9 @@
 import { onMounted, onUnmounted, onBeforeMount, ref, computed, watch} from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { routes } from "@/router"
+import { db } from "@/common/Firebase"; // Firestore 초기화 파일
+import { collection, addDoc } from "firebase/firestore"; // Firestore 함수
+
 import axios from "axios";
 import html2canvas from "html2canvas";
 
@@ -195,8 +198,15 @@ function captureAndSetImage() {
   }
 }
 
+// 설문 데이터를 Firestore에 저장하는 함수
 const submitSurvey = async () => {
-
+  try {
+    // Firestore의 'surveys' 컬렉션에 데이터 추가
+    const docRef = await addDoc(collection(db, "surveys"), survey.value);
+    console.log("Survey submitted successfully with ID:", docRef.id);
+  } catch (error) {
+    console.error("Error submitting survey:", error);
+  }
 };
 
 </script>
