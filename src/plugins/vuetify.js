@@ -23,4 +23,7 @@ export default createVuetify({
       }
     }
   },
+  typography: {
+    fontFamily: 'Pretendard, sans-serif' // 여기에 폰트 추가
+  },
 })

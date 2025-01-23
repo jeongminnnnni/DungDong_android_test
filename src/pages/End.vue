@@ -53,7 +53,7 @@
 import { onMounted, onUnmounted, onBeforeMount, ref, computed, watch} from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { routes } from "@/router"
-// import axios from "axios";
+import axios from "axios";
 import html2canvas from "html2canvas";
 
 import BoxContainer from "@/components/BoxContainer.vue";
