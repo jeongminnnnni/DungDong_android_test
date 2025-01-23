@@ -1,13 +1,26 @@
 <template>
   <BoxContainer>
-    <SubTitle :title="title" :desc="desc"> </SubTitle>
-    <v-row no-gutters justify="center">
-      <div ref="captureRef">
+    <SubTitle 
+      :title="title" :desc="desc"
+    ></SubTitle>
+    <v-row 
+      v-if="loading" 
+      no-gutters justify="center" align-content="center" 
+      style="min-height: 300px; min-width: 300px;"
+    >
+      <v-progress-circular
+        indeterminate
+        color="#FF5858"
+        size="64"
+        class="progress-circular"
+      ></v-progress-circular>
+    </v-row>
+    <v-row no-gutters justify="center" width="300px" style="min-height: 300px; min-width: 300px; align-items: center; border: 1px; border-color: #D9D9D9;">
+      <div ref="captureRef"  class="hidden-capture-area">
         <ImageFrame :survey="survey"></ImageFrame>
       </div>
       <v-img
         :src="capturedImage"
-        :width="300"
         aspect-ratio="1/1"
         cover
       ></v-img>
@@ -15,7 +28,7 @@
 
     <v-row no-gutters justify="center" class="margin-48 | mt-10 | pl-14 | pr-14">
       <v-btn 
-        @click="captureAndSetImage"
+        @click="copyImageToClipboard"
         color="#FF6161" rounded="xl" width="100%" 
         class="text-btn"
       >
@@ -25,11 +38,11 @@
 
     <v-row no-gutters justify="center" class="margin-48 | mt-4 | pl-14 | pr-14">
       <v-btn 
-        @click="submitSurvey"
+        @click="handleClickRestartBtn"
         color="#FFFFFF" rounded="xl" width="100%" 
         class="w-text-btn"
       >
-        다시하기
+        처음부터 다시하기
       </v-btn>
     </v-row>
 
@@ -42,15 +55,25 @@
         룸메찾기 알리기
       </v-btn>
     </v-row>
-
-
-
   </BoxContainer>
+
+  <v-snackbar
+    v-model="showToast"
+    :timeout="3000"
+    color="white"
+    rounded="pill"
+    class="mb-12"
+    @update:model-value="handleSnackbarClose"
+  >
+    <v-icon color="info" icon="mdi-information" class="mr-2"></v-icon>
+    {{ toastMessage }}
+  </v-snackbar>
+
 </template>
 
 <script setup>
 // ----- 선언부 ----- //
-import { onMounted, onUnmounted, onBeforeMount, ref, computed, watch} from "vue";
+import { onMounted, onUnmounted, onBeforeMount, ref, nextTick} from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { routes } from "@/router"
 import { db } from "@/common/Firebase"; // Firestore 초기화 파일
@@ -62,13 +85,20 @@ import html2canvas from "html2canvas";
 import BoxContainer from "@/components/BoxContainer.vue";
 import ImageFrame from "@/components/ImageFrame.vue";
 
+const emit = defineEmits(['restart-survey', 'continue-survey']);
+
 const title = '짜잔! 결과 이미지가 나왔어요.'
 const desc = '이미지를 저장하고 공유하여<br>마음에 맞는 룸메이트를 구해보세요.'
 
+const loading = ref(false); // 로딩 상태 관리
 const captureRef = ref(null); // 캡처할 컴포넌트의 참조
 const capturedImage = ref(''); // 캡처된 이미지의 URL 저장
 
+const toastMessage = ref("");
+const showToast = ref(false); 
+
 const survey = ref({
+  title:  null,
   dorm:  null,
   birth: null,
   studentId: null,
@@ -92,15 +122,17 @@ const survey = ref({
   selectTag: []
 });
 
+const parsedSurvey = ref(null)
+
 // ----- 라이프 사이클 ----- //
 onBeforeMount(() => {
-
-
 });
 
 
-onMounted(() => {
+onMounted(async () => {
   loadSurveyData();
+  await nextTick(); // DOM이 렌더링 완료된 후 실행
+  startCaptureProcess();
 });
 
 onUnmounted(() => {
@@ -114,39 +146,48 @@ function loadSurveyData() {
   console.log('get existingSurvey', existingSurvey);
 
   if (existingSurvey) {
-    const parsedSurvey = JSON.parse(existingSurvey);
+    parsedSurvey.value = JSON.parse(existingSurvey);
     
     // 데이터 매핑 및 할당
-    survey.value.dorm = parsedSurvey.dorm || "";
-    survey.value.birth = parsedSurvey.birth || 0;
-    survey.value.studentId = parsedSurvey.studentId || 0;
-    survey.value.college = parsedSurvey.college || "";
-    survey.value.mbti = parsedSurvey.mbti || "";
-    survey.value.smoke = parseSmokeStatus(parsedSurvey.smoke || 0);
-    survey.value.drink = parseDrinkFormat(parsedSurvey.drink);
-    survey.value.sdEtc = parsedSurvey.sdEtc || "";
-    survey.value.wakeUp = parsedSurvey.wakeUp || "00:00";
-    survey.value.lightOff = parsedSurvey.lightOff || "00:00";
-    survey.value.bedTime = parsedSurvey.bedTime || "00:00";
-    survey.value.sleepHabit = parsedSurvey.sleepHabit || 0;
-    survey.value.clean = parsedSurvey.clean || 0;
-    survey.value.bug = parsedSurvey.bug || 0;
-    survey.value.eatIn = parsedSurvey.eatIn || 0;
-    survey.value.noise = parsedSurvey.noise || 0;
-    survey.value.share = parsedSurvey.share || 0;
-    survey.value.home = parsedSurvey.home || 0;
-    survey.value.notes = parsedSurvey.notes || "";
-    survey.value.selectTag = parsedSurvey.selectTag || [];
+    survey.value.title = parsedSurvey.value.title || "깔끔한 올빼미형 룸메";
+    survey.value.dorm = parsedSurvey.value.dorm || "선택안함";
+    survey.value.birth = parsedSurvey.value.birth
+      ? parsedSurvey.value.birth === 0
+        ? "비공개"
+        : String(parsedSurvey.value.birth).slice(-2)
+      : "비공개";
+    survey.value.studentId = parsedSurvey.value.studentId
+      ? parsedSurvey.value.studentId === 0
+        ? "비공개"
+        : String(parsedSurvey.value.studentId).slice(-2)
+      : "비공개";
+    survey.value.college = parsedSurvey.value.college || "선택안함";
+    survey.value.mbti = parsedSurvey.value.mbti || "선택안함";
+    survey.value.smoke = parseSmokeStatus(parsedSurvey.value.smoke || 0);
+    survey.value.drink = parseDrinkFormat(parsedSurvey.value.drink);
+    survey.value.sdEtc = parsedSurvey.value.sdEtc || "선택안함";
+    survey.value.wakeUp = parsedSurvey.value.wakeUp || "00:00";
+    survey.value.lightOff = parsedSurvey.value.lightOff || "00:00";
+    survey.value.bedTime = parsedSurvey.value.bedTime || "00:00";
+    survey.value.sleepHabit = parseSleepHabit(parsedSurvey.value.sleepHabit || 0);
+    survey.value.clean = parsedSurvey.value.clean || 0;
+    survey.value.bug = parsedSurvey.value.bug || 0;
+    survey.value.eatIn = parsedSurvey.value.eatIn || 0;
+    survey.value.noise = parsedSurvey.value.noise || 0;
+    survey.value.share = parsedSurvey.value.share || 0;
+    survey.value.home = parsedSurvey.value.home || 0;
+    survey.value.notes = parsedSurvey.value.notes || "없음";
+    survey.value.selectTag = parsedSurvey.value.selectTag || [];
 
-    console.log('set survey object', survey.value);
+    console.log('set and parse survey object', survey.value);
   }
 }
 
 function parseDrinkFormat(drink) {
-  if (!drink) return "0주에 0번";  // 기본값 설정
+  if (!drink) return "선택안함";  // 기본값 설정
 
   const parts = drink.split('-');  // 'ab-c-de'를 '-'로 분리
-  if (parts.length !== 3) return "0주에 0번";  // 형식이 맞지 않는 경우 기본값 반환
+  if (parts.length !== 3) return "선택안함";  // 형식이 맞지 않는 경우 기본값 반환
 
   // 정수 변환을 사용해 앞자리 '0' 제거
   const ab = parseInt(parts[0], 10);  // 'ab' 정수로 변환하여 앞자리 '0' 제거
@@ -175,8 +216,8 @@ function parseDrinkFormat(drink) {
   return `${ab}${unit}에 ${de}번`;
 }
 
-function parseSmokeStatus(smoke) {
-  switch (smoke) {
+function parseSmokeStatus(value) {
+  switch (value) {
     case 0:
       return "비흡연자";
     case 1:
@@ -188,13 +229,47 @@ function parseSmokeStatus(smoke) {
   }
 }
 
-function captureAndSetImage() {
-  if (captureRef.value) {
-    html2canvas(captureRef.value).then(canvas => {
-      capturedImage.value = canvas.toDataURL('image/png');
-    }).catch(error => {
-      console.error('Error capturing image:', error);
-    });
+function parseSleepHabit(value) {
+  switch (value) {
+    case 0:
+      return "없음";
+    case 1:
+      return "잠꼬대";
+    case 2:
+      return "코골이";
+    default:
+      return "이갈이";  // 기본값 설정
+  }
+}
+
+// 다시 시작
+function handleClickRestartBtn() {
+  localStorage.setItem('appInitialized', 'false');
+  console.log("emitting restart-survey event.");
+  emit('restart-survey'); 
+}
+
+// 캡처 프로세스 시작 함수
+async function startCaptureProcess() {
+  loading.value = true; // 로딩 시작
+  await captureAndSetImage(); // 캡처 실행
+  loading.value = false; // 로딩 종료
+}
+
+// 캡처 실행 함수
+async function captureAndSetImage() {
+  if (!captureRef.value) {
+    console.error("캡처할 요소가 존재하지 않습니다.");
+    return;
+  }
+  try {
+    const canvas = await html2canvas(captureRef.value);
+    capturedImage.value = canvas.toDataURL("image/png");
+    console.log("캡처 완료");
+  } catch (error) {
+    console.error("캡처 중 오류 발생:", error.message);
+    toastMessage.value = "캡처 중 오류가 발생했습니다.";
+    showToast.value = true;
   }
 }
 
@@ -202,12 +277,49 @@ function captureAndSetImage() {
 const submitSurvey = async () => {
   try {
     // Firestore의 'surveys' 컬렉션에 데이터 추가
-    const docRef = await addDoc(collection(db, "surveys"), survey.value);
+    // TODO 배포할때만 주석 풀어 적용!
+    // const docRef = await addDoc(collection(db, "surveys"), parsedSurvey.value);
     console.log("Survey submitted successfully with ID:", docRef.id);
   } catch (error) {
     console.error("Error submitting survey:", error);
   }
 };
+
+// 클립보드에 이미지 복사
+async function copyImageToClipboard() {
+  if (!capturedImage.value) {
+    console.error("캡처된 이미지가 없습니다.");
+    return;
+  }
+
+  if (!navigator.clipboard || typeof ClipboardItem === "undefined") {
+    console.error("브라우저가 클립보드 복사를 지원하지 않습니다.");
+    toastMessage.value = "브라우저가 클립보드 복사를 지원하지 않습니다.";
+    showToast.value = true;
+    return;
+  }
+
+  try {
+    const response = await fetch(capturedImage.value);
+    const blob = await response.blob();
+    const clipboardItem = new ClipboardItem({ "image/png": blob });
+    await navigator.clipboard.write([clipboardItem]);
+    console.log("이미지가 클립보드에 복사되었습니다!");
+    toastMessage.value = "클립보드에 이미지가 복사되었습니다!";
+    showToast.value = true;
+  } catch (error) {
+    console.error("클립보드 복사 중 오류 발생:", error.message);
+    toastMessage.value = "클립보드 복사 중 오류가 발생했습니다.";
+    showToast.value = true;
+  }
+}
+
+function handleSnackbarClose(value) {
+  if (!value) {
+    showToast.value = false; // 상태를 false로 리셋
+    console.log("Snackbar 닫힘");
+  }
+}
 
 </script>
 
@@ -228,6 +340,12 @@ const submitSurvey = async () => {
   font-style: normal;
   font-weight: 400;
   letter-spacing: -0.5px;
+}
+
+.hidden-capture-area {
+  position: absolute;
+  top: -99999px; /* 화면에서 숨김 */
+  left: -99999px;
 }
 
 </style>
