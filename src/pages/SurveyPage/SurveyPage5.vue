@@ -120,6 +120,7 @@ function updateLocalStorage(field, value) {
   color: #000000;
   font-style: normal;
   font-weight: 600;
+  font-size: 14px;
 }
 
 .margin-top-52 {

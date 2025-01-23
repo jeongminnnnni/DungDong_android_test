@@ -228,7 +228,8 @@ function formatMbtiString() {
 :deep(.v-label) {
   color: #000000;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 600;
+  font-size: 14px;
   letter-spacing: -0.4px;
 }
 
