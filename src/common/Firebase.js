@@ -1,5 +1,5 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
+import { initializeApp, getApps, getApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore"; 
 import { getAnalytics } from "firebase/analytics"; 
 
@@ -18,10 +18,24 @@ const firebaseConfig = {
     measurementId: "G-FMX05RGM9E"
   };
 
-// Initialize Firebase
+// Log: Check if Firebase is already initialized
+if (!getApps().length) {
+  console.log("Firebase --- Initializing...");
+} else {
+  console.log("Firebase --- Firebase is already initialized");
+}
+
+// Initialize Firebase (prevent duplicate initialization)
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+console.log("Firebase --- Firebase App Initialized:", app.name);
+
+// Optional: Initialize Analytics (if needed)
 // const analytics = getAnalytics(app);
 // logEvent(analytics, "page_view", { page: "home" });
+// console.log("Analytics initialized");
+
+// Initialize Firestore
 const db = getFirestore(app);
+console.log("Firebase --- Firestore initialized");
 
 export { db };
