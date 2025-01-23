@@ -12,6 +12,7 @@
   "dependencies": {
     "@mdi/font": "7.4.47",
     "axios": "^1.7.9",
+    "firebase": "^11.2.0",
     "html2canvas": "^1.4.1",
     "roboto-fontface": "*",
     "vue": "^3.4.31",

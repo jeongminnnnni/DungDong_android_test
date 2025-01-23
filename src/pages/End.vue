@@ -195,20 +195,9 @@ function captureAndSetImage() {
   }
 }
 
+const submitSurvey = async () => {
 
-// const submitSurvey = async () => {
-//   const scriptURL = "1pnk6bSmCt5eo3bQ3NvOv87fY3xZ-RaeHFqFFDXEnxf6NVZmMzs8Z4b9n"; // Google Apps Script URL
-//   try {
-//     const response = await axios.post(scriptURL, userSurvey.value, {
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//     });
-//     console.log("Google Sheet response:", response.data);
-//   } catch (error) {
-//     console.error("Error sending data to Google Sheet:", error);
-//   }
-// };
+};
 
 </script>
 
