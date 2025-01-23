@@ -172,11 +172,14 @@ function updateLocalStorage(field, value) {
   color: #000000;
   font-style: normal;
   font-weight: 600;
+  font-size: 14px;
 }
+
 .custom-label {
   color: #646464;
   font-style: normal;
   font-weight: 600;
+  font-size: 14px;
 }
 
 .count-label {

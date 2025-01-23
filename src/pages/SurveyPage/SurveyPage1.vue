@@ -10,6 +10,7 @@
       <v-select
         variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858" 
         :items="dormItem"
+        placeholder="기숙사"
         v-model="dorm" 
       ></v-select>
     </v-row>
@@ -60,7 +61,7 @@ import SubTitle from "@/components/SubTitle.vue";
 const title = '기본정보'
 const desc = '먼저, 가장 기본적인 것부터 작성해볼까요?<br>본인이 입실할 기숙사 등 나에 대한 정보를 기입해주세요.'
 
-const dorm = ref('예지 1동');          // 기숙사
+const dorm = ref(null);          // 기숙사
 const birth = ref(0);      // 생년월일 8자리 (문자열 권장)
 const studentId = ref(0);     // 학번 8자리 (문자열 권장)
 const college = ref('비공개');     // 단과대 숫자
@@ -176,6 +177,7 @@ function updateLocalStorage(field, value) {
   color: #000000;
   font-style: normal;
   font-weight: 600;
+  font-size: 14px;
 }
 
 </style>

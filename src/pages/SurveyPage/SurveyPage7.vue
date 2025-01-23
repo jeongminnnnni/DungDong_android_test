@@ -28,7 +28,7 @@
     <v-row no-gutters justify="center" class="mt-1">
       <v-text-field
         variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#CCCCCC" color="#CCCCCC" item-color="#CCCCCC" 
-        placeholder="위에 선택한 태그 부가 설명 등"
+        placeholder="태그 설명 등을 작성해주세요"
         v-model="notes"
         maxlength="100"
       >
@@ -43,7 +43,9 @@
 </template>
 
 <script setup>
+
 // ----- 선언부 ----- //
+
 import { onMounted, onUnmounted, ref, computed, watch} from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { routes } from "@/router"
@@ -54,18 +56,18 @@ const desc = '앞서 작성한 것 외에 더 하고 싶은 말이 있다면<br>
 
 const selectTag = ref([])
 const tagItem = ref([
-  { title: '매트선호', value: 0},
-  { title: '고요를 즐김', value: 1},
-  { title: '배달음식러버', value: 2},
-  { title: '룸메와 거리두기 필요', value: 3},
-  { title: '길고 잦은 전화통화', value: 4},
-  { title: '특이습관', value: 5},
-  { title: '추위 많이 탐', value: 6},
-  { title: '더위 많이 탐', value: 7},
-  { title: '알러지', value: 8},
-  { title: '짐이 많음', value: 9},
-  { title: '잦은 밤샘', value: 10},
-  { title: '잠귀 밝음', value: 11},
+  { title: '매트선호', value: '매트선호'},
+  { title: '고요를 즐김', value: '고요를 즐김'},
+  { title: '배달음식러버', value: '배달음식러버'},
+  { title: '룸메와 거리두기 필요', value: '룸메와 거리두기 필요'},
+  { title: '길고 잦은 전화통화', value: '길고 잦은 전화통화'},
+  { title: '특이습관', value: '특이습관'},
+  { title: '추위 많이 탐', value: '추위 많이 탐'},
+  { title: '더위 많이 탐', value: '더위 많이 탐'},
+  { title: '알러지', value: '알러지'},
+  { title: '짐이 많음', value: '짐이 많음'},
+  { title: '잦은 밤샘', value: '잦은 밤샘'},
+  { title: '잠귀 밝음', value: '잠귀 밝음'},
 ])
 
 const notes = ref('')
@@ -145,6 +147,7 @@ function handleClickTag(value) {
   color: #000000;
   font-style: normal;
   font-weight: 600;
+  font-size: 14px;
 }
 
 .count-label {
@@ -154,6 +157,4 @@ function handleClickTag(value) {
   font-weight: 400;
   letter-spacing: -0.4px;
 }
-
-
 </style>

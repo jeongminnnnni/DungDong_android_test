@@ -38,7 +38,7 @@ onUnmounted(() => {
 
 <style scoped>
 .text-title {
-    font-size: 20px;
+    font-size: 19.5px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -46,7 +46,7 @@ onUnmounted(() => {
 }
 
 .text-subtitle {
-    font-size: 16px;
+    font-size: 14px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
