@@ -2,9 +2,9 @@
     <v-container 
         style="width: 1000px; height: 1000px; min-width: 1000px; min-height: 1000px; max-width: 1000px; max-height: 1000px; padding: 30px;"
     >
-        <v-row no-gutters class="justify-space-between | pb-6" >
-            <v-col cols="auto">
-                <v-img :src="selectMainImage(mainImg)"></v-img>
+        <v-row no-gutters class="justify-space-between | pb-6" style="align-items: center;">
+            <v-col cols="auto" style="width: 165px; max-width: 165px; margin-left: 30px;">
+                <v-img position="center" :src="`/main_icons/HE_baby.png`"></v-img>
             </v-col>
             <v-col cols="auto" style="margin-top: 48px;">
                 <v-row no-gutters class="text-subtitle | pb-2">
@@ -33,7 +33,7 @@
                 >
                     <v-col style="width: 111px; min-width: 111px; max-width: 111px;">
                         <div class="elevation-2 | main-info-icon | rounded-circle | pa-4">
-                            <v-img :src="require('@/assets/col_icons' + props.survey.college + '.png')"></v-img>
+                            <v-img :src="`/col_icons/${props.survey.collegeId}.png`"></v-img>
                         </div>
                     </v-col>
                     <v-col class="main-info-title" style="padding-right: 21px;">
@@ -48,7 +48,12 @@
 
                 <v-row no-gutters class="pt-4">
                     <v-col cols="auto" class="text-bodytitle">음주빈도</v-col>
-                    <v-col style="padding-left: 32px;" class="text-bodytext">{{ props.survey.drink }}</v-col>
+                    <v-col style="padding-left: 32px;">
+                        <v-row no-gutters class="text-bodytext">{{ props.survey.drink }}</v-row>
+                        <v-row no-gutters>
+                            <v-label class="sd-label">{{ props.survey.sdEtc }}</v-label>
+                        </v-row>
+                    </v-col>
                 </v-row>
 
                 <v-row no-gutters class="justify-space-between | pt-6" style="align-content: center">
@@ -273,8 +278,6 @@ const props = defineProps({
 });
 
 const survey = ref(null)
-const colIcon = ref('@/assets/col_icons/private.png')
-const mainImg = ref('@/assets/col_icons/private.png')
 
 // ----- 라이프 사이클 ----- //
 onMounted(() => {
@@ -333,6 +336,14 @@ function selectMainImage(value) {
 .text-bodytime {
     color: #000;
     font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.sd-label {
+    color: #000;
+    font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;

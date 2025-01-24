@@ -103,6 +103,7 @@ const survey = ref({
   birth: null,
   studentId: null,
   college: "",
+  collegeId: 0,
   mbti: "",
   smoke: null,
   drink: "",
@@ -162,6 +163,7 @@ function loadSurveyData() {
         : String(parsedSurvey.value.studentId).slice(-2)
       : "비공개";
     survey.value.college = parseCollege(parsedSurvey.value.college || 0);
+    survey.value.collegeId = parsedSurvey.value.college || 0;
     survey.value.mbti = parsedSurvey.value.mbti || "선택안함";
     survey.value.smoke = parseSmokeStatus(parsedSurvey.value.smoke || 0);
     survey.value.drink = parseDrinkFormat(parsedSurvey.value.drink);
@@ -362,5 +364,10 @@ function handleSnackbarClose(value) {
   letter-spacing: -0.5px;
 }
 
+.hidden-capture-area {
+  position: absolute;
+  top: -99999px; /* 화면에서 숨김 */
+  left: -99999px;
+}
 
 </style>
