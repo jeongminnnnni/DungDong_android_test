@@ -12,6 +12,9 @@
       ></v-select>
     </v-row>
 
+    <v-row no-gutters justify="start" class="margin-top-52">
+      <v-label>음주여부를 선택해주세요</v-label>
+    </v-row>
     <v-row no-gutters justify="center" class="mt-1">
       <v-col class="d-flex | justify-center | align-center">
         <v-text-field
