@@ -4,7 +4,7 @@
     >
         <v-row no-gutters class="justify-space-between | pb-6" >
             <v-col cols="auto">
-                <img :src="selectMainImage(mainImg)">
+                <v-img :src="selectMainImage(mainImg)"></v-img>
             </v-col>
             <v-col cols="auto" style="margin-top: 48px;">
                 <v-row no-gutters class="text-subtitle | pb-2">
@@ -33,7 +33,9 @@
                 >
                     <v-col style="width: 111px; min-width: 111px; max-width: 111px;">
                         <div class="elevation-2 | main-info-icon | rounded-circle">
-                            <v-icon class="main-info-icon" color="success" icon="mdi-check"></v-icon>
+                            <v-avatar size="90px"> 
+                                <v-img :src="selectColImage(colIcon)"></v-img>
+                            </v-avatar>
                         </div>
                     </v-col>
                     <v-col class="main-info-title" style="padding-right: 21px;">
@@ -274,7 +276,7 @@ const props = defineProps({
 
 const survey = ref(null)
 const colIcon = ref('@/assets/col_icons/private.png')
-const mainImg = ref('@/assets/main_img/private.png')
+const mainImg = ref('@/assets/col_icons/private.png')
 
 // ----- 라이프 사이클 ----- //
 onMounted(() => {
@@ -290,7 +292,24 @@ onUnmounted(() => {
 
 
 function selectMainImage(value) {
-    return mainImg.value = '@/assets/main_img/private.png'
+    return mainImg.value = '@/assets/col_icons/private.png'
+}
+
+function selectColImage(value) {
+    switch(value) {
+        case 0:
+            return colIcon.value = '@/assets/col_icons/private.png'
+        case 1:
+            return colIcon.value = '@/assets/col_icons/arts.png'
+        case 2:
+            return colIcon.value = '@/assets/col_icons/sports.png'
+        case 3:
+            return colIcon.value = '@/assets/col_icons/artech.png'
+        case 4:
+            return colIcon.value = '@/assets/col_icons/bio.png'
+        case 5:
+            return colIcon.value = '@/assets/col_icons/engin.png'
+    }    
 }
 
 </script>

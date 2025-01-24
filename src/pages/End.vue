@@ -362,10 +362,5 @@ function handleSnackbarClose(value) {
   letter-spacing: -0.5px;
 }
 
-.hidden-capture-area {
-  position: absolute;
-  top: -99999px; /* 화면에서 숨김 */
-  left: -99999px;
-}
 
 </style>
