@@ -25,10 +25,82 @@ const Util = (function () {
                 return input.replace(/[^a-zA-Z]/g, '');
             },
 
-            // 포맷 함수
-            // 전화번호 포맷팅 (예: 01012345678 -> 010-1234-5678 형식으로 변환)
-            formatPhoneNumber(number) {
-                return number.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
+            parseDrinkFormat(value) {
+                if (!value) return "선택안함";  // 기본값 설정
+
+                const parts = value.split('-');  // 'ab-c-de'를 '-'로 분리
+                if (parts.length !== 3) return "선택안함";  // 형식이 맞지 않는 경우 기본값 반환
+
+                // 정수 변환을 사용해 앞자리 '0' 제거
+                const ab = parseInt(parts[0], 10);  // 'ab' 정수로 변환하여 앞자리 '0' 제거
+                const c = parseInt(parts[1], 10);  // 'c' 정수로 변환
+                const de = parseInt(parts[2], 10);  // 'de' 정수로 변환하여 앞자리 '0' 제거
+
+                // 'c'의 값에 따라 '일', '개월', '년', '주' 단위 결정
+                let unit;
+                switch (c) {
+                    case 0:
+                    unit = "일";
+                    break;
+                    case 1:
+                    unit = "개월";
+                    break;
+                    case 2:
+                    unit = "년";
+                    break;
+                    case 3:
+                    unit = "주";  // 주 단위 추가
+                    break;
+                    default:
+                    unit = "일";  // 기본값 설정
+                }
+
+                return `${ab}${unit}에 ${de}번`;
+            },
+
+            parseSmokeStatus(value) {
+                switch (value) {
+                    case 0:
+                    return "비흡연자";
+                    case 1:
+                    return "흡연자(연초)";
+                    case 2:
+                    return "흡연자(전자담배)";
+                    default:
+                    return "비흡연자";  // 기본값 설정
+                }
+            },
+
+            parseSleepHabit(value) {
+                switch (value) {
+                    case 0:
+                    return "없음";
+                    case 1:
+                    return "잠꼬대";
+                    case 2:
+                    return "코골이";
+                    default:
+                    return "이갈이";  // 기본값 설정
+                }
+            },
+
+            parseCollege(value) {
+                switch (value) {
+                    case 0:
+                    return "비공개";
+                    case 1:
+                    return "예술대학";
+                    case 2:
+                    return "체육대학";
+                    case 3:
+                    return "예술공학대학";
+                    case 4:
+                    return "생명공학대학";
+                    case 5:
+                    return "공과대학";
+                    default:
+                    return "미선택"; 
+                }
             },
         };
     }
