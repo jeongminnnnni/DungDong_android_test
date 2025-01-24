@@ -6,13 +6,13 @@
     </v-row>
     <v-row no-gutters justify="center" class="mt-1">
       <v-select
-        variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858"
+        variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858" hide-details
         :items="smokeItem"
         v-model="smoke"
       ></v-select>
     </v-row>
 
-    <v-row no-gutters justify="start" class="margin-top-52">
+    <v-row no-gutters justify="start" class="margin-top-28">
       <v-label>음주여부를 선택해주세요</v-label>
     </v-row>
     <v-row no-gutters justify="center" class="mt-1">
@@ -195,6 +195,10 @@ function updateLocalStorage(field, value) {
 
 .padding-0 {
   padding: 0px;
+}
+
+.margin-top-28 {
+  margin-top: 28px;
 }
 
 .margin-top-52 {

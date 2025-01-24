@@ -70,7 +70,7 @@
                         </v-row>
                         <v-row no-gutters class="justify-space-between | pt-1" style="width: 362px;">
                             <v-label>매주마다</v-label>
-                            <v-label>학기 중엔 안감</v-label>
+                            <v-label>학기중엔 본가 안 감</v-label>
                         </v-row>
                     </v-col>
                 </v-row>
@@ -182,8 +182,8 @@
                             </v-col>
                         </v-row>
                         <v-row no-gutters class="justify-space-between | pt-4" style="width: 362px;">
-                            <v-label>무던함</v-label>
-                            <v-label>예민함</v-label>
+                            <v-label>무조건 이어폰 착용</v-label>
+                            <v-label>대부분 스피커 모드</v-label>
                         </v-row>
                     </v-col>
                 </v-row>
@@ -205,7 +205,7 @@
                         </v-row>
                         <v-row no-gutters class="justify-space-between | pt-4" style="width: 362px;">
                             <v-label>방밖에서만</v-label>
-                            <v-label>신경안씀</v-label>
+                            <v-label>전혀 상관없음</v-label>
                         </v-row>
                     </v-col>
                 </v-row>

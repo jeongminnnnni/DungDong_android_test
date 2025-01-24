@@ -44,7 +44,7 @@
       </v-col>
     </v-row>
 
-    <v-row no-gutter justify="center" class="margin-top-72">
+    <v-row no-gutter justify="center" class="margin-top-52">
       <v-col class="d-flex | justify-center | align-center">
         <v-label>이상적</v-label>
       </v-col>
@@ -86,7 +86,7 @@
       </v-col>
     </v-row>
 
-    <v-row no-gutter justify="center" class="margin-top-72">
+    <v-row no-gutter justify="center" class="margin-top-52">
       <v-col class="d-flex | justify-center | align-center">
         <v-label>사고형</v-label>
       </v-col>
@@ -128,7 +128,7 @@
       </v-col>
     </v-row>
 
-    <v-row no-gutter justify="center" class="margin-top-72">
+    <v-row no-gutter justify="center" class="margin-top-52">
       <v-col class="d-flex | justify-center | align-center">
         <v-label>계획성</v-label>
       </v-col>
@@ -274,7 +274,7 @@ function formatMbtiString() {
   padding: 0px;
 }
 
-.margin-top-72 {
-  margin-top: 72px;
+.margin-top-52 {
+  margin-top: 52px;
 }
 </style>
