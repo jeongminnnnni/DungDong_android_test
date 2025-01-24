@@ -161,7 +161,7 @@ function loadSurveyData() {
         ? "비공개"
         : String(parsedSurvey.value.studentId).slice(-2)
       : "비공개";
-    survey.value.college = parsedSurvey.value.college || "선택안함";
+    survey.value.college = parseCollege(parsedSurvey.value.college || 0);
     survey.value.mbti = parsedSurvey.value.mbti || "선택안함";
     survey.value.smoke = parseSmokeStatus(parsedSurvey.value.smoke || 0);
     survey.value.drink = parseDrinkFormat(parsedSurvey.value.drink);
@@ -241,6 +241,26 @@ function parseSleepHabit(value) {
       return "이갈이";  // 기본값 설정
   }
 }
+
+function parseCollege(value) {
+  switch (value) {
+    case 0:
+      return "비공개";
+    case 1:
+      return "예술대학";
+    case 2:
+      return "체육대학";
+    case 3:
+      return "예술공학대학";
+    case 4:
+      return "생명공학대학";
+    case 5:
+      return "공과대학";
+    default:
+      return "미선택"; 
+  }
+}
+
 
 // 다시 시작
 function handleClickRestartBtn() {

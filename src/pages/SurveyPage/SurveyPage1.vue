@@ -100,12 +100,12 @@ const studentIdItem = ref(
 );
 
 const collegeItem = ref([
-  { title: '비공개', value: '비공개'},
-  { title: '예술대학', value: '예술대학'},
-  { title: '체육대학', value: '체육대학'},
-  { title: '예술공학대학', value: '예술공학대학'},
-  { title: '생명공학대학', value: '생명공학대학'},
-  { title: '공과대학', value: '공과대학'},
+  { title: '비공개', value: 0},
+  { title: '예술대학', value: 1},
+  { title: '체육대학', value: 2},
+  { title: '예술공학대학', value: 3},
+  { title: '생명공학대학', value: 4},
+  { title: '공과대학', value: 5},
 ])
 
 // ----- 라이프 사이클 ----- //
