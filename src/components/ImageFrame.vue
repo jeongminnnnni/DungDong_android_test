@@ -32,10 +32,8 @@
                     no-gutters
                 >
                     <v-col style="width: 111px; min-width: 111px; max-width: 111px;">
-                        <div class="elevation-2 | main-info-icon | rounded-circle">
-                            <v-avatar size="90px"> 
-                                <v-img :src="selectColImage(colIcon)"></v-img>
-                            </v-avatar>
+                        <div class="elevation-2 | main-info-icon | rounded-circle | pa-4">
+                            <v-img :src="require('@/assets/col_icons' + props.survey.college + '.png')"></v-img>
                         </div>
                     </v-col>
                     <v-col class="main-info-title" style="padding-right: 21px;">
@@ -293,23 +291,6 @@ onUnmounted(() => {
 
 function selectMainImage(value) {
     return mainImg.value = '@/assets/col_icons/private.png'
-}
-
-function selectColImage(value) {
-    switch(value) {
-        case 0:
-            return colIcon.value = '@/assets/col_icons/private.png'
-        case 1:
-            return colIcon.value = '@/assets/col_icons/arts.png'
-        case 2:
-            return colIcon.value = '@/assets/col_icons/sports.png'
-        case 3:
-            return colIcon.value = '@/assets/col_icons/artech.png'
-        case 4:
-            return colIcon.value = '@/assets/col_icons/bio.png'
-        case 5:
-            return colIcon.value = '@/assets/col_icons/engin.png'
-    }    
 }
 
 </script>
