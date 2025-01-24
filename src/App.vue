@@ -1,10 +1,10 @@
 <template>
   <v-app class="background">
-    <v-app-bar app color="#FBFBFB" flat height="140" v-if="sAppBar">
-      <v-row class="align-center | justify-space-between | padding-32 | padding-top-76 | padding-bottom-16">
+    <v-app-bar app color="#FBFBFB" flat height="100" v-if="sAppBar">
+      <v-row class="align-center | justify-space-between | padding-32 | padding-top-56 | padding-bottom-16">
         <!-- 로고 -->
         <v-col cols="auto">
-          <v-row class="align-center">
+          <v-row class="align-center | pl-3">
             <v-img 
             src="@/assets/logo.svg"
             :width="84" :height="30"
@@ -13,18 +13,17 @@
           </v-row>
         </v-col>
         <v-col cols="8">
-          <v-row class="align-center | justify-end">
-            test
-            <!-- <v-stepper 
-              class="custom-stepper" 
-              >
-              <v-stepper-header>
-                <v-stepper-item v-for="step in steps" :key="step" :value="step"></v-stepper-item>
-                <template v-for="step in steps.length - 1">
-                  <v-divider class="step-divider"></v-divider>
-                </template>
-              </v-stepper-header>
-            </v-stepper> -->
+          <v-row class="align-center | justify-end | pr-2">
+            <v-col cols="auto" class="progress-bar">
+                <div
+                v-for="(step, index) in 7"
+                :key="index"
+                class="circle"
+                :class="{ active: index === pageIndex }"
+                >
+                <div class="line" v-if="index !== 6"></div>
+                </div>
+            </v-col>
           </v-row>
         </v-col>
         <v-divider class="margin-top-16" />
@@ -42,7 +41,7 @@
 
     <v-footer color="#FBFBFB" flat v-if="sFooter">
       <v-row 
-        class="align-center | justify-space-between | pl-6 | pr-6" 
+        class="align-center | justify-space-between | pl-6 | pr-6 | pt-4 | pb-4" 
         no-gutters
       >
         <v-btn 
@@ -95,6 +94,7 @@ const route = useRoute();
 
 const steps = [1, 2, 3, 4, 5, 6, 7];
 const surveyPage = ref([
+  { path: "/", meta: { appbar: false, index: 0 } },
   { path: "/home", meta: { appbar: false, index: 0 } },
   { path: "/survey1", meta: { appbar: true, index: 1 } },
   { path: "/survey2", meta: { appbar: true, index: 2 } },
@@ -105,6 +105,7 @@ const surveyPage = ref([
   { path: "/survey7", meta: { appbar: true, index: 7 } },
   // { path: "/end", meta: { appbar: false, index: 8 } },
 ]);
+const pageIndex = ref(0);
 
 const sNextBtn = ref(true);
 const sFooter = ref(false);
@@ -145,6 +146,14 @@ onUnmounted(() => {
 });
 
 watch(() => route.path, (path) => {
+    // Update the pageIndex based on the current route
+    const currentPage = surveyPage.value.find((page) => page.path === path);
+    if (currentPage) {
+      pageIndex.value = currentPage.meta.index - 1;
+    } else {
+      console.error("Current path does not exist in surveyPage:", path);
+    }
+
     if (path === "/home" || path === "/") {
       sFooter.value = false;
       sAppBar.value = false;
@@ -260,15 +269,44 @@ function emitContinueSurvey(payload) {
   padding: 32px;
 }
 
-.padding-top-76 {
-  padding-top: 76px;
+.padding-top-56 {
+  padding-top: 56px;
 }
 
 .padding-bottom-16 {
   padding-bottom: 16px;
 }
 
-/* .background {
-  background-color: #FBFBFB;
-} */
+.progress-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px; /* 원 사이 간격 */
+}
+
+.circle {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #B1B1B1; /* 기본 배경색 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circle.active {
+  background-color: #ff5858; /* 현재 단계 배경색 */
+}
+
+.line {
+  position: absolute;
+  width: 17px;
+  height: 0.6px;
+  background-color: #B1B1B1;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+}
+
 </style>
