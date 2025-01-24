@@ -13,7 +13,10 @@
           max-width="40px"
         ></v-img>
       </v-col>
-      <v-col class="d-flex | justify-center | align-center | custom-text | padding-0">
+      <v-col 
+        class="d-flex | justify-center | align-center | padding-0"
+        :class="mbti0 === 0 ? 'custom-text-on' : 'custom-text-off'"
+      >
         I
       </v-col>
       <v-switch
@@ -22,7 +25,10 @@
         :value="1"
         :false-value="0"
       ></v-switch>
-      <v-col class="d-flex | justify-center | align-center | custom-text | padding-0">
+      <v-col 
+        class="d-flex | justify-center | align-center | padding-0"
+        :class="mbti0 === 1 ? 'custom-text-on' : 'custom-text-off'"
+      >
         E
       </v-col>
       <v-col class="d-flex | justify-center | align-center | padding-0">
@@ -49,7 +55,10 @@
           max-width="40px"
         ></v-img>
       </v-col>
-      <v-col class="d-flex | justify-center | align-center | custom-text | padding-0">
+      <v-col 
+        class="d-flex | justify-center | align-center | padding-0"
+        :class="mbti1 === 0 ? 'custom-text-on' : 'custom-text-off'"
+      >
         N
       </v-col>
       <v-switch
@@ -58,7 +67,10 @@
         :value="1"
         :false-value="0"
       ></v-switch>
-      <v-col class="d-flex | justify-center | align-center | custom-text | padding-0">
+      <v-col 
+        class="d-flex | justify-center | align-center | padding-0"
+        :class="mbti1 === 1 ? 'custom-text-on' : 'custom-text-off'"
+      >
         S
       </v-col>
       <v-col class="d-flex | justify-center | align-center | padding-0">
@@ -85,7 +97,10 @@
           max-width="40px"
         ></v-img>
       </v-col>
-      <v-col class="d-flex | justify-center | align-center | custom-text | padding-0">
+      <v-col 
+        class="d-flex | justify-center | align-center | padding-0"
+        :class="mbti2 === 0 ? 'custom-text-on' : 'custom-text-off'"
+      >
         T
       </v-col>
       <v-switch
@@ -94,7 +109,10 @@
         :value="1"
         :false-value="0"
       ></v-switch>
-      <v-col class="d-flex | justify-center | align-center | custom-text | padding-0">
+      <v-col 
+        class="d-flex | justify-center | align-center | padding-0"
+        :class="mbti2 === 1 ? 'custom-text-on' : 'custom-text-off'"
+      >
         F
       </v-col>
       <v-col class="d-flex | justify-center | align-center | padding-0">
@@ -121,7 +139,10 @@
           max-width="40px"
         ></v-img>
       </v-col>
-      <v-col class="d-flex | justify-center | align-center | custom-text | padding-0">
+      <v-col 
+        class="d-flex | justify-center | align-center | padding-0"
+        :class="mbti3 === 0 ? 'custom-text-on' : 'custom-text-off'"
+      >
         J
       </v-col>
       <v-switch
@@ -130,7 +151,10 @@
         :value="1"
         :false-value="0"
       ></v-switch>
-      <v-col class="d-flex | justify-center | align-center | custom-text | padding-0">
+      <v-col 
+        class="d-flex | justify-center | align-center | padding-0"
+        :class="mbti3 === 1 ? 'custom-text-on' : 'custom-text-off'"
+      >
         P
       </v-col>
       <v-col class="d-flex | justify-center | align-center | padding-0">
@@ -233,7 +257,13 @@ function formatMbtiString() {
   letter-spacing: -0.4px;
 }
 
-.custom-text {
+.custom-text-on {
+  color: #FF5858;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+}
+.custom-text-off {
   color: #666;
   font-size: 20px;
   font-style: normal;
