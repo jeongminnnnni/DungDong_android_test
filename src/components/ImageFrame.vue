@@ -4,7 +4,7 @@
     >
         <v-row no-gutters class="justify-space-between | pb-6" >
             <v-col cols="auto">
-                <v-img></v-img>
+                <img :src="selectMainImage(mainImg)">
             </v-col>
             <v-col cols="auto" style="margin-top: 48px;">
                 <v-row no-gutters class="text-subtitle | pb-2">
@@ -276,6 +276,7 @@ const props = defineProps({
 
 const survey = ref(null)
 const colIcon = ref('@/assets/col_icons/private.png')
+const mainImg = ref('@/assets/main_img/private.png')
 
 // ----- 라이프 사이클 ----- //
 onMounted(() => {
@@ -304,6 +305,10 @@ function selectColImage(value) {
         case 5:
             return colIcon.value = '@/assets/col_icons/engin.png'
     }    
+}
+
+function selectMainImage(value) {
+    return mainImg.value = '@/assets/main_img/private.png'
 }
 
 </script>
