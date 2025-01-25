@@ -13,7 +13,7 @@
           </v-row>
         </v-col>
         <v-col cols="8">
-          <v-row class="align-center | justify-end | pr-2">
+          <v-row v-if="sFooter" class="align-center | justify-end | pr-2">
             <v-col cols="auto" class="progress-bar">
                 <div
                 v-for="(step, index) in 7"
