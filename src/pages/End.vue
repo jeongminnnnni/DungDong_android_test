@@ -55,6 +55,38 @@
         룸메찾기 알리기
       </v-btn>
     </v-row>
+    <v-row no-gutters>
+        <v-col cols="12" class="text-label-container">
+          <v-label class="text-label" v-html="'앗 잠시만요!<br>이 문구를 보신 당신,<br>화면을 한번 스크롤 해보시겠어요?'"></v-label>
+        </v-col>
+        <v-col
+          cols="12"
+          no-gutters justify="start" 
+          class="text-subtitle | mb-1 | margin-top-96"
+        >
+          둥지동지를 제작한
+        </v-col>
+        <v-col
+          cols="12"
+          no-gutters justify="start" 
+          class="text-title | mb-6"
+        >
+         <칸타르동방구함위원회> 를 소개합니다
+        </v-col>
+        <v-col
+          cols="12"
+          no-gutters justify="start" 
+          class="text-subtitle | mb-12"
+          v-html="ourInfo"
+        >
+        </v-col>
+        <v-col
+          cols="12" class="mb-10"
+        >
+          <v-img aspect-ratio="1/3" :src="`/ad/ad_1.jpeg`"></v-img>
+        </v-col>
+        
+    </v-row>
   </BoxContainer>
 
   <v-snackbar
@@ -89,6 +121,9 @@ const emit = defineEmits(['restart-survey', 'continue-survey']);
 
 const title = '짜잔! 결과 이미지가 나왔어요.'
 const desc = '이미지를 저장하고 공유하여<br>마음에 맞는 룸메이트를 구해보세요.'
+
+const ourInfo = '안녕하세요, 둥지동지를 제작한 예술공학부 동아리 칸타르 소속의 <b><칸타르동방구함위원회></b> 입니다.<br><br>둥지동지는 룸메이트를 빠르고 편하게 구할 수 있게 하기 위해 기획한 프로젝트입니다.<br><br>제작에 도움을 주신 예공 친구들에게 감사드리며, 모두 좋은 룸메이트를 찾으시길 바랍니다.<br>새해 복 많이 받으세요!'
+
 
 const loading = ref(false); // 로딩 상태 관리
 const captureRef = ref(null); // 캡처할 컴포넌트의 참조
@@ -368,6 +403,44 @@ function handleSnackbarClose(value) {
   position: absolute;
   top: -99999px; /* 화면에서 숨김 */
   left: -99999px;
+}
+
+.text-title {
+    font-size: 19.5px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.5px;
+}
+
+.text-subtitle {
+    font-size: 15x;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: -0.4px;
+    color: #404040;
+}
+
+.margin-top-96 {
+  margin-top: 96px;
+}
+
+.text-label-container {
+  margin-top: 56px;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+}
+
+.text-label {
+  color: #B1B1B1;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.3px;
 }
 
 </style>
