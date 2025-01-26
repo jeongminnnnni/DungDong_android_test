@@ -15,7 +15,7 @@
 
     <v-card
       class="mx-auto | margin-top-72 | pt-2 pl-4 pr-4"
-      max-width="370" rounded="lg"
+      max-width="320" rounded="lg"
     >
       <v-card-title class="card-title-text">
         <v-icon icon="mdi-information | pb-1 | mr-1"></v-icon>
@@ -23,9 +23,9 @@
       </v-card-title>
       <v-divider></v-divider>
       <v-card-text>
-        <div style="text-align: center;">
+        <div style="text-align: center; letter-spacing: -0.5px;">
           본 서비스는 품질 향상과 인사이트 도출을 위해<br>
-          응답을 수집하여 통계 및 데이터 분석에 활용합니다.<br>
+          응답을 수집하여 통계 및 분석에 활용합니다.<br>
           위 내용은 해당 목적 외에는 사용되지 않으며,<br>
           관련 법령을 준수하여 안전하게 관리됩니다.
         </div>
@@ -34,7 +34,7 @@
 
     <v-row 
       v-if="sNewStart"
-      no-gutters justify="center" class="margin-48 | mt-10"
+      no-gutters justify="center" class="margin-42 | mt-10"
     >
       <v-btn 
         @click="handleClickStartBtn"
@@ -46,7 +46,7 @@
     </v-row>
     <v-row 
       v-else="sNewStart"
-      no-gutters justify="center" class="margin-48 | mt-10"
+      no-gutters justify="center" class="margin-42 | mt-10"
     >
       <v-btn 
         @click="handleClickRestartBtn"
@@ -58,7 +58,7 @@
     </v-row>
     <v-row 
       v-else="sNewStart"
-      no-gutters justify="center" class="margin-48 | mt-2"
+      no-gutters justify="center" class="margin-42 | mt-2"
     >
       <v-btn 
         @click="handleClickContBtn"
@@ -129,9 +129,9 @@ function handleClickContBtn() {
   margin-top: 100px;
 }
 
-.margin-48 {
-  margin-left: 48px;
-  margin-right: 48px;
+.margin-42 {
+  margin-left: 42px;
+  margin-right: 42px;
 }
 
 .margin-top-72 {
