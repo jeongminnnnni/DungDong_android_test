@@ -15,8 +15,10 @@
         class="progress-circular"
       ></v-progress-circular>
       <v-col cols="12" class="mt-14" >
-          <v-img aspect-ratio="1/3" :src="`/ad/ad_${currentAd.num}.jpeg`"></v-img>
-      </v-col>  
+          <v-img v-if="currentAd.num === 0" rounded="lg" aspect-ratio="1/3" src="@/assets/ad/ad_1.jpeg"></v-img>
+          <v-img v-if="currentAd.num === 1" rounded="lg" aspect-ratio="1/3" src="@/assets/ad/ad_2.jpeg"></v-img>
+          <v-img v-if="currentAd.num === 2" rounded="lg" aspect-ratio="1/3" src="@/assets/ad/ad_3.jpeg"></v-img>
+        </v-col>
     </v-row>
     <v-row no-gutters justify="center" width="300px" 
       style="min-height: 300px; min-width: 300px; 
@@ -64,7 +66,9 @@
     </v-row>
     <v-row>
       <v-col cols="12" class="mt-10 | mb-10" >
-        <v-img rounded="lg" aspect-ratio="1/3" :src="`/ad/ad_${currentAd.num}.jpeg`"></v-img>
+        <v-img v-if="currentAd.num === 0" rounded="lg" aspect-ratio="1/3" src="@/assets/ad/ad_1.jpeg"></v-img>
+        <v-img v-if="currentAd.num === 1" rounded="lg" aspect-ratio="1/3" src="@/assets/ad/ad_2.jpeg"></v-img>
+        <v-img v-if="currentAd.num === 2" rounded="lg" aspect-ratio="1/3" src="@/assets/ad/ad_3.jpeg"></v-img>
       </v-col>
     </v-row>
     <v-row no-gutters>    
@@ -90,7 +94,9 @@
         >
         </v-col>
         <v-col cols="12" class="mb-10" >
-          <v-img rounded="lg" aspect-ratio="1/3" :src="`/ad/ad_${currentAd.num}.jpeg`"></v-img>
+          <v-img v-if="currentAd.num === 0" rounded="lg" aspect-ratio="1/3" src="@/assets/ad/ad_1.jpeg"></v-img>
+          <v-img v-if="currentAd.num === 1" rounded="lg" aspect-ratio="1/3" src="@/assets/ad/ad_2.jpeg"></v-img>
+          <v-img v-if="currentAd.num === 2" rounded="lg" aspect-ratio="1/3" src="@/assets/ad/ad_3.jpeg"></v-img>
         </v-col>
     </v-row>
   </BoxContainer>
