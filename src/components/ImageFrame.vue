@@ -14,7 +14,7 @@
                 </v-row>
                 <v-row no-gutters height="100px">
                     <v-col class="text-title">
-                        {{ props.survey.title }}
+                        {{ props.survey.title }} 룸메
                     </v-col>
                 </v-row>
             </v-col>
