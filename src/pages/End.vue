@@ -15,10 +15,13 @@
         class="progress-circular"
       ></v-progress-circular>
       <v-col cols="12" class="mt-14" >
-          <v-img aspect-ratio="1/3" :src="`/ad/ad_1.jpeg`"></v-img>
+          <v-img aspect-ratio="1/3" :src="`/ad/ad_${currentAd.num}.jpeg`"></v-img>
       </v-col>  
     </v-row>
-    <v-row no-gutters justify="center" width="300px" style="min-height: 300px; min-width: 300px; align-items: center; border: 1px; border-color: #D9D9D9;">
+    <v-row no-gutters justify="center" width="300px" 
+      style="min-height: 300px; min-width: 300px; 
+      align-items: center; border: 1px; border-color: #D9D9D9;"
+    >
       <div ref="captureRef"  class="hidden-capture-area">
         <ImageFrame :survey="survey"></ImageFrame>
       </div>
@@ -28,7 +31,8 @@
         cover
       ></v-img>
     </v-row>
-
+    <v-row>
+    </v-row>
     <v-row no-gutters justify="center" class="margin-48 | mt-10 | pl-14 | pr-14">
       <v-btn 
         @click="copyImageToClipboard"
@@ -56,9 +60,14 @@
         class="w-text-btn"
       >
         룸메찾기 알리기
-      </v-btn>
+      </v-btn>  
     </v-row>
-    <v-row no-gutters>      
+    <v-row>
+      <v-col cols="12" class="mt-10 | mb-10" >
+        <v-img rounded="lg" aspect-ratio="1/3" :src="`/ad/ad_${currentAd.num}.jpeg`"></v-img>
+      </v-col>
+    </v-row>
+    <v-row no-gutters>    
         <v-col
           cols="12"
           no-gutters justify="start" 
@@ -81,7 +90,7 @@
         >
         </v-col>
         <v-col cols="12" class="mb-10" >
-          <v-img aspect-ratio="1/3" :src="`/ad/ad_1.jpeg`"></v-img>
+          <v-img rounded="lg" aspect-ratio="1/3" :src="`/ad/ad_${currentAd.num}.jpeg`"></v-img>
         </v-col>
     </v-row>
   </BoxContainer>
@@ -126,11 +135,21 @@ const loading = ref(false); // 로딩 상태 관리
 const captureRef = ref(null); // 캡처할 컴포넌트의 참조
 const capturedImage = ref(''); // 캡처된 이미지의 URL 저장
 
+
+const ads = ref([
+  { num: 1, url: ''},
+  { num: 2, url: ''},
+  { num: 3, url: ''},
+])
+const currentAd = ref(ads.value[0]); 
+let adIndex = 0; 
+
 const toastMessage = ref("");
 const showToast = ref(false); 
 
 const survey = ref({
   title:  null,
+  titleId:  "",
   dorm:  null,
   birth: null,
   studentId: null,
@@ -166,13 +185,18 @@ onMounted(async () => {
   loadSurveyData();
   await nextTick(); // DOM이 렌더링 완료된 후 실행
   startCaptureProcess();
+  intervalId = setInterval(updateAd, 3000);
 });
 
 onUnmounted(() => {
-
+  clearInterval(intervalId); 
 })
 
 // ----- 함수 정의 ----- //
+function updateAd() {
+  adIndex = (adIndex + 1) % ads.value.length; // 다음 광고 인덱스 계산
+  currentAd.value = ads.value[adIndex]; // 현재 광고 업데이트
+}
 
 function loadSurveyData() {
   const existingSurvey = localStorage.getItem('userSurvey');
@@ -183,7 +207,8 @@ function loadSurveyData() {
     
     // 데이터 매핑 및 할당
     survey.value.title = parsedSurvey.value.title || "깔끔한 올빼미형 룸메";
-    survey.value.dorm = parsedSurvey.value.dorm || "선택안함";
+    survey.value.titleId = "MU_baby";
+    survey.value.dorm = parsedSurvey.value.dorm;
     survey.value.birth = parsedSurvey.value.birth
       ? parsedSurvey.value.birth === 0
         ? "비공개"
@@ -318,6 +343,7 @@ async function captureAndSetImage() {
   }
   try {
     const canvas = await html2canvas(captureRef.value, {
+      allowTaint: true,
       useCORS: true, 
       scale: 2,       
       logging: true,  
@@ -402,11 +428,11 @@ function handleSnackbarClose(value) {
   letter-spacing: -0.5px;
 }
 
-/* .hidden-capture-area {
+.hidden-capture-area {
   position: absolute;
   top: -99999px;
   left: -99999px;
-} */
+}
 
 .text-title {
     font-size: 19.5px;
