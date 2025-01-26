@@ -239,8 +239,8 @@ function emitStartSurvey() {
 
 function emitRestartSurvey() {
   console.log('Event Received: Restart Survey');
-  initSurvey();
   router.push("/home");
+  initSurvey();
 };
 
 function emitContinueSurvey(payload) {

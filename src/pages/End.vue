@@ -179,7 +179,7 @@ onMounted(async () => {
 });
 
 onUnmounted(() => {
-  clearInterval(intervalId); 
+  // clearInterval(intervalId); 
 })
 
 // ----- 함수 정의 ----- //
@@ -195,9 +195,10 @@ function loadSurveyData() {
   if (existingSurvey) {
     parsedSurvey.value = JSON.parse(existingSurvey);
     
+    const titleInfo = generateTitle(parsedSurvey.value);
+    survey.value.title = titleInfo.title;
+    survey.value.titleId = titleInfo.titleId;
     // 데이터 매핑 및 할당
-    survey.value.title = parsedSurvey.value.title || "깔끔한 올빼미형 룸메";
-    survey.value.titleId = "MU_baby";
     survey.value.dorm = parsedSurvey.value.dorm;
     survey.value.birth = parsedSurvey.value.birth
       ? parsedSurvey.value.birth === 0
@@ -231,6 +232,66 @@ function loadSurveyData() {
     console.log('set and parse survey object', survey.value);
   }
 }
+
+function generateTitle(item) {
+  console.log('asdf', item)
+  let prefix = ""; 
+  let suffix = ""; 
+  let prefixId = ""; 
+  let suffixId = ""; 
+
+  // 청결도를 기반으로 한 주요 접두사 결정
+  if (item.clean >= 4) {
+    prefix = "깔끔한";
+    prefixId = "KK";
+  } else if (item.clean <= 2) {
+    prefix = "무던한";
+    prefixId = "MU"
+  }
+
+  // 소음 예민도를 기반으로 한 보조 접두사 결정
+  if (item.noise >= 4) {
+    prefix = "흥많은";
+    prefixId = "HE";
+  } else if (item.noise <= 2) {
+    prefix = "조용한";
+    prefixId = "JO";
+  }
+
+  // 세심한 조건 확인
+  if (item.selectTag.length >= 4) {
+    prefix = "세심한"; // 예민도가 높은 세심한 조건을 우선 적용
+    prefixId = "SE"; // 예민도가 높은 세심한 조건을 우선 적용
+  }
+
+  let wakeTime = parseInt(item.wakeUp.split(':')[0], 10);
+  let bedTimeHour = parseInt(item.bedTime.split(':')[0], 10);
+
+  console.log(wakeTime)
+  console.log(bedTimeHour)
+
+  if (bedTimeHour >= 2) {
+    suffix = "올빼미";
+    suffixId = "owl"
+  } else if (bedTimeHour < 11) {
+    suffix = "아기새";
+    suffixId = "baby";
+  }
+
+  if (wakeTime < 8) {
+    suffix = "아침새";
+    suffixId = "morning";
+  } else if (wakeTime >= 8 && wakeTime <= 11) {
+    suffix = "그냥새";
+    suffixId = "standard";
+  } else if (wakeTime > 11) {
+    suffix = "늦잠새";
+    suffixId = "sleep"
+  }
+
+  return { title: `${prefix} ${suffix}`, titleId: `${prefixId}_${suffixId}` };
+}
+
 
 function parseDrinkFormat(drink) {
   if (!drink) return "선택안함";  // 기본값 설정
@@ -310,11 +371,10 @@ function parseCollege(value) {
   }
 }
 
-
 // 다시 시작
 function handleClickRestartBtn() {
-  localStorage.setItem('appInitialized', 'false');
   console.log("emitting restart-survey event.");
+  localStorage.setItem('appInitialized', 'false');
   emit('restart-survey'); 
 }
 

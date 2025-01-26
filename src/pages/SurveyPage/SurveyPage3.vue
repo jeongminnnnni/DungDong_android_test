@@ -165,8 +165,9 @@ function updateLocalStorage(field, value) {
 
 function isNumeric(input) {
   let number = input.replace(/[^0-9]/g, ''); // 숫자만 남기기
-  return number
+  return parseInt(number, 10) || 0; // 선행 0 제거 및 숫자로 변환 후 다시 문자열로
 }
+
 
 </script>
 
