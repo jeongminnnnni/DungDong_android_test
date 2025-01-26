@@ -179,7 +179,7 @@ onMounted(async () => {
 });
 
 onUnmounted(() => {
-  clearInterval(intervalId); 
+  // clearInterval(intervalId); 
 })
 
 // ----- 함수 정의 ----- //
@@ -373,8 +373,8 @@ function parseCollege(value) {
 
 // 다시 시작
 function handleClickRestartBtn() {
-  localStorage.setItem('appInitialized', 'false');
   console.log("emitting restart-survey event.");
+  localStorage.setItem('appInitialized', 'false');
   emit('restart-survey'); 
 }
 
