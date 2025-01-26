@@ -194,10 +194,7 @@ function loadSurveyData() {
 
   if (existingSurvey) {
     parsedSurvey.value = JSON.parse(existingSurvey);
-    
-    const titleInfo = generateTitle(parsedSurvey.value);
-    survey.value.title = titleInfo.title;
-    survey.value.titleId = titleInfo.titleId;
+  
     // 데이터 매핑 및 할당
     survey.value.dorm = parsedSurvey.value.dorm;
     survey.value.birth = parsedSurvey.value.birth
@@ -228,6 +225,10 @@ function loadSurveyData() {
     survey.value.home = parsedSurvey.value.home || 0;
     survey.value.notes = parsedSurvey.value.notes || "";
     survey.value.selectTag = parsedSurvey.value.selectTag || [];
+
+    const titleInfo = generateTitle(survey.value);
+    survey.value.title = titleInfo.title;
+    survey.value.titleId = titleInfo.titleId;
 
     console.log('set and parse survey object', survey.value);
   }
@@ -266,9 +267,6 @@ function generateTitle(item) {
 
   let wakeTime = parseInt(item.wakeUp.split(':')[0], 10);
   let bedTimeHour = parseInt(item.bedTime.split(':')[0], 10);
-
-  console.log(wakeTime)
-  console.log(bedTimeHour)
 
   if (bedTimeHour >= 2) {
     suffix = "올빼미";
