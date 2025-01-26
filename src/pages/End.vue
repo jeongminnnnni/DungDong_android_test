@@ -14,6 +14,9 @@
         size="64"
         class="progress-circular"
       ></v-progress-circular>
+      <v-col cols="12" class="mt-14" >
+          <v-img aspect-ratio="1/3" :src="`/ad/ad_1.jpeg`"></v-img>
+      </v-col>  
     </v-row>
     <v-row no-gutters justify="center" width="300px" style="min-height: 300px; min-width: 300px; align-items: center; border: 1px; border-color: #D9D9D9;">
       <div ref="captureRef"  class="hidden-capture-area">
@@ -55,6 +58,32 @@
         룸메찾기 알리기
       </v-btn>
     </v-row>
+    <v-row no-gutters>      
+        <v-col
+          cols="12"
+          no-gutters justify="start" 
+          class="text-subtitle | mb-1 | margin-top-96"
+        >
+          둥지동지를 제작한
+        </v-col>
+        <v-col
+          cols="12"
+          no-gutters justify="start" 
+          class="text-title | mb-6"
+        >
+         <칸타르동방구함위원회> 를 소개합니다
+        </v-col>
+        <v-col
+          cols="12"
+          no-gutters justify="start" 
+          class="text-subtitle | mb-12"
+          v-html="ourInfo"
+        >
+        </v-col>
+        <v-col cols="12" class="mb-10" >
+          <v-img aspect-ratio="1/3" :src="`/ad/ad_1.jpeg`"></v-img>
+        </v-col>
+    </v-row>
   </BoxContainer>
 
   <v-snackbar
@@ -90,6 +119,9 @@ const emit = defineEmits(['restart-survey', 'continue-survey']);
 const title = '짜잔! 결과 이미지가 나왔어요.'
 const desc = '이미지를 저장하고 공유하여<br>마음에 맞는 룸메이트를 구해보세요.'
 
+const ourInfo = '안녕하세요, 둥지동지를 제작한 예술공학부 동아리 칸타르 소속의 <b><칸타르동방구함위원회></b> 입니다.<br><br>둥지동지는 룸메이트를 빠르고 편하게 구할 수 있게 하기 위해 기획한 프로젝트입니다.<br><br>제작에 도움을 주신 예공 친구들에게 감사드리며, 모두 좋은 룸메이트를 찾으시길 바랍니다.<br>새해 복 많이 받으세요!'
+
+
 const loading = ref(false); // 로딩 상태 관리
 const captureRef = ref(null); // 캡처할 컴포넌트의 참조
 const capturedImage = ref(''); // 캡처된 이미지의 URL 저장
@@ -103,6 +135,7 @@ const survey = ref({
   birth: null,
   studentId: null,
   college: "",
+  collegeId: 0,
   mbti: "",
   smoke: null,
   drink: "",
@@ -161,7 +194,8 @@ function loadSurveyData() {
         ? "비공개"
         : String(parsedSurvey.value.studentId).slice(-2)
       : "비공개";
-    survey.value.college = parsedSurvey.value.college || "선택안함";
+    survey.value.college = parseCollege(parsedSurvey.value.college || 0);
+    survey.value.collegeId = parsedSurvey.value.college || 0;
     survey.value.mbti = parsedSurvey.value.mbti || "선택안함";
     survey.value.smoke = parseSmokeStatus(parsedSurvey.value.smoke || 0);
     survey.value.drink = parseDrinkFormat(parsedSurvey.value.drink);
@@ -176,7 +210,7 @@ function loadSurveyData() {
     survey.value.noise = parsedSurvey.value.noise || 0;
     survey.value.share = parsedSurvey.value.share || 0;
     survey.value.home = parsedSurvey.value.home || 0;
-    survey.value.notes = parsedSurvey.value.notes || "없음";
+    survey.value.notes = parsedSurvey.value.notes || "";
     survey.value.selectTag = parsedSurvey.value.selectTag || [];
 
     console.log('set and parse survey object', survey.value);
@@ -242,6 +276,26 @@ function parseSleepHabit(value) {
   }
 }
 
+function parseCollege(value) {
+  switch (value) {
+    case 0:
+      return "비공개";
+    case 1:
+      return "예술대학";
+    case 2:
+      return "체육대학";
+    case 3:
+      return "예술공학대학";
+    case 4:
+      return "생명공학대학";
+    case 5:
+      return "공과대학";
+    default:
+      return "미선택"; 
+  }
+}
+
+
 // 다시 시작
 function handleClickRestartBtn() {
   localStorage.setItem('appInitialized', 'false');
@@ -263,7 +317,13 @@ async function captureAndSetImage() {
     return;
   }
   try {
-    const canvas = await html2canvas(captureRef.value);
+    const canvas = await html2canvas(captureRef.value, {
+      useCORS: true, 
+      scale: 2,       
+      logging: true,  
+      width: captureRef.value.offsetWidth,  
+      height: captureRef.value.offsetHeight
+    });
     capturedImage.value = canvas.toDataURL("image/png");
     console.log("캡처 완료");
   } catch (error) {
@@ -348,4 +408,41 @@ function handleSnackbarClose(value) {
   left: -99999px;
 }
 
+.text-title {
+    font-size: 19.5px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.5px;
+}
+
+.text-subtitle {
+    font-size: 15x;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: -0.4px;
+    color: #404040;
+}
+
+.margin-top-96 {
+  margin-top: 96px;
+}
+
+.text-label-container {
+  margin-top: 56px;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+}
+
+.text-label {
+  color: #B1B1B1;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.3px;
+}
 </style>

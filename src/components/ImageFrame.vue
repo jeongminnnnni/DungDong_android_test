@@ -2,9 +2,9 @@
     <v-container 
         style="width: 1000px; height: 1000px; min-width: 1000px; min-height: 1000px; max-width: 1000px; max-height: 1000px; padding: 30px;"
     >
-        <v-row no-gutters class="justify-space-between | pb-6" >
-            <v-col cols="auto">
-                <v-img></v-img>
+        <v-row no-gutters class="justify-space-between | pb-6" style="align-items: center;">
+            <v-col cols="auto" style="width: 165px; max-width: 165px; margin-left: 30px;">
+                <v-img position="center" :src="`/main_icons/HE_baby.png`" crossOrigin="anonymous"></v-img>
             </v-col>
             <v-col cols="auto" style="margin-top: 48px;">
                 <v-row no-gutters class="text-subtitle | pb-2">
@@ -32,8 +32,8 @@
                     no-gutters
                 >
                     <v-col style="width: 111px; min-width: 111px; max-width: 111px;">
-                        <div class="elevation-2 | main-info-icon | rounded-circle">
-                            <v-icon class="main-info-icon" color="success" icon="mdi-check"></v-icon>
+                        <div class="elevation-2 | main-info-icon | rounded-circle | pa-4">
+                            <v-img :src="`/col_icons/${props.survey.collegeId}.png`" crossOrigin="anonymous"></v-img>
                         </div>
                     </v-col>
                     <v-col class="main-info-title" style="padding-right: 21px;">
@@ -48,7 +48,12 @@
 
                 <v-row no-gutters class="pt-4">
                     <v-col cols="auto" class="text-bodytitle">음주빈도</v-col>
-                    <v-col style="padding-left: 32px;" class="text-bodytext">{{ props.survey.drink }}</v-col>
+                    <v-col style="padding-left: 32px;">
+                        <v-row no-gutters class="text-bodytext">{{ props.survey.drink }}</v-row>
+                        <v-row no-gutters>
+                            <v-label class="sd-label">{{ props.survey.sdEtc }}</v-label>
+                        </v-row>
+                    </v-col>
                 </v-row>
 
                 <v-row no-gutters class="justify-space-between | pt-6" style="align-content: center">
@@ -68,7 +73,7 @@
                         </v-row>
                         <v-row no-gutters class="justify-space-between | pt-1" style="width: 362px;">
                             <v-label>매주마다</v-label>
-                            <v-label>학기 중엔 안감</v-label>
+                            <v-label>학기중엔 본가 안 감</v-label>
                         </v-row>
                     </v-col>
                 </v-row>
@@ -180,8 +185,8 @@
                             </v-col>
                         </v-row>
                         <v-row no-gutters class="justify-space-between | pt-4" style="width: 362px;">
-                            <v-label>무던함</v-label>
-                            <v-label>예민함</v-label>
+                            <v-label>무조건 이어폰 착용</v-label>
+                            <v-label>대부분 스피커 모드</v-label>
                         </v-row>
                     </v-col>
                 </v-row>
@@ -203,7 +208,7 @@
                         </v-row>
                         <v-row no-gutters class="justify-space-between | pt-4" style="width: 362px;">
                             <v-label>방밖에서만</v-label>
-                            <v-label>신경안씀</v-label>
+                            <v-label>전혀 상관없음</v-label>
                         </v-row>
                     </v-col>
                 </v-row>
@@ -274,9 +279,6 @@ const props = defineProps({
 
 const survey = ref(null)
 
-const steps = [1, 2, 3, 4, 5]; // 단계 개수
-const currentStep = ref(4); // 현재 단계 (0부터 시작, 마지막은 4)
-
 // ----- 라이프 사이클 ----- //
 onMounted(() => {
     console.log('component get survey object', props.survey);
@@ -289,6 +291,10 @@ onUnmounted(() => {
 
 // ----- 함수 정의 ----- //
 
+
+function selectMainImage(value) {
+    return mainImg.value = '@/assets/col_icons/private.png'
+}
 
 </script>
 
@@ -330,6 +336,14 @@ onUnmounted(() => {
 .text-bodytime {
     color: #000;
     font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.sd-label {
+    color: #000;
+    font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;

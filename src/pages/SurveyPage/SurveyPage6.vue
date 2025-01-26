@@ -3,39 +3,51 @@
     <SubTitle :title="title" :desc="desc"> </SubTitle>
 
     <v-row no-gutters justify="start">
-      <v-label>휴대전화 소리는 어떻게 틀고 있나요? (기숙사 생활시)</v-label>
+      <v-label>휴대전화 소리는 어떻게 틀고 있나요?</v-label>
     </v-row>
-    <v-row no-gutters justify="center" class="mt-4">
+    <v-row no-gutters justify="center" class="mt-3">
       <v-slider
         :max="4" :step="1"
         v-model="noise"
         color="#FF5858" thumb-color="#FF5858" track-color="#D9D9D9" track-fill-color="#FF5858" 
-        tick-size="4" show-ticks="always" track-size="4" thumb-size="16"
+        tick-size="4" show-ticks="always" track-size="4" thumb-size="16" hide-details
       ></v-slider>
     </v-row>
+    <v-row no-gutters class="justify-space-between | pt-2">
+      <v-label class="small-label">무조건 이어폰 착용</v-label>
+      <v-label class="small-label">대부분 스피커 모드</v-label>
+    </v-row>
 
-    <v-row no-gutters justify="start" class="margin-top-52">
+    <v-row no-gutters justify="start" class="margin-top-42">
       <v-label>룸메이트와의 물건공유는 어느정도로 하나요?</v-label>
     </v-row>
-    <v-row no-gutters justify="center" class="mt-4">
+    <v-row no-gutters justify="center" class="mt-3">
       <v-slider
         :max="4" :step="1"
         v-model="share"
         color="#FF5858" thumb-color="#FF5858" track-color="#D9D9D9" track-fill-color="#FF5858" 
-        tick-size="4" show-ticks="always" track-size="4" thumb-size="16"
+        tick-size="4" show-ticks="always" track-size="4" thumb-size="16" hide-details
       ></v-slider>
     </v-row>
+    <v-row no-gutters class="justify-space-between | pt-2">
+      <v-label class="small-label">전혀 안함</v-label>
+      <v-label class="small-label">공용물건구비</v-label>
+    </v-row>
 
-    <v-row no-gutters justify="start" class="margin-top-52">
+    <v-row no-gutters justify="start" class="margin-top-42">
       <v-label>본가로 귀가주기는 어느정도로 생각하세요?</v-label>
     </v-row>
-    <v-row no-gutters justify="center" class="mt-4">
+    <v-row no-gutters justify="center" class="mt-3">
       <v-slider
         :max="4" :step="1"
         v-model="home"
         color="#FF5858" thumb-color="#FF5858" track-color="#D9D9D9" track-fill-color="#FF5858" 
-        tick-size="4" show-ticks="always" track-size="4" thumb-size="16"
+        tick-size="4" show-ticks="always" track-size="4" thumb-size="16" hide-details
       ></v-slider>
+    </v-row>
+    <v-row no-gutters class="justify-space-between | pt-2">
+      <v-label class="small-label">매주마다 귀가</v-label>
+      <v-label class="small-label">학기중엔 본가 안 감</v-label>
     </v-row>
 
   </BoxContainer>
@@ -123,7 +135,14 @@ function updateLocalStorage(field, value) {
   font-size: 14px;
 }
 
-.margin-top-52 {
-  margin-top: 52px;
+.small-label {
+  color: #000000;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+}
+
+.margin-top-42 {
+  margin-top: 42px;
 }
 </style>

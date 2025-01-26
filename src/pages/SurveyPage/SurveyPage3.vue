@@ -6,16 +6,16 @@
     </v-row>
     <v-row no-gutters justify="center" class="mt-1">
       <v-select
-        variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858"
+        variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858" hide-details
         :items="smokeItem"
         v-model="smoke"
       ></v-select>
     </v-row>
 
-    <v-row no-gutters justify="start" class="margin-top-52">
-      <v-label>음주여부를 선택해주세요</v-label>
+    <v-row no-gutters justify="start" class="margin-top-28">
+      <v-label>음주 빈도를 입력해주세요</v-label>
     </v-row>
-    <v-row no-gutters justify="center" class="mt-1">
+    <v-row no-gutters justify="center" class="mt-6">
       <v-col class="d-flex | justify-center | align-center">
         <v-text-field
           variant="underlined" base-color="#FF5858" color="#FF5858" item-color="#FF5858" hide-details
@@ -49,7 +49,7 @@
     </v-row>
 
     <v-row no-gutters justify="start" class="margin-top-52">
-      <label class="custom-label">흡연/음주에 대해 하고싶은 말이 있다면 적어주세요</label>
+      <label class="custom-label" v-html="'흡연/음주에 대해 하고싶은 말이 있다면 적어주세요'"></label>
     </v-row>
     <v-row no-gutters justify="center" class="mt-1">
       <v-text-field
@@ -195,6 +195,10 @@ function updateLocalStorage(field, value) {
 
 .padding-0 {
   padding: 0px;
+}
+
+.margin-top-28 {
+  margin-top: 28px;
 }
 
 .margin-top-52 {
