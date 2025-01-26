@@ -402,11 +402,11 @@ function handleSnackbarClose(value) {
   letter-spacing: -0.5px;
 }
 
-.hidden-capture-area {
+/* .hidden-capture-area {
   position: absolute;
-  top: -99999px; /* 화면에서 숨김 */
+  top: -99999px;
   left: -99999px;
-}
+} */
 
 .text-title {
     font-size: 19.5px;
