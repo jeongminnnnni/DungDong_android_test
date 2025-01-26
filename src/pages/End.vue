@@ -14,15 +14,11 @@
         size="64"
         class="progress-circular"
       ></v-progress-circular>
-      <v-col cols="12" class="mt-14" >
-          <v-img v-if="currentAd.num === 1" rounded="lg" aspect-ratio="1/3" src="@/assets/ad/ad_1.jpeg"></v-img>
-          <v-img v-if="currentAd.num === 2" rounded="lg" aspect-ratio="1/3" src="@/assets/ad/ad_2.jpeg"></v-img>
-          <v-img v-if="currentAd.num === 3" rounded="lg" aspect-ratio="1/3" src="@/assets/ad/ad_3.jpeg"></v-img>
-        </v-col>
     </v-row>
     <v-row no-gutters justify="center" width="300px" 
       style="min-height: 300px; min-width: 300px; 
-      align-items: center; border: 1px; border-color: #D9D9D9;"
+      align-items: center;"
+      class="elevation-6"
     >
       <div ref="captureRef"  class="hidden-capture-area">
         <ImageFrame :survey="survey"></ImageFrame>
@@ -33,22 +29,14 @@
         cover
       ></v-img>
     </v-row>
-    <v-row>
-    </v-row>
-    <v-row no-gutters justify="center" class="margin-48 | mt-10 | pl-14 | pr-14">
-      <v-btn 
-        @click="copyImageToClipboard"
-        color="#FF6161" rounded="xl" width="100%" 
-        class="text-btn"
-      >
-        이미지 저장하기
-      </v-btn>
+    <v-row no-gutters justify="center | mt-3">
+      <v-label>▲ 꾹 눌러 저장하기 ▲</v-label>
     </v-row>
 
-    <v-row no-gutters justify="center" class="margin-48 | mt-4 | pl-14 | pr-14">
+    <v-row no-gutters justify="center" class="margin-48 | mt-10 | pl-14 | pr-14">
       <v-btn 
         @click="handleClickRestartBtn"
-        color="#FFFFFF" rounded="xl" width="100%" 
+        color="#FFFFFF" rounded="xl" width="100%"
         class="w-text-btn"
       >
         처음부터 다시하기
@@ -66,9 +54,7 @@
     </v-row>
     <v-row>
       <v-col cols="12" class="mt-10 | mb-10" >
-        <v-img v-if="currentAd.num === 1" rounded="lg" aspect-ratio="1/3" src="@/assets/ad/ad_1.jpeg"></v-img>
-        <v-img v-if="currentAd.num === 2" rounded="lg" aspect-ratio="1/3" src="@/assets/ad/ad_2.jpeg"></v-img>
-        <v-img v-if="currentAd.num === 3" rounded="lg" aspect-ratio="1/3" src="@/assets/ad/ad_3.jpeg"></v-img>
+        <v-img rounded="lg" aspect-ratio="1/3" v-bind:src="currentAd.img"></v-img>
       </v-col>
     </v-row>
     <v-row no-gutters>    
@@ -94,9 +80,7 @@
         >
         </v-col>
         <v-col cols="12" class="mb-10" >
-          <v-img v-if="currentAd.num === 1" rounded="lg" aspect-ratio="1/3" src="@/assets/ad/ad_1.jpeg"></v-img>
-          <v-img v-if="currentAd.num === 2" rounded="lg" aspect-ratio="1/3" src="@/assets/ad/ad_2.jpeg"></v-img>
-          <v-img v-if="currentAd.num === 3" rounded="lg" aspect-ratio="1/3" src="@/assets/ad/ad_3.jpeg"></v-img>
+          <v-img rounded="lg" aspect-ratio="1/3" v-bind:src="currentAd.img"></v-img>
         </v-col>
     </v-row>
   </BoxContainer>
@@ -143,9 +127,9 @@ const capturedImage = ref(''); // 캡처된 이미지의 URL 저장
 
 
 const ads = ref([
-  { num: 1, url: ''},
-  { num: 2, url: ''},
-  { num: 3, url: ''},
+  { num: 1, url: '', img: './ad/ad_1.jpeg'},
+  { num: 2, url: '', img: './ad/ad_2.jpeg'},
+  { num: 3, url: '', img: './ad/ad_3.jpeg'},
 ])
 let adIndex = 0; 
 const currentAd = ref(ads.value[0]); 
