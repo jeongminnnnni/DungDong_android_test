@@ -23,7 +23,7 @@
           placeholder="0"
           v-model="dymCnt"
           maxlength="2"
-          @input="dymCnt = Util.getInstance().isNumeric(dymCnt)"
+          @input="dymCnt = isNumeric(dymCnt)"
         ></v-text-field>
         <v-select
           variant="outlined" rounded="lg" bg-color="#FFFFFF" base-color="#FF5858" color="#FF5858" item-color="#FF5858" hide-details
@@ -40,7 +40,7 @@
           placeholder="0"
           v-model="drinkCnt"
           maxlength="2"
-          @input="dymCnt = Util.getInstance().isNumeric(dymCnt)"
+          @input="drinkCnt = isNumeric(drinkCnt)"
         ></v-text-field>
         <v-label>
           번
@@ -89,7 +89,7 @@ const dymCnt = ref(null);
 const dym = ref(0);
 const dmyItem = ref([
   { title: '주', value: 0},
-  { title: '월', value: 1},
+  { title: '개월', value: 1},
   { title: '년', value: 2},
 ]);
 const drinkCnt = ref(null);
@@ -161,6 +161,11 @@ function updateLocalStorage(field, value) {
   existingSurvey[field] = value;
   localStorage.setItem("userSurvey", JSON.stringify(existingSurvey));
   console.log(`Updated localStorage userSurvey: ${field} = ${value}`);
+}
+
+function isNumeric(input) {
+  let number = input.replace(/[^0-9]/g, ''); // 숫자만 남기기
+  return number
 }
 
 </script>

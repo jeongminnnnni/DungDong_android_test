@@ -37,7 +37,7 @@
                         </v-row>
                     </v-col>
                     <v-col class="main-info-title" style="padding-right: 21px;">
-                        {{ props.survey.college }}의 {{ props.survey.studentId }}학번 <br> {{ props.survey.birth }}년생
+                        {{ props.survey.college }}의 {{ props.survey.studentId }}학번 <br> {{ props.survey.birth }}년생 {{ props.survey.mbti }}
                     </v-col>
                 </v-row>
 
