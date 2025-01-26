@@ -3,7 +3,7 @@
     <SubTitle :title="title" :desc="desc"> </SubTitle>
 
     <v-row no-gutters justify="start">
-      <v-label>휴대전화 소리는 어떻게 틀고 있나요? (기숙사 생활시)</v-label>
+      <v-label>휴대전화 소리는 어떻게 틀고 있나요?</v-label>
     </v-row>
     <v-row no-gutters justify="center" class="mt-3">
       <v-slider

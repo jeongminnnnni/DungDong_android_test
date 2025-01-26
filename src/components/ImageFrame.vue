@@ -4,7 +4,7 @@
     >
         <v-row no-gutters class="justify-space-between | pb-6" style="align-items: center;">
             <v-col cols="auto" style="width: 165px; max-width: 165px; margin-left: 30px;">
-                <v-img position="center" :src="`/main_icons/HE_baby.png`"></v-img>
+                <v-img position="center" :src="`/main_icons/HE_baby.png`" crossOrigin="anonymous"></v-img>
             </v-col>
             <v-col cols="auto" style="margin-top: 48px;">
                 <v-row no-gutters class="text-subtitle | pb-2">
@@ -33,7 +33,7 @@
                 >
                     <v-col style="width: 111px; min-width: 111px; max-width: 111px;">
                         <div class="elevation-2 | main-info-icon | rounded-circle | pa-4">
-                            <v-img :src="`/col_icons/${props.survey.collegeId}.png`"></v-img>
+                            <v-img :src="`/col_icons/${props.survey.collegeId}.png`" crossOrigin="anonymous"></v-img>
                         </div>
                     </v-col>
                     <v-col class="main-info-title" style="padding-right: 21px;">

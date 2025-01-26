@@ -35,7 +35,7 @@
     </v-row>
 
     <v-row no-gutters justify="start" class="margin-top-42">
-      <v-label>방 안에서 음식물 섭취, 어떻게 생각하시나요? (간식제외)</v-label>
+      <v-label v-html="'방 안에서 음식물 섭취, 어떻게 생각하시나요? (간식제외)'"></v-label>
     </v-row>
     <v-row no-gutters justify="center" class="mt-3">
       <v-slider

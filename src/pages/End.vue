@@ -14,6 +14,9 @@
         size="64"
         class="progress-circular"
       ></v-progress-circular>
+      <v-col cols="12" class="mt-14" >
+          <v-img aspect-ratio="1/3" :src="`/ad/ad_1.jpeg`"></v-img>
+      </v-col>  
     </v-row>
     <v-row no-gutters justify="center" width="300px" style="min-height: 300px; min-width: 300px; align-items: center; border: 1px; border-color: #D9D9D9;">
       <div ref="captureRef"  class="hidden-capture-area">
@@ -55,10 +58,7 @@
         룸메찾기 알리기
       </v-btn>
     </v-row>
-    <v-row no-gutters>
-        <v-col cols="12" class="text-label-container">
-          <v-label class="text-label" v-html="'앗 잠시만요!<br>이 문구를 보신 당신,<br>화면을 한번 스크롤 해보시겠어요?'"></v-label>
-        </v-col>
+    <v-row no-gutters>      
         <v-col
           cols="12"
           no-gutters justify="start" 
@@ -80,12 +80,9 @@
           v-html="ourInfo"
         >
         </v-col>
-        <v-col
-          cols="12" class="mb-10"
-        >
+        <v-col cols="12" class="mb-10" >
           <v-img aspect-ratio="1/3" :src="`/ad/ad_1.jpeg`"></v-img>
         </v-col>
-        
     </v-row>
   </BoxContainer>
 
@@ -213,7 +210,7 @@ function loadSurveyData() {
     survey.value.noise = parsedSurvey.value.noise || 0;
     survey.value.share = parsedSurvey.value.share || 0;
     survey.value.home = parsedSurvey.value.home || 0;
-    survey.value.notes = parsedSurvey.value.notes || "없음";
+    survey.value.notes = parsedSurvey.value.notes || "";
     survey.value.selectTag = parsedSurvey.value.selectTag || [];
 
     console.log('set and parse survey object', survey.value);
@@ -320,7 +317,13 @@ async function captureAndSetImage() {
     return;
   }
   try {
-    const canvas = await html2canvas(captureRef.value);
+    const canvas = await html2canvas(captureRef.value, {
+      useCORS: true, 
+      scale: 2,       
+      logging: true,  
+      width: captureRef.value.offsetWidth,  
+      height: captureRef.value.offsetHeight
+    });
     capturedImage.value = canvas.toDataURL("image/png");
     console.log("캡처 완료");
   } catch (error) {
@@ -442,5 +445,4 @@ function handleSnackbarClose(value) {
   line-height: normal;
   letter-spacing: -0.3px;
 }
-
 </style>
