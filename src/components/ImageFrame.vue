@@ -3,8 +3,8 @@
         style="width: 1000px; height: 1000px; min-width: 1000px; min-height: 1000px; max-width: 1000px; max-height: 1000px; padding: 30px;"
     >
         <v-row no-gutters class="justify-space-between | pb-6" style="align-items: center;">
-            <v-col cols="auto" style="width: 165px; max-width: 165px; margin-left: 30px;">
-                <v-img position="center" :src="`./main_icons/HE_baby.png`" crossOrigin="anonymous"></v-img>
+            <v-col cols="auto" style="width: 165px; max-width: 165px; margin-left: 30px; align-self: end;">
+                <MainImg :img="props.survey.titleId"></MainImg>
             </v-col>
             <v-col cols="auto" style="margin-top: 48px;">
                 <v-row no-gutters class="text-subtitle | pb-2">
@@ -32,9 +32,9 @@
                     no-gutters
                 >
                     <v-col style="width: 111px; min-width: 111px; max-width: 111px;">
-                        <div class="elevation-2 | main-info-icon | rounded-circle | pa-4">
-                            <v-img :src="`./col_icons/${props.survey.collegeId}.png`" crossOrigin="anonymous"></v-img>
-                        </div>
+                        <v-row no-gutters class="main-info-icon | rounded-circle | pa-4">
+                            <ColIcon :img="props.survey.collegeId" style="align-self: center; justify-self: center;"></ColIcon>
+                        </v-row>
                     </v-col>
                     <v-col class="main-info-title" style="padding-right: 21px;">
                         {{ props.survey.college }}의 {{ props.survey.studentId }}학번 <br> {{ props.survey.birth }}년생
@@ -272,6 +272,8 @@
 <script setup>
 // ----- 선언부 ----- //
 import { onMounted, onUnmounted, ref, computed, watch} from "vue";
+import MainImg from "./MainImg.vue";
+import ColIcon from "./ColIcon.vue";
 
 const props = defineProps({
     survey: Object
@@ -290,11 +292,6 @@ onUnmounted(() => {
 })
 
 // ----- 함수 정의 ----- //
-
-
-function selectMainImage(value) {
-    return mainImg.value = '@/assets/col_icons/private.png'
-}
 
 </script>
 
@@ -357,7 +354,7 @@ function selectMainImage(value) {
 .main-info-pill {
     border-radius: 69px;
     border: 2px solid #B9B9B9;
-    background: #FFF;
+    background: #F7F7F7;
     justify-content: start;
     align-items: center;
     padding-left: 21px;
@@ -380,6 +377,8 @@ function selectMainImage(value) {
     min-height: 90px;
     max-width: 90px;
     max-height: 90px;
+    border: 2px solid #E9E9E9;
+    background: #FFF;
 }
 
 .tag-chip :deep(.v-chip) {
