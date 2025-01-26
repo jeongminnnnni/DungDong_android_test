@@ -15,9 +15,9 @@
         class="progress-circular"
       ></v-progress-circular>
       <v-col cols="12" class="mt-14" >
-          <v-img v-if="currentAd.num === 0" rounded="lg" aspect-ratio="1/3" src="@/assets/ad/ad_1.jpeg"></v-img>
-          <v-img v-if="currentAd.num === 1" rounded="lg" aspect-ratio="1/3" src="@/assets/ad/ad_2.jpeg"></v-img>
-          <v-img v-if="currentAd.num === 2" rounded="lg" aspect-ratio="1/3" src="@/assets/ad/ad_3.jpeg"></v-img>
+          <v-img v-if="currentAd.num === 1" rounded="lg" aspect-ratio="1/3" src="@/assets/ad/ad_1.jpeg"></v-img>
+          <v-img v-if="currentAd.num === 2" rounded="lg" aspect-ratio="1/3" src="@/assets/ad/ad_2.jpeg"></v-img>
+          <v-img v-if="currentAd.num === 3" rounded="lg" aspect-ratio="1/3" src="@/assets/ad/ad_3.jpeg"></v-img>
         </v-col>
     </v-row>
     <v-row no-gutters justify="center" width="300px" 
@@ -66,9 +66,9 @@
     </v-row>
     <v-row>
       <v-col cols="12" class="mt-10 | mb-10" >
-        <v-img v-if="currentAd.num === 0" rounded="lg" aspect-ratio="1/3" src="@/assets/ad/ad_1.jpeg"></v-img>
-        <v-img v-if="currentAd.num === 1" rounded="lg" aspect-ratio="1/3" src="@/assets/ad/ad_2.jpeg"></v-img>
-        <v-img v-if="currentAd.num === 2" rounded="lg" aspect-ratio="1/3" src="@/assets/ad/ad_3.jpeg"></v-img>
+        <v-img v-if="currentAd.num === 1" rounded="lg" aspect-ratio="1/3" src="@/assets/ad/ad_1.jpeg"></v-img>
+        <v-img v-if="currentAd.num === 2" rounded="lg" aspect-ratio="1/3" src="@/assets/ad/ad_2.jpeg"></v-img>
+        <v-img v-if="currentAd.num === 3" rounded="lg" aspect-ratio="1/3" src="@/assets/ad/ad_3.jpeg"></v-img>
       </v-col>
     </v-row>
     <v-row no-gutters>    
@@ -94,9 +94,9 @@
         >
         </v-col>
         <v-col cols="12" class="mb-10" >
-          <v-img v-if="currentAd.num === 0" rounded="lg" aspect-ratio="1/3" src="@/assets/ad/ad_1.jpeg"></v-img>
-          <v-img v-if="currentAd.num === 1" rounded="lg" aspect-ratio="1/3" src="@/assets/ad/ad_2.jpeg"></v-img>
-          <v-img v-if="currentAd.num === 2" rounded="lg" aspect-ratio="1/3" src="@/assets/ad/ad_3.jpeg"></v-img>
+          <v-img v-if="currentAd.num === 1" rounded="lg" aspect-ratio="1/3" src="@/assets/ad/ad_1.jpeg"></v-img>
+          <v-img v-if="currentAd.num === 2" rounded="lg" aspect-ratio="1/3" src="@/assets/ad/ad_2.jpeg"></v-img>
+          <v-img v-if="currentAd.num === 3" rounded="lg" aspect-ratio="1/3" src="@/assets/ad/ad_3.jpeg"></v-img>
         </v-col>
     </v-row>
   </BoxContainer>
@@ -147,8 +147,8 @@ const ads = ref([
   { num: 2, url: ''},
   { num: 3, url: ''},
 ])
-const currentAd = ref(ads.value[0]); 
 let adIndex = 0; 
+const currentAd = ref(ads.value[0]); 
 
 const toastMessage = ref("");
 const showToast = ref(false); 
