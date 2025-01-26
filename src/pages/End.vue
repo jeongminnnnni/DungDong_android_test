@@ -212,7 +212,7 @@ function loadSurveyData() {
     survey.value.mbti = parsedSurvey.value.mbti || "선택안함";
     survey.value.smoke = parseSmokeStatus(parsedSurvey.value.smoke || 0);
     survey.value.drink = parseDrinkFormat(parsedSurvey.value.drink);
-    survey.value.sdEtc = parsedSurvey.value.sdEtc || "선택안함";
+    survey.value.sdEtc = parsedSurvey.value.sdEtc || "";
     survey.value.wakeUp = parsedSurvey.value.wakeUp || "00:00";
     survey.value.lightOff = parsedSurvey.value.lightOff || "00:00";
     survey.value.bedTime = parsedSurvey.value.bedTime || "00:00";

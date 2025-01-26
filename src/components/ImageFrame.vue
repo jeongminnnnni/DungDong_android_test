@@ -65,7 +65,7 @@
                                 v-for="(step, index) in 5"
                                 :key="index"
                                 class="circle"
-                                :class="{ active: index === props.survey.clean }"
+                                :class="{ active: index === props.survey.home }"
                                 >
                                 <div class="line" v-if="index !== 4"></div>
                                 </div>
@@ -178,7 +178,7 @@
                                 v-for="(step, index) in 5"
                                 :key="index"
                                 class="circle"
-                                :class="{ active: index === props.survey.clean }"
+                                :class="{ active: index === props.survey.noise }"
                                 >
                                 <div class="line" v-if="index !== 4"></div>
                                 </div>
@@ -200,7 +200,7 @@
                                 v-for="(step, index) in 5"
                                 :key="index"
                                 class="circle"
-                                :class="{ active: index === props.survey.clean }"
+                                :class="{ active: index === props.survey.eatIn }"
                                 >
                                 <div class="line" v-if="index !== 4"></div>
                                 </div>
