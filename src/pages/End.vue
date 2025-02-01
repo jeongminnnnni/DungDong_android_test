@@ -110,6 +110,7 @@ import { collection, addDoc } from "firebase/firestore"; // Firestore 함수
 
 import axios from "axios";
 import html2canvas from "html2canvas";
+import Util from "@/common/Util.js"
 
 import BoxContainer from "@/components/BoxContainer.vue";
 import ImageFrame from "@/components/ImageFrame.vue";
@@ -208,16 +209,16 @@ function loadSurveyData() {
         ? "비공개"
         : String(parsedSurvey.value.studentId).slice(-2)
       : "비공개";
-    survey.value.college = parseCollege(parsedSurvey.value.college || 0);
+    survey.value.college = Util.getInstance().parseCollege(parsedSurvey.value.college || 0);
     survey.value.collegeId = parsedSurvey.value.college || 0;
     survey.value.mbti = parsedSurvey.value.mbti || "선택안함";
-    survey.value.smoke = parseSmokeStatus(parsedSurvey.value.smoke || 0);
-    survey.value.drink = parseDrinkFormat(parsedSurvey.value.drink);
+    survey.value.smoke = Util.getInstance().parseSmokeStatus(parsedSurvey.value.smoke || 0);
+    survey.value.drink = Util.getInstance().parseDrinkFormat(parsedSurvey.value.drink);
     survey.value.sdEtc = parsedSurvey.value.sdEtc || "";
     survey.value.wakeUp = parsedSurvey.value.wakeUp || "00:00";
     survey.value.lightOff = parsedSurvey.value.lightOff || "00:00";
     survey.value.bedTime = parsedSurvey.value.bedTime || "00:00";
-    survey.value.sleepHabit = parseSleepHabit(parsedSurvey.value.sleepHabit || 0);
+    survey.value.sleepHabit = Util.getInstance().parseSleepHabit(parsedSurvey.value.sleepHabit || 0);
     survey.value.clean = parsedSurvey.value.clean || 0; // 낮을수록 깨끗, 높을수록 더럽
     survey.value.bug = parsedSurvey.value.bug || 0; // 낮을수록 못잡음, 높을수록 잘잡음
     survey.value.eatIn = parsedSurvey.value.eatIn || 0; // 낮을수록 더럽, 높을수록 깨끗
@@ -227,7 +228,7 @@ function loadSurveyData() {
     survey.value.notes = parsedSurvey.value.notes || "";
     survey.value.selectTag = parsedSurvey.value.selectTag || []; // 적을수록 덤덤, 높을수록 예민
 
-    const titleInfo = generateTitle(survey.value);
+    const titleInfo = Util.getInstance().generateTitle(survey.value);
     survey.value.title = titleInfo.title;
     survey.value.titleId = titleInfo.titleId;
 
@@ -326,102 +327,6 @@ function generateTitle(item) {
   console.log(`${suffix}:  wakeupHour ${wakeupHour}  bedTimeHour ${bedTimeHour}`)
 
   return { title: `${prefix} ${suffix}`, titleId: `${prefixId}_${suffixId}` };
-}
-
-
-
-// 테스트 데이터
-const testItems = [
-  { clean: 2, eatIn: 3, noise: 3, share: 2, home: 1, selectTag: [1, 2], wakeUp: "10:00", bedTime: "01:30" }, // 올빼미
-  { clean: 0, eatIn: 1, noise: 2, share: 4, home: 2, selectTag: [1], wakeUp: "08:30", bedTime: "22:30" }, // 아기새
-  { clean: 1, eatIn: 2, noise: 3, share: 3, home: 2, selectTag: [], wakeUp: "06:30", bedTime: "23:30" }, // 아침새
-  { clean: 1, eatIn: 1, noise: 1, share: 3, home: 3, selectTag: [1, 2, 3], wakeUp: "11:30", bedTime: "00:30" }, // 늦잠새
-  { clean: 2, eatIn: 2, noise: 2, share: 2, home: 2, selectTag: [], wakeUp: "09:00", bedTime: "23:00" }, // 그냥새
-];
-
-// 테스트 실행
-testItems.forEach((item, index) => {
-  const result = generateTitle(item);
-  console.log(`테스트 ${index + 1}:`, result);
-});
-
-
-function parseDrinkFormat(drink) {
-  if (!drink) return "선택안함";  // 기본값 설정
-
-  const parts = drink.split('-');  // 'ab-c-de'를 '-'로 분리
-  if (parts.length !== 3) return "선택안함";  // 형식이 맞지 않는 경우 기본값 반환
-
-  // 정수 변환을 사용해 앞자리 '0' 제거
-  const ab = parseInt(parts[0], 10);  // 'ab' 정수로 변환하여 앞자리 '0' 제거
-  const c = parseInt(parts[1], 10);  // 'c' 정수로 변환
-  const de = parseInt(parts[2], 10);  // 'de' 정수로 변환하여 앞자리 '0' 제거
-
-  // 'c'의 값에 따라 '일', '개월', '년', '주' 단위 결정
-  let unit;
-  switch (c) {
-    case 0:
-      unit = "일";
-      break;
-    case 1:
-      unit = "개월";
-      break;
-    case 2:
-      unit = "년";
-      break;
-    case 3:
-      unit = "주";  // 주 단위 추가
-      break;
-    default:
-      unit = "일";  // 기본값 설정
-  }
-
-  return `${ab}${unit}에 ${de}번`;
-}
-
-function parseSmokeStatus(value) {
-  switch (value) {
-    case 0:
-      return "비흡연자";
-    case 1:
-      return "흡연자(연초)";
-    case 2:
-      return "흡연자(전자담배)";
-    default:
-      return "비흡연자";  // 기본값 설정
-  }
-}
-
-function parseSleepHabit(value) {
-  switch (value) {
-    case 0:
-      return "없음";
-    case 1:
-      return "잠꼬대";
-    case 2:
-      return "코골이";
-    default:
-      return "이갈이";  // 기본값 설정
-  }
-}
-
-function parseCollege(value) {
-  switch (value) {
-    case 0:
-      return "비공개";
-    case 1:
-      return "예술대학";
-    case 2:
-      return "체육대학";
-    case 3:
-      return "예술공학대학";
-    case 4:
-      return "생명공학대학";
-    case 5:
-      return "공과대학";
-    default:
-      return "미선택"; 
-  }
 }
 
 // 다시 시작
