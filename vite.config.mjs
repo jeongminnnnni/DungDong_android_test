@@ -11,7 +11,8 @@ import { fileURLToPath, URL } from 'node:url'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '',
+  base: process.env.NODE_ENV === 'production' ? '/testBuild/' : '',
+  
   plugins: [
     VueRouter(),
     Vue({
@@ -34,7 +35,18 @@ export default defineConfig({
       },
     }),
   ],
-  define: { 'process.env': {} },
+  define: { 'process.env': 
+    {
+      VITE_FIREBASE_API_KEY: JSON.stringify(process.env.VITE_FIREBASE_API_KEY),
+      VITE_FIREBASE_AUTH_DOMAIN: JSON.stringify(process.env.VITE_FIREBASE_AUTH_DOMAIN),
+      VITE_FIREBASE_PROJECT_ID: JSON.stringify(process.env.VITE_FIREBASE_PROJECT_ID),
+      VITE_FIREBASE_STORAGE_BUCKET: JSON.stringify(process.env.VITE_FIREBASE_STORAGE_BUCKET),
+      VITE_FIREBASE_MESSAGING_SENDER_ID: JSON.stringify(process.env.VITE_FIREBASE_MESSAGING_SENDER_ID),
+      VITE_FIREBASE_APP_ID: JSON.stringify(process.env.VITE_FIREBASE_APP_ID),
+      VITE_FIREBASE_MEASUREMENT_ID: JSON.stringify(process.env.VITE_FIREBASE_MEASUREMENT_ID),
+
+    } 
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
@@ -51,6 +63,7 @@ export default defineConfig({
   },
   server: {
     port: 3000,
+    host: true, // 로컬 네트워크에서 접근 가능하도록 설정
   },
   css: {
     preprocessorOptions: {
