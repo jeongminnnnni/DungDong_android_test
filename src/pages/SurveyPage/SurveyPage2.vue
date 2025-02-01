@@ -258,13 +258,13 @@ function formatMbtiString() {
 }
 
 .custom-text-on {
-  color: #FF5858;
+  color: #666666;
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
 }
 .custom-text-off {
-  color: #666;
+  color: #CCCCCC;
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
