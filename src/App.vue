@@ -82,6 +82,34 @@
       </v-row>
     </v-footer>
   </v-app>
+
+  <!-- 다이얼로그 -->
+  <v-dialog v-model="dialog.dialogActive" width="auto">
+    <v-card class="pa-2 | pb-3" rounded="lg">
+      <v-card-title class="text-title | pl-4 | pr-4 | pt-4">
+        <v-row style="justify-content: start; align-items: center;">
+          <v-col class="pt-0 | pb-0 | pl-4 | pr-1" cols="auto">
+            <v-img
+              src="@/assets/logo.png"
+              height="24"
+              width="24"
+              class=""
+            ></v-img>
+          </v-col>
+          <v-col class="pl-1" cols="auto">
+            {{ dialog.title }}
+          </v-col>
+        </v-row>
+      </v-card-title>
+      <v-card-text class="text-subtitle | pl-4 | pr-4 | pt-2 | pb-3" v-html="dialog.text"></v-card-text>
+      <template v-slot:actions>
+          <v-row no-gutters justify="end">
+              <v-btn color="#FF5858" width="25%" rounded="xl" variant="outlined" @click="dialog.dialogActive = false">취소</v-btn>
+              <v-btn color="#FF5858" width="25%" rounded="xl" variant="flat" class="ml-2" @click="dialog.okButton">확인</v-btn>
+          </v-row>
+      </template>
+    </v-card>
+  </v-dialog>
 </template>
 
 <script setup>
@@ -89,6 +117,11 @@
 import { onMounted, onUnmounted, ref, computed, watch} from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { routes } from "@/router"
+
+import { db } from "@/common/Firebase"; // Firestore 초기화 파일
+import { collection, addDoc, updateDoc, doc } from "firebase/firestore"; // Firestore 함수
+
+import axios from "axios";
 
 const router = useRouter();
 const route = useRoute();
@@ -112,6 +145,14 @@ const sNextBtn = ref(true);
 const sFooter = ref(false);
 const sAppBar = ref(false);
 
+const dialog = ref({
+  title: '',
+  text: '',
+  isActive: false,
+  okButton() {}
+});
+
+const lastDocumentId = ref(null)
 const survey = ref({
   dorm:  null,           // 기숙사 숫자 int
   birth: null,          // 생년 int /2002
@@ -135,8 +176,12 @@ const survey = ref({
   notes: ""           // 기타 참고사항 (서술형 문자열)
 });
 
+const parsedSurvey = ref(null)
+
 // ----- 라이프 사이클 ----- //
 onMounted(() => {
+  console.log(import.meta.env)
+  
   if (!localStorage.getItem('appInitialized')) {
     initSurvey();
   }
@@ -217,7 +262,11 @@ function handleClickGoPage(state) {
       break;
 
     case "finish":
-      router.push("/end");
+      openDialog(
+        '이미지 생성하기',
+        '설문조사를 끝내고 이미지를 생성할까요?<br>물론, 다시 돌아와 수정할 수 있습니다.',
+        submitSurveyToFB
+      )
       break;
 
     default:
@@ -263,20 +312,62 @@ function emitContinueSurvey(payload) {
   }
 };
 
-// // 파이어베이스
-// // 설문 데이터를 Firestore에 저장하는 함수
-// const submitSurvey = async () => {
-//   try {
-//     // Firestore의 'surveys' 컬렉션에 데이터 추가
-//     // TODO 배포할때만 주석 풀어 적용!
-//     // const docRef = await addDoc(collection(db, "surveys"), parsedSurvey.value);
-//     console.log("Survey submitted successfully with ID:", docRef.id);
-//     localStorage.setItem('surveyId', docRef.id);
-//   } catch (error) {
-//     console.error("Error submitting survey:", error);
-//     localStorage.setItem('surveyId', null);
-//   }
-// };
+function openDialog(title, text, onConfirm) {
+  dialog.value.title = title;
+  dialog.value.text = text;
+  dialog.value.okButton = onConfirm;
+  dialog.value.dialogActive = true;
+}
+
+// 파이어베이스
+function submitSurveyToFB() {
+  const existingSurvey = localStorage.getItem('userSurvey');
+  console.log('get existingSurvey', existingSurvey);
+
+  if (existingSurvey) {
+    parsedSurvey.value = JSON.parse(existingSurvey);
+    if (!lastDocumentId.value) {
+      // submitSurvey(parsedSurvey.value); // TODO 배포시에 주석 풀기
+    } else {
+      // updateSurvey(parsedSurvey.value); // TODO 배포시에 주석 풀기
+    }
+  } else {
+    console.error("No survey data to submit.");
+    return;
+  }
+
+  dialog.value.dialogActive = false;
+  router.push("/end");
+}
+
+// 설문 데이터를 Firestore에 저장하는 함수
+const submitSurvey = async (survey) => {
+  try {
+    const docRef = await addDoc(collection(db, "surveys"), survey);
+    console.log("Survey submitted successfully with ID:", docRef.id);
+    localStorage.setItem('surveyId', docRef.id);
+    lastDocumentId.value = docRef.id;  // 문서 ID 저장
+  } catch (error) {
+    console.error("Error submitting survey:", error);
+    localStorage.setItem('surveyId', null);
+  }
+};
+
+// 문서 ID를 사용하여 해당 문서를 업데이트하는 함수
+const updateSurvey = async (updates) => {
+  if (!lastDocumentId.value) {
+    console.error("No document ID found. Submitting a survey first.");
+    return;
+  }
+  try {
+    const surveyRef = doc(db, "surveys", lastDocumentId.value);
+    await updateDoc(surveyRef, updates);
+    console.log("Survey updated successfully with ID:", lastDocumentId.value);
+  } catch (error) {
+    console.error("Error updating survey:", error);
+  }
+};
+
 
 </script>
 
@@ -329,5 +420,23 @@ function emitContinueSurvey(payload) {
   left: 100%;
   transform: translateY(-50%);
 }
+
+.text-title {
+    font-size: 19.5px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.5px;
+}
+
+.text-subtitle {
+    font-size: 15x;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: -0.4px;
+    color: #404040;
+}
+
 
 </style>
