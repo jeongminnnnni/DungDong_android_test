@@ -44,7 +44,7 @@
 
     <v-row no-gutters justify="center" class="margin-48 | pl-14 | pr-14">
       <v-btn 
-        @click="handleClickRestartBtn"
+        @click="handleClickFixBtn"
         color="#FF5858" rounded="xl" width="100%"
         class="text-btn"
       >
@@ -145,7 +145,7 @@ import Util from "@/common/Util.js"
 import BoxContainer from "@/components/BoxContainer.vue";
 import ImageFrame from "@/components/ImageFrame.vue";
 
-const emit = defineEmits(['restart-survey', 'continue-survey']);
+const emit = defineEmits(['restart-survey', 'fix-survey']);
 
 const title = '짜잔! 결과 이미지가 나왔어요.'
 const desc = '이미지를 저장하고 공유하여<br>마음에 맞는 룸메이트를 구해보세요.'
@@ -271,6 +271,13 @@ function loadSurveyData() {
   }
 }
 
+// 설문 수정
+function handleClickFixBtn() {
+  localStorage.setItem('surveyId', null);
+  console.log("emitting fix-survey event.");
+  emit('fix-survey'); 
+}
+
 // 다시 시작
 function handleClickRestartBtn() {
   console.log("emitting restart-survey event.");
@@ -308,18 +315,6 @@ async function captureAndSetImage() {
     showToast.value = true;
   }
 }
-
-// 설문 데이터를 Firestore에 저장하는 함수
-const submitSurvey = async () => {
-  try {
-    // Firestore의 'surveys' 컬렉션에 데이터 추가
-    // TODO 배포할때만 주석 풀어 적용!
-    // const docRef = await addDoc(collection(db, "surveys"), parsedSurvey.value);
-    console.log("Survey submitted successfully with ID:", docRef.id);
-  } catch (error) {
-    console.error("Error submitting survey:", error);
-  }
-};
 
 // 클립보드에 이미지 복사
 async function handleClickCopyBtn() {

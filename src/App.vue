@@ -35,6 +35,7 @@
         @start-survey="emitStartSurvey"
         @restart-survey="emitRestartSurvey"
         @continue-survey="emitContinueSurvey"
+        @fix-survey="emitFixSurvey"
         @hide-appbar="emitHideAppbar"
       ></router-view>
     </v-main>
@@ -243,6 +244,12 @@ function emitRestartSurvey() {
   initSurvey();
 };
 
+function emitFixSurvey() {
+  console.log('Event Received: Fix Survey');
+  router.push("/survey7");
+  initSurvey();
+};
+
 function emitContinueSurvey(payload) {
   console.log('Event Received: Continue Survey', payload);
 
@@ -256,6 +263,20 @@ function emitContinueSurvey(payload) {
   }
 };
 
+// // 파이어베이스
+// // 설문 데이터를 Firestore에 저장하는 함수
+// const submitSurvey = async () => {
+//   try {
+//     // Firestore의 'surveys' 컬렉션에 데이터 추가
+//     // TODO 배포할때만 주석 풀어 적용!
+//     // const docRef = await addDoc(collection(db, "surveys"), parsedSurvey.value);
+//     console.log("Survey submitted successfully with ID:", docRef.id);
+//     localStorage.setItem('surveyId', docRef.id);
+//   } catch (error) {
+//     console.error("Error submitting survey:", error);
+//     localStorage.setItem('surveyId', null);
+//   }
+// };
 
 </script>
 
