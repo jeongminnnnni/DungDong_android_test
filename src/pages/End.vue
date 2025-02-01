@@ -30,7 +30,7 @@
         cover
       ></v-img>
     </v-row>
-    <v-row no-gutters justify="center | mt-3 | mb-12">
+    <v-row no-gutters justify="center | mt-3 | mb-8">
       <v-chip
         prepend-icon="mdi-arrow-up"
         append-icon="mdi-arrow-up"
@@ -102,16 +102,30 @@
 
   <!-- 다이얼로그 -->
   <v-dialog v-model="dialog.dialogActive" width="auto">
-    <v-card class="pa-1" rounded="lg">
-        <v-card-title class="text-title | pl-4 | pr-4 | pt-4">{{ dialog.title }}</v-card-title>
-        <v-card-text class="text-subtitle | pl-4 | pr-4 | pt-2 | pb-3" v-html="dialog.text"></v-card-text>
-        <template v-slot:actions>
-            <v-row no-gutters justify="end">
-                <v-btn color="#FF5858" rounded="xl" variant="outlined" @click="dialog.dialogActive = false">확인</v-btn>
-                <!-- <v-btn @click="dialog.okButton">확인</v-btn> -->
-            </v-row>
-        </template>
-      </v-card>
+    <v-card class="pa-2 | pb-3" rounded="lg">
+      <v-card-title class="text-title | pl-4 | pr-4 | pt-4">
+        <v-row style="justify-content: start; align-items: center;">
+          <v-col class="pt-0 | pb-0 | pl-4 | pr-1" cols="auto">
+            <v-img
+              src="@/assets/logo.png"
+              height="24"
+              width="24"
+              class=""
+            ></v-img>
+          </v-col>
+          <v-col class="pl-1" cols="auto">
+            {{ dialog.title }}
+          </v-col>
+        </v-row>
+      </v-card-title>
+      <v-card-text class="text-subtitle | pl-4 | pr-4 | pt-2 | pb-3" v-html="dialog.text"></v-card-text>
+      <template v-slot:actions>
+          <v-row no-gutters justify="end">
+              <v-btn color="#FF5858" width="25%" rounded="xl" variant="outlined" @click="dialog.dialogActive = false">닫기</v-btn>
+              <v-btn v-if="dialog.okButton" color="#FF5858" width="25%" rounded="xl" variant="flat" class="ml-2" @click="dialog.okButton">확인</v-btn>
+          </v-row>
+      </template>
+    </v-card>
   </v-dialog>
 
 
@@ -133,12 +147,9 @@
 <script setup>
 // ----- 선언부 ----- //
 import { onMounted, onUnmounted, onBeforeMount, ref, nextTick} from "vue";
-import { useRouter, useRoute } from "vue-router";
-import { routes } from "@/router"
-import { db } from "@/common/Firebase"; // Firestore 초기화 파일
-import { collection, addDoc } from "firebase/firestore"; // Firestore 함수
 
 import axios from "axios";
+
 import html2canvas from "html2canvas";
 import Util from "@/common/Util.js"
 
@@ -280,9 +291,15 @@ function handleClickFixBtn() {
 
 // 다시 시작
 function handleClickRestartBtn() {
-  console.log("emitting restart-survey event.");
-  localStorage.setItem('appInitialized', 'false');
-  emit('restart-survey'); 
+  openDialog(
+    '설문 다시하기',
+    '설문을 다시 시작합니다.<br>처음으로 가면 되돌릴 수 없어요.', 
+    () => {
+        console.log("emitting restart-survey event.");
+        localStorage.setItem('appInitialized', 'false');
+        emit('restart-survey'); 
+      }
+    )
 }
 
 // 캡처 프로세스 시작 함수
@@ -318,13 +335,13 @@ async function captureAndSetImage() {
 
 // 클립보드에 이미지 복사
 async function handleClickCopyBtn() {
-  const textToCopy = "[🦉둥지동지🐥]\n선호를 이미지로, 나만의 룸메이트 매칭\nhttps://ebee1205.github.io/testBuild/";
+  const textToCopy = `[🦉둥지동지🐥]<br>선호를 이미지로, 나만의 룸메이트 매칭<br>https://ebee1205.github.io${import.meta.env.BASE_URL}`;
   try {
     await navigator.clipboard.writeText(textToCopy);
     console.log('Text copied to clipboard');
     openDialog(
-    '다음 내용을 클립보드에 복사했습니다',
-    '[🦉둥지동지🐥]<br>선호를 이미지로, 나만의 룸메이트 매칭<br>https://ebee1205.github.io/testBuild/',
+    `클립보드에 복사됨`,
+    textToCopy,
     )
   } catch (err) {
     console.error('Failed to copy text: ', err);

@@ -98,6 +98,7 @@ const sNewStart = ref(true);
 // 설문 시작
 function handleClickStartBtn() {
   localStorage.setItem('appInitialized', 'false');
+  localStorage.setItem('surveyId', null);
   console.log("emitting start-survey event.");
   emit('start-survey');
 }
@@ -105,6 +106,7 @@ function handleClickStartBtn() {
 // 다시 시작
 function handleClickRestartBtn() {
   localStorage.setItem('appInitialized', 'false');
+  localStorage.setItem('surveyId', null);
   console.log("emitting restart-survey event.");
   emit('restart-survey'); 
 }
