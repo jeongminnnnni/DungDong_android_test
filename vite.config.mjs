@@ -12,7 +12,10 @@ import { fileURLToPath, URL } from 'node:url'
 // https://vitejs.dev/config/
 export default defineConfig({
   base: process.env.NODE_ENV === 'production' ? '/DungDong/' : '',
-  
+  build: {
+    outDir: 'docs',
+    emptyOutDir: true,
+  },
   plugins: [
     VueRouter(),
     Vue({
