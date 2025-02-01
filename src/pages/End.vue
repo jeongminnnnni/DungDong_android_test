@@ -30,34 +30,28 @@
         cover
       ></v-img>
     </v-row>
-    <v-row no-gutters justify="center | mt-3">
-      <v-label>▲ 꾹 눌러 저장하기 ▲</v-label>
+    <v-row no-gutters justify="center | mt-3 | mb-12">
+      <v-chip
+        prepend-icon="mdi-arrow-up"
+        append-icon="mdi-arrow-up"
+        variant="text"
+        color="#FF5858"
+        class="chip-text"
+      >
+        꾹 눌러 저장하기
+      </v-chip>
     </v-row>
 
-    <v-row no-gutters justify="center" class="margin-48 | mt-10 | pl-14 | pr-14">
+    <v-row no-gutters justify="center" class="margin-48 | pl-14 | pr-14">
       <v-btn 
         @click="handleClickRestartBtn"
-        color="#FFFFFF" rounded="xl" width="100%"
-        class="w-text-btn"
+        color="#FF5858" rounded="xl" width="100%"
+        class="text-btn"
       >
-        처음부터 다시하기
+        설문 수정하기
       </v-btn>
     </v-row>
 
-    <v-row no-gutters justify="center" class="margin-48 | mt-4 | pl-14 | pr-14">
-      <v-btn 
-        @click="submitSurvey"
-        color="#FFFFFF" rounded="xl" width="100%" 
-        class="w-text-btn"
-      >
-        룸메찾기 알리기
-      </v-btn>  
-    </v-row>
-    <v-row>
-      <v-col cols="12" class="mt-10 | mb-10" >
-        <v-img rounded="lg" aspect-ratio="1/3" v-bind:src="currentAd.img"></v-img>
-      </v-col>
-    </v-row>
     <v-row no-gutters>    
         <v-col
           cols="12"
@@ -84,8 +78,44 @@
           <v-img rounded="lg" aspect-ratio="1/3" v-bind:src="currentAd.img"></v-img>
         </v-col>
     </v-row>
+    <v-row no-gutters justify="center" class="margin-48 | pl-14 | pr-14">
+      <v-btn 
+        @click="handleClickRestartBtn"
+        color="#FF5858" rounded="xl" width="100%"
+        class="text-btn"
+      >
+        처음부터 다시하기
+      </v-btn>
+    </v-row>
+
+    <v-row no-gutters justify="center" class="margin-48 | mt-4 | mb-12 | pl-14 | pr-14">
+      <v-btn 
+        @click="handleClickCopyBtn"
+        color="#FFFFFF" rounded="xl" width="100%" 
+        class="w-text-btn"
+      >
+        <img src="@/assets/logo.svg" alt="Roommate Search" style="height: 26px; width: 64px; margin-right: 4px;">
+        알리기
+      </v-btn>  
+    </v-row>
   </BoxContainer>
 
+  <!-- 다이얼로그 -->
+  <v-dialog v-model="dialog.dialogActive" width="auto">
+    <v-card class="pa-1" rounded="lg">
+        <v-card-title class="text-title | pl-4 | pr-4 | pt-4">{{ dialog.title }}</v-card-title>
+        <v-card-text class="text-subtitle | pl-4 | pr-4 | pt-2 | pb-3" v-html="dialog.text"></v-card-text>
+        <template v-slot:actions>
+            <v-row no-gutters justify="end">
+                <v-btn color="#FF5858" rounded="xl" variant="outlined" @click="dialog.dialogActive = false">확인</v-btn>
+                <!-- <v-btn @click="dialog.okButton">확인</v-btn> -->
+            </v-row>
+        </template>
+      </v-card>
+  </v-dialog>
+
+
+  <!-- 스낵바 -->
   <v-snackbar
     v-model="showToast"
     :timeout="3000"
@@ -119,9 +149,14 @@ const emit = defineEmits(['restart-survey', 'continue-survey']);
 
 const title = '짜잔! 결과 이미지가 나왔어요.'
 const desc = '이미지를 저장하고 공유하여<br>마음에 맞는 룸메이트를 구해보세요.'
-
 const ourInfo = '안녕하세요, 둥지동지를 제작한 예술공학부 동아리 칸타르 소속의 <b><칸타르동방구함위원회></b> 입니다.<br><br>둥지동지는 룸메이트를 빠르고 편하게 구할 수 있게 하기 위해 기획한 프로젝트입니다.<br><br>제작에 도움을 주신 예공 친구들에게 감사드리며, 모두 좋은 룸메이트를 찾으시길 바랍니다.<br>새해 복 많이 받으세요!'
 
+const dialog = ref({
+  title: '',
+  text: '',
+  isActive: false,
+  okButton() {}
+});
 
 const loading = ref(false); // 로딩 상태 관리
 const captureRef = ref(null); // 캡처할 컴포넌트의 참조
@@ -149,7 +184,7 @@ const survey = ref({
   collegeId: 0,
   mbti: "",
   smoke: null,
-  drink: "",
+  drink: "00-0-00",
   sdEtc: "",
   wakeUp: "",
   lightOff: "",
@@ -236,99 +271,6 @@ function loadSurveyData() {
   }
 }
 
-function generateTitle(item) {
-  console.log('Input item:', item); // 로그 출력을 좀 더 명확하게 변경했습니다.
-
-  let prefix = "무던한"; 
-  let prefixId = "MU"; 
-  let suffix = "그냥새";
-  let suffixId = "standard";
-
-  // 설문 결과에서 값을 추출
-  const { clean, eatIn, noise, share, home, selectTag, wakeUp, bedTime } = item;
-
-  // 평균 계산을 위한 함수
-  const average = (...nums) => nums.reduce((a, b) => a + b, 0) / nums.length;
-
-  // 성격 태그 조건 검사
-  const isNeat = eatIn <= 1 || clean >= 3;
-  const isCasual = share >= 3 && (noise >= 2 || clean >= 2) && selectTag.length <= 1;
-  const isLively = (noise >= 3 && home <= 1) || noise >= 3;
-  const isQuiet = (home >= 3 && average(share, noise) <= 1) || average(share, noise) <= 1;
-  const isDetailed = noise <= 1 && clean >= 3 || selectTag.length >= 3;
-
-  if (isLively) {
-    prefix = "흥많은";
-    prefixId = "HE";
-  } else if (isQuiet) {
-    prefix = "조용한";
-    prefixId = "JO";
-  } else if (isNeat) {
-    prefix = "깔끔한";
-    prefixId = "KK";
-  } else if (isDetailed) {
-    prefix = "세심한";
-    prefixId = "SE";
-  } else if (isCasual) {
-    prefix = "무던한";
-    prefixId = "MU";
-  }
-
-  // 기상 및 취침 시각 추출
-  const wakeupHour = parseInt(wakeUp.split(':')[0], 10);
-  const bedTimeHour = parseInt(bedTime.split(':')[0], 10);
-
-  // 1) 각 태그에 대한 점수 계산
-  const scoreOwl = (bedTimeHour >= 0 && bedTimeHour < 6)
-    ? (1 + bedTimeHour)     // 0시에 취침하면 1점, 5시에 취침하면 6점
-    : 0;
-
-  const scoreBaby = (bedTimeHour >= 20 && bedTimeHour < 23)
-    ? (25 - bedTimeHour)    // 20시면 5점, 22시면 3점
-    : 0;
-
-  const scoreMorning = (wakeupHour >= 4 && wakeupHour <= 8)
-    ? (8 - wakeupHour + 1)  // 4시면 5점, 8시면 1점
-    : 0;
-
-  const scoreSleep = (wakeupHour >= 10 && wakeupHour < 15)
-    ? (wakeupHour - 9)      // 10시면 1점, 14시면 5점
-    : 0;
-
-  // 그냥새는 기본 0점, 혹은 다른 계산 로직을 추가해도 됨
-  const scoreStandard = 1;  
-
-  // 2) 서브픽스를 객체 리스트로 관리
-  const suffixOptions = [
-    { tag: "올빼미",   id: "owl",      score: scoreOwl },
-    { tag: "아기새",   id: "baby",     score: scoreBaby },
-    { tag: "아침새",   id: "morning",  score: scoreMorning },
-    { tag: "늦잠새",   id: "sleep",    score: scoreSleep },
-    { tag: "그냥새",   id: "standard", score: scoreStandard },
-  ];
-
-  // 3) 점수 확인 (디버깅용)
-  console.log("Suffix Scores:", {
-    scoreOwl,
-    scoreBaby,
-    scoreMorning,
-    scoreSleep,
-    scoreStandard,
-  });
-
-  // 4) 가장 높은 점수를 가진 서브픽스 결정
-  const bestSuffix = suffixOptions.reduce((best, current) =>
-    current.score > best.score ? current : best
-  );
-
-  suffix = bestSuffix.tag;
-  suffixId = bestSuffix.id;
-
-  console.log(`${suffix}:  wakeupHour ${wakeupHour}  bedTimeHour ${bedTimeHour}`)
-
-  return { title: `${prefix} ${suffix}`, titleId: `${prefixId}_${suffixId}` };
-}
-
 // 다시 시작
 function handleClickRestartBtn() {
   console.log("emitting restart-survey event.");
@@ -380,32 +322,26 @@ const submitSurvey = async () => {
 };
 
 // 클립보드에 이미지 복사
-async function copyImageToClipboard() {
-  if (!capturedImage.value) {
-    console.error("캡처된 이미지가 없습니다.");
-    return;
-  }
-
-  if (!navigator.clipboard || typeof ClipboardItem === "undefined") {
-    console.error("브라우저가 클립보드 복사를 지원하지 않습니다.");
-    toastMessage.value = "브라우저가 클립보드 복사를 지원하지 않습니다.";
-    showToast.value = true;
-    return;
-  }
-
+async function handleClickCopyBtn() {
+  const textToCopy = "[🦉둥지동지🐥]\n선호를 이미지로, 나만의 룸메이트 매칭\nhttps://ebee1205.github.io/testBuild/";
   try {
-    const response = await fetch(capturedImage.value);
-    const blob = await response.blob();
-    const clipboardItem = new ClipboardItem({ "image/png": blob });
-    await navigator.clipboard.write([clipboardItem]);
-    console.log("이미지가 클립보드에 복사되었습니다!");
-    toastMessage.value = "클립보드에 이미지가 복사되었습니다!";
-    showToast.value = true;
-  } catch (error) {
-    console.error("클립보드 복사 중 오류 발생:", error.message);
-    toastMessage.value = "클립보드 복사 중 오류가 발생했습니다.";
-    showToast.value = true;
+    await navigator.clipboard.writeText(textToCopy);
+    console.log('Text copied to clipboard');
+    openDialog(
+    '다음 내용을 클립보드에 복사했습니다',
+    '[🦉둥지동지🐥]<br>선호를 이미지로, 나만의 룸메이트 매칭<br>https://ebee1205.github.io/testBuild/',
+    )
+  } catch (err) {
+    console.error('Failed to copy text: ', err);
+    openDialog('클립보드 복사 실패', '해당 브라우저에서는 클립보드 복사를 지원하지 않습니다.');
   }
+}
+
+function openDialog(title, text, onConfirm) {
+  dialog.value.title = title;
+  dialog.value.text = text;
+  dialog.value.okButton = onConfirm;
+  dialog.value.dialogActive = true;
 }
 
 function handleSnackbarClose(value) {
@@ -460,7 +396,7 @@ function handleSnackbarClose(value) {
 }
 
 .margin-top-96 {
-  margin-top: 96px;
+  margin-top: 56px;
 }
 
 .text-label-container {
@@ -478,5 +414,11 @@ function handleSnackbarClose(value) {
   font-weight: 400;
   line-height: normal;
   letter-spacing: -0.3px;
+}
+
+.chip-text {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: normal;
 }
 </style>
