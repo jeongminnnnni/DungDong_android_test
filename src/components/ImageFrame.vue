@@ -14,7 +14,7 @@
                 </v-row>
                 <v-row no-gutters height="100px">
                     <v-col class="text-title">
-                        {{ props.survey.title }}
+                        {{ props.survey.title }} 룸메
                     </v-col>
                 </v-row>
             </v-col>
@@ -65,7 +65,7 @@
                                 v-for="(step, index) in 5"
                                 :key="index"
                                 class="circle"
-                                :class="{ active: index === props.survey.clean }"
+                                :class="{ active: index === props.survey.home }"
                                 >
                                 <div class="line" v-if="index !== 4"></div>
                                 </div>
@@ -178,7 +178,7 @@
                                 v-for="(step, index) in 5"
                                 :key="index"
                                 class="circle"
-                                :class="{ active: index === props.survey.clean }"
+                                :class="{ active: index === props.survey.noise }"
                                 >
                                 <div class="line" v-if="index !== 4"></div>
                                 </div>
@@ -200,7 +200,7 @@
                                 v-for="(step, index) in 5"
                                 :key="index"
                                 class="circle"
-                                :class="{ active: index === props.survey.clean }"
+                                :class="{ active: index === props.survey.eatIn }"
                                 >
                                 <div class="line" v-if="index !== 4"></div>
                                 </div>

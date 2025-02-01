@@ -19,6 +19,7 @@
       style="min-height: 300px; min-width: 300px; 
       align-items: center;"
       class="elevation-6"
+      v-else="loading" 
     >
       <div ref="captureRef"  class="hidden-capture-area">
         <ImageFrame :survey="survey"></ImageFrame>
@@ -212,19 +213,19 @@ function loadSurveyData() {
     survey.value.mbti = parsedSurvey.value.mbti || "선택안함";
     survey.value.smoke = parseSmokeStatus(parsedSurvey.value.smoke || 0);
     survey.value.drink = parseDrinkFormat(parsedSurvey.value.drink);
-    survey.value.sdEtc = parsedSurvey.value.sdEtc || "선택안함";
+    survey.value.sdEtc = parsedSurvey.value.sdEtc || "";
     survey.value.wakeUp = parsedSurvey.value.wakeUp || "00:00";
     survey.value.lightOff = parsedSurvey.value.lightOff || "00:00";
     survey.value.bedTime = parsedSurvey.value.bedTime || "00:00";
     survey.value.sleepHabit = parseSleepHabit(parsedSurvey.value.sleepHabit || 0);
-    survey.value.clean = parsedSurvey.value.clean || 0;
-    survey.value.bug = parsedSurvey.value.bug || 0;
-    survey.value.eatIn = parsedSurvey.value.eatIn || 0;
-    survey.value.noise = parsedSurvey.value.noise || 0;
-    survey.value.share = parsedSurvey.value.share || 0;
-    survey.value.home = parsedSurvey.value.home || 0;
+    survey.value.clean = parsedSurvey.value.clean || 0; // 낮을수록 깨끗, 높을수록 더럽
+    survey.value.bug = parsedSurvey.value.bug || 0; // 낮을수록 못잡음, 높을수록 잘잡음
+    survey.value.eatIn = parsedSurvey.value.eatIn || 0; // 낮을수록 더럽, 높을수록 깨끗
+    survey.value.noise = parsedSurvey.value.noise || 0; //낮을수록 예민, 높을수록 덤덤
+    survey.value.share = parsedSurvey.value.share || 0; // 낮을수록 개인물품만 사용, 높을수록 공동사용
+    survey.value.home = parsedSurvey.value.home || 0; // 낮을수록 자주 집에감, 높을수록 학교에 오래 있음
     survey.value.notes = parsedSurvey.value.notes || "";
-    survey.value.selectTag = parsedSurvey.value.selectTag || [];
+    survey.value.selectTag = parsedSurvey.value.selectTag || []; // 적을수록 덤덤, 높을수록 예민
 
     const titleInfo = generateTitle(survey.value);
     survey.value.title = titleInfo.title;
@@ -235,60 +236,114 @@ function loadSurveyData() {
 }
 
 function generateTitle(item) {
-  console.log('asdf', item)
-  let prefix = ""; 
-  let suffix = ""; 
-  let prefixId = ""; 
-  let suffixId = ""; 
+  console.log('Input item:', item); // 로그 출력을 좀 더 명확하게 변경했습니다.
 
-  // 청결도를 기반으로 한 주요 접두사 결정
-  if (item.clean >= 4) {
-    prefix = "깔끔한";
-    prefixId = "KK";
-  } else if (item.clean <= 2) {
-    prefix = "무던한";
-    prefixId = "MU"
-  }
+  let prefix = "무던한"; 
+  let prefixId = "MU"; 
+  let suffix = "그냥새";
+  let suffixId = "standard";
 
-  // 소음 예민도를 기반으로 한 보조 접두사 결정
-  if (item.noise >= 4) {
+  // 설문 결과에서 값을 추출
+  const { clean, eatIn, noise, share, home, selectTag, wakeUp, bedTime } = item;
+
+  // 평균 계산을 위한 함수
+  const average = (...nums) => nums.reduce((a, b) => a + b, 0) / nums.length;
+
+  // 성격 태그 조건 검사
+  const isNeat = eatIn <= 1 || clean >= 3;
+  const isCasual = share >= 3 && (noise >= 2 || clean >= 2) && selectTag.length <= 1;
+  const isLively = (noise >= 3 && home <= 1) || noise >= 3;
+  const isQuiet = (home >= 3 && average(share, noise) <= 1) || average(share, noise) <= 1;
+  const isDetailed = noise <= 1 && clean >= 3 || selectTag.length >= 3;
+
+  if (isLively) {
     prefix = "흥많은";
     prefixId = "HE";
-  } else if (item.noise <= 2) {
+  } else if (isQuiet) {
     prefix = "조용한";
     prefixId = "JO";
+  } else if (isNeat) {
+    prefix = "깔끔한";
+    prefixId = "KK";
+  } else if (isDetailed) {
+    prefix = "세심한";
+    prefixId = "SE";
+  } else if (isCasual) {
+    prefix = "무던한";
+    prefixId = "MU";
   }
 
-  // 세심한 조건 확인
-  if (item.selectTag.length >= 4) {
-    prefix = "세심한"; // 예민도가 높은 세심한 조건을 우선 적용
-    prefixId = "SE"; // 예민도가 높은 세심한 조건을 우선 적용
-  }
+  // 기상 및 취침 시각 추출
+  const wakeupHour = parseInt(wakeUp.split(':')[0], 10);
+  const bedTimeHour = parseInt(bedTime.split(':')[0], 10);
 
-  let wakeTime = parseInt(item.wakeUp.split(':')[0], 10);
-  let bedTimeHour = parseInt(item.bedTime.split(':')[0], 10);
+  // 1) 각 태그에 대한 점수 계산
+  const scoreOwl = (bedTimeHour >= 0 && bedTimeHour < 6)
+    ? (1 + bedTimeHour)     // 0시에 취침하면 1점, 5시에 취침하면 6점
+    : 0;
 
-  if (bedTimeHour >= 2) {
-    suffix = "올빼미";
-    suffixId = "owl"
-  } else if (bedTimeHour < 11) {
-    suffix = "아기새";
-    suffixId = "baby";
-  }
+  const scoreBaby = (bedTimeHour >= 20 && bedTimeHour < 23)
+    ? (25 - bedTimeHour)    // 20시면 5점, 22시면 3점
+    : 0;
 
-  if (wakeTime < 8) {
-    suffix = "아침새";
-    suffixId = "morning";
-  } else if (wakeTime >= 8 && wakeTime <= 11) {
-    suffix = "그냥새";
-    suffixId = "standard";
-  } else if (wakeTime > 11) {
-    suffix = "늦잠새";
-    suffixId = "sleep"
-  }
+  const scoreMorning = (wakeupHour >= 4 && wakeupHour <= 8)
+    ? (8 - wakeupHour + 1)  // 4시면 5점, 8시면 1점
+    : 0;
+
+  const scoreSleep = (wakeupHour >= 10 && wakeupHour < 15)
+    ? (wakeupHour - 9)      // 10시면 1점, 14시면 5점
+    : 0;
+
+  // 그냥새는 기본 0점, 혹은 다른 계산 로직을 추가해도 됨
+  const scoreStandard = 1;  
+
+  // 2) 서브픽스를 객체 리스트로 관리
+  const suffixOptions = [
+    { tag: "올빼미",   id: "owl",      score: scoreOwl },
+    { tag: "아기새",   id: "baby",     score: scoreBaby },
+    { tag: "아침새",   id: "morning",  score: scoreMorning },
+    { tag: "늦잠새",   id: "sleep",    score: scoreSleep },
+    { tag: "그냥새",   id: "standard", score: scoreStandard },
+  ];
+
+  // 3) 점수 확인 (디버깅용)
+  console.log("Suffix Scores:", {
+    scoreOwl,
+    scoreBaby,
+    scoreMorning,
+    scoreSleep,
+    scoreStandard,
+  });
+
+  // 4) 가장 높은 점수를 가진 서브픽스 결정
+  const bestSuffix = suffixOptions.reduce((best, current) =>
+    current.score > best.score ? current : best
+  );
+
+  suffix = bestSuffix.tag;
+  suffixId = bestSuffix.id;
+
+  console.log(`${suffix}:  wakeupHour ${wakeupHour}  bedTimeHour ${bedTimeHour}`)
 
   return { title: `${prefix} ${suffix}`, titleId: `${prefixId}_${suffixId}` };
 }
+
+
+
+// 테스트 데이터
+const testItems = [
+  { clean: 2, eatIn: 3, noise: 3, share: 2, home: 1, selectTag: [1, 2], wakeUp: "10:00", bedTime: "01:30" }, // 올빼미
+  { clean: 0, eatIn: 1, noise: 2, share: 4, home: 2, selectTag: [1], wakeUp: "08:30", bedTime: "22:30" }, // 아기새
+  { clean: 1, eatIn: 2, noise: 3, share: 3, home: 2, selectTag: [], wakeUp: "06:30", bedTime: "23:30" }, // 아침새
+  { clean: 1, eatIn: 1, noise: 1, share: 3, home: 3, selectTag: [1, 2, 3], wakeUp: "11:30", bedTime: "00:30" }, // 늦잠새
+  { clean: 2, eatIn: 2, noise: 2, share: 2, home: 2, selectTag: [], wakeUp: "09:00", bedTime: "23:00" }, // 그냥새
+];
+
+// 테스트 실행
+testItems.forEach((item, index) => {
+  const result = generateTitle(item);
+  console.log(`테스트 ${index + 1}:`, result);
+});
 
 
 function parseDrinkFormat(drink) {
