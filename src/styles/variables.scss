@@ -1,24 +1,15 @@
-/**
- * src/styles/settings.scss
- *
- * Configures SASS variables and Vuetify overwrites
- */
+@charset "UTF-8";
+// 위치 : src/styles/variables.scss
 
-// https://vuetifyjs.com/features/sass-variables/`
-// @use 'vuetify/settings' with (
-//   $color-pack: false
-// );
+// src/styles/variables.scss
+@import "@/styles/fonts.scss";  // 로컬 폰트 불러오기
 
-	
-@import url("fonts.scss");
-
-// src/styles/settings.scss
 $body-font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
 
 body {
     font-family: $body-font-family;  // 전체적인 폰트 적용
-}
-
-* {
+  }
+  
+  * {
     font-family: $body-font-family;  // 전체 요소에 적용
-}
+  }

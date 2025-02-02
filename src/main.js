@@ -16,6 +16,7 @@ import { createApp } from 'vue'
 // router
 import router from './router'
 
+
 const app = createApp(App)
 
 registerPlugins(app)

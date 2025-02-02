@@ -160,7 +160,7 @@ function handleClickContBtn() {
   font-size: 24px;
   font-style: normal;
   font-weight: 700;
-  letter-spacing: -0.7px;
+  letter-spacing: -0.4px;
 }
 
 .card-title-text {

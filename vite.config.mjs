@@ -27,16 +27,9 @@ export default defineConfig({
       styles: {
         configFile: 'src/styles/settings.scss',
       },
+      customVariables: ['src/styles/variables.scss']
     }),
     Components(),
-    ViteFonts({
-      google: {
-        families: [{
-          name: 'Roboto',
-          styles: 'wght@100;300;400;500;700;900',
-        }],
-      },
-    }),
   ],
   define: { 'process.env': 
     {
@@ -73,6 +66,9 @@ export default defineConfig({
       sass: {
         api: 'modern-compiler',
       },
+      scss: {
+        additionalData: `@import "src/styles/variables.scss";`
+      }
     },
   },
 })

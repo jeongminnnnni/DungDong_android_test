@@ -19,7 +19,10 @@ export default createVuetify({
       light: {
         colors: {
           background: '#FBFBFB', // 배경색을 설정
-        }
+        },
+        variables: {
+          'body-font-family': 'Pretendard, sans-serif',
+        },
       }
     }
   },
