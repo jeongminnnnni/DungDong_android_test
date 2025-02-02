@@ -9,7 +9,7 @@
     </v-row>
     <v-row no-gutters justify="center" class="margin-88px | mt-2">
       <v-col class="title-text-sub">
-        선호를 이미지로, 나만의 룸메이트 매칭
+        한 장의 이미지로 룸메이트 구하기!
       </v-col>
     </v-row>
 
@@ -24,9 +24,9 @@
       <v-divider></v-divider>
       <v-card-text>
         <div style="text-align: center; letter-spacing: -0.5px;">
-          본 서비스는 품질 향상과 인사이트 도출을 위해<br>
-          응답을 수집하여 통계 및 분석에 활용합니다.<br>
-          위 내용은 해당 목적 외에는 사용되지 않으며,<br>
+          본 서비스는 품질 향상과 인사이트 도출을 위해 
+          응답을 수집하여 통계 및 분석에 활용합니다. 
+          <br>위 내용은 해당 목적 외에는 사용되지 않으며, 
           관련 법령을 준수하여 안전하게 관리됩니다.
         </div>
       </v-card-text>

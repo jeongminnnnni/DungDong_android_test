@@ -70,7 +70,7 @@
         <v-col
           cols="12"
           no-gutters justify="start" 
-          class="text-subtitle | mb-12"
+          class="text-subtitle | mb-5"
           v-html="ourInfo"
         >
         </v-col>
@@ -88,7 +88,7 @@
       </v-btn>
     </v-row>
 
-    <v-row no-gutters justify="center" class="margin-48 | mt-4 | mb-12 | pl-14 | pr-14">
+    <v-row no-gutters justify="center" class="margin-48 | mt-4 | mb-8 | pl-14 | pr-14">
       <v-btn 
         @click="handleClickCopyBtn"
         color="#FFFFFF" rounded="xl" width="100%" 
@@ -97,6 +97,18 @@
         <img src="@/assets/logo.svg" alt="Roommate Search" style="height: 26px; width: 64px; margin-right: 4px;">
         알리기
       </v-btn>  
+    </v-row>
+    <v-row no-gutters justify="center" class="mb-12 | pl-5 | pr-5">
+      <v-col cols="auto">
+        <v-btn variant="text" density="compact" href="https://github.com/Ebee1205/DungDong" target="_blank" class="link-label | mr-3">
+          둥동 작업기
+        </v-btn>
+      </v-col>
+      <v-col cols="auto">
+        <v-btn variant="text" density="compact" href="https://github.com/Ebee1205/DungDong" target="_blank" class="link-label">
+          제작자 소개
+        </v-btn>
+      </v-col>
     </v-row>
   </BoxContainer>
 
@@ -335,13 +347,13 @@ async function captureAndSetImage() {
 
 // 클립보드에 이미지 복사
 async function handleClickCopyBtn() {
-  const textToCopy = `[🦉둥지동지🐥]<br>선호를 이미지로, 나만의 룸메이트 매칭<br>https://ebee1205.github.io${import.meta.env.BASE_URL}`;
+  const textToCopy = `[🦉둥지동지🐥]\n한 장의 이미지로 룸메이트 구하기!\nhttps://ebee1205.github.io${import.meta.env.BASE_URL}`;
   try {
     await navigator.clipboard.writeText(textToCopy);
     console.log('Text copied to clipboard');
     openDialog(
     `클립보드에 복사됨`,
-    textToCopy,
+    `[🦉둥지동지🐥]<br>한 장의 이미지로 룸메이트 구하기!<br>https://ebee1205.github.io${import.meta.env.BASE_URL}`,
     )
   } catch (err) {
     console.error('Failed to copy text: ', err);
@@ -391,20 +403,20 @@ function handleSnackbarClose(value) {
 }
 
 .text-title {
-    font-size: 19.5px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    letter-spacing: -0.5px;
+  font-size: 19.5px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.5px;
 }
 
 .text-subtitle {
-    font-size: 15x;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 20px;
-    letter-spacing: -0.4px;
-    color: #404040;
+  font-size: 15x;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.4px;
+  color: #404040;
 }
 
 .margin-top-96 {
@@ -426,6 +438,17 @@ function handleSnackbarClose(value) {
   font-weight: 400;
   line-height: normal;
   letter-spacing: -0.3px;
+}
+
+.link-label {
+  text-decoration: underline;
+  font-size: 15x;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.4px;
+  color: #404040;
+  cursor: pointer;
 }
 
 .chip-text {

@@ -3,7 +3,7 @@
     <SubTitle :title="title" :desc="desc"> </SubTitle>
 
     <v-row no-gutters justify="start">
-      <v-label>휴대전화 소리는 어떻게 틀고 있나요?</v-label>
+      <v-label>소음은 어디까지 허용하나요?</v-label>
     </v-row>
     <v-row no-gutters justify="center" class="mt-3">
       <v-slider
@@ -14,12 +14,13 @@
       ></v-slider>
     </v-row>
     <v-row no-gutters class="justify-space-between | pt-2">
-      <v-label class="small-label">무조건 이어폰 착용</v-label>
-      <v-label class="small-label">대부분 스피커 모드</v-label>
+      <v-label class="small-label">항싱 이어폰</v-label>
+      <v-label class="small-label">작은 소리</v-label>
+      <v-label class="small-label">스피커 모드</v-label>
     </v-row>
 
     <v-row no-gutters justify="start" class="margin-top-42">
-      <v-label>룸메이트와의 물건공유는 어느정도로 하나요?</v-label>
+      <v-label>룸메와의 물건 공유에 대해 민감한가요?</v-label>
     </v-row>
     <v-row no-gutters justify="center" class="mt-3">
       <v-slider
@@ -31,11 +32,12 @@
     </v-row>
     <v-row no-gutters class="justify-space-between | pt-2">
       <v-label class="small-label">전혀 안함</v-label>
-      <v-label class="small-label">공용물건구비</v-label>
+      <v-label class="small-label">공유 안함</v-label>
+      <v-label class="small-label">대부분 공유</v-label>
     </v-row>
 
     <v-row no-gutters justify="start" class="margin-top-42">
-      <v-label>본가로 귀가주기는 어느정도로 생각하세요?</v-label>
+      <v-label>방은 얼마나 자주 비우시나요?</v-label>
     </v-row>
     <v-row no-gutters justify="center" class="mt-3">
       <v-slider
@@ -46,8 +48,9 @@
       ></v-slider>
     </v-row>
     <v-row no-gutters class="justify-space-between | pt-2">
-      <v-label class="small-label">매주마다 귀가</v-label>
-      <v-label class="small-label">학기중엔 본가 안 감</v-label>
+      <v-label class="small-label">매주</v-label>
+      <v-label class="small-label">비정기적</v-label>
+      <v-label class="small-label">안감</v-label>
     </v-row>
 
   </BoxContainer>
@@ -62,7 +65,7 @@ import { routes } from "@/router"
 import BoxContainer from "@/components/BoxContainer.vue";
 
 const title = '일상생활';
-const desc ='사소하지만 안맞으면 불편한 것들이 있죠.<br>그중 몇가지만 여쭤볼게요.'
+const desc ='사소하지만 빼먹을 수 없는 몇 가지만 마지막으로 확인해 볼게요.'
 
 const noise = ref(0);    
 const share = ref(0);         

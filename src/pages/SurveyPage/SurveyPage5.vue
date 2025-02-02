@@ -19,7 +19,7 @@
     </v-row>
 
     <v-row no-gutters justify="start" class="margin-top-42">
-      <v-label>벌레 잘 잡으시나요?</v-label>
+      <v-label>벌레를 잘 잡으시나요?</v-label>
     </v-row>
     <v-row no-gutters justify="center" class="mt-3">
       <v-slider
@@ -35,7 +35,7 @@
     </v-row>
 
     <v-row no-gutters justify="start" class="margin-top-42">
-      <v-label v-html="'방 안에서 음식물 섭취, 어떻게 생각하시나요? (간식제외)'"></v-label>
+      <v-label v-html="'방 안에서 음식먹기, 어디까지 허용하나요?'"></v-label>
     </v-row>
     <v-row no-gutters justify="center" class="mt-3">
       <v-slider
@@ -61,7 +61,7 @@ import { routes } from "@/router"
 import BoxContainer from "@/components/BoxContainer.vue";
 
 const title = '청소/청결';
-const desc = '청결에 대한 의견도 공동생활에서 중요합니다.<br>솔직하고 현실적인 생각을 말해주세요.'
+const desc = '둥지 청소를 얼마나 중요하게 생각하나요?<br>현실적인 의견을 솔직하게 말해주세요.'
 
 const clean = ref(0);
 const bug = ref(0);

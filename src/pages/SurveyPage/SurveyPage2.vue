@@ -182,7 +182,7 @@ import { routes } from "@/router"
 import BoxContainer from "@/components/BoxContainer.vue";
 
 const title = 'MBTI'
-const desc = 'MBTI로 100% 정확하게 나의 성격을 표현할 순 없지만<br>서로를 알아가기에는 유용한 방법 중 하나 아닐까요?'
+const desc = '현대인의 필수 정보 MBTI를 빼먹을 수 없죠.<br>나의 성격을 간단히 표현해주세요.'
 
 const mbti0 = ref(0); // 0: I, 1: E
 const mbti1 = ref(0); // 0: N, 1: S

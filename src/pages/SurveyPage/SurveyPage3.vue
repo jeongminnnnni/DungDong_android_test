@@ -75,7 +75,7 @@ import { routes } from "@/router"
 import BoxContainer from "@/components/BoxContainer.vue";
 
 const title = '흡연/음주'
-const desc = '흡연과 음주 습관과 선호도에 대해 솔직하게 공유해주세요.<br>더 하고 싶은 말이 있다면 서술형 응답을 활용해도 좋습니다.'
+const desc = '자신의 흡연과 음주 습관에 대해 솔직하게 공유해주세요. <br>더 알아두어야 내용이 있다면 서술형 응답을 활용해주세요.'
 
 const smoke = ref(0);
 const smokeItem = ref([

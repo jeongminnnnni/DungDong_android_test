@@ -59,7 +59,7 @@ import BoxContainer from "@/components/BoxContainer.vue";
 import SubTitle from "@/components/SubTitle.vue";
 
 const title = '기본정보'
-const desc = '먼저, 가장 기본적인 것부터 작성해볼까요?<br>본인이 입실할 기숙사 등 나에 대한 정보를 기입해주세요.'
+const desc = '먼저, 가장 기본적인 것부터 작성해볼까요?<br>나에 대한 정보를 입력해주세요.'
 
 const dorm = ref(null);          // 기숙사
 const birth = ref(0);      // 생년월일 8자리 (문자열 권장)
