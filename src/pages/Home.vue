@@ -56,7 +56,7 @@
         다시 시작
       </v-btn>
     </v-row>
-    <v-row 
+    <!-- <v-row 
       v-if="sCtnStart"
       no-gutters justify="center" class="margin-42 | mt-2"
     >
@@ -67,7 +67,7 @@
       >
         이어하기
       </v-btn>
-    </v-row>
+    </v-row> -->
   </v-container>
 </template>
 
