@@ -57,7 +57,7 @@
       </v-btn>
     </v-row>
     <v-row 
-      v-else="sNewStart"
+      v-if="sCtnStart"
       no-gutters justify="center" class="margin-42 | mt-2"
     >
       <v-btn 
@@ -76,6 +76,7 @@
 import { onMounted, onUnmounted, ref, computed, watch} from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { routes } from "@/router"
+import { el } from "vuetify/locale";
 
 const emit = defineEmits(['hide-appbar', 'start-survey', 'restart-survey', 'continue-survey']);
 
@@ -85,6 +86,13 @@ onMounted(() => {
   emit('hide-appbar'); 
   localStorage.setItem('userProgress', JSON.stringify({ currentStep: 0}));
   console.log("set localStorage userProgress:", localStorage.getItem('userProgress'));
+
+  if (localStorage.getItem('appInitialized') === 'true') {
+    sCtnStart.value = true;
+  } else {
+    sCtnStart.value = false;
+  }
+
 });
 
 onUnmounted(() => {
@@ -92,6 +100,7 @@ onUnmounted(() => {
 })
 
 const sNewStart = ref(true);
+const sCtnStart = ref(false);
 
 // ----- 함수 정의 ----- //
 
@@ -114,13 +123,12 @@ function handleClickRestartBtn() {
 // 이어서 작성하기
 function handleClickContBtn() {
   console.log("emitting continue-survey event.");
+  emit('continue-survey'); 
+  // const userProgress = JSON.parse(localStorage.getItem('userProgress')) || {};
+  // const currentStep = userProgress.currentStep || 0; // 기본값 0
+  // emit('continue-survey', { currentStep });
+  // console.log("Current Step sent with continue-survey:", currentStep);
 
-  const userProgress = JSON.parse(localStorage.getItem('userProgress')) || {};
-  const currentStep = userProgress.currentStep || 0; // 기본값 0
-
-  emit('continue-survey', { currentStep });
-
-  console.log("Current Step sent with continue-survey:", currentStep);
 }
 
 

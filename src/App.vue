@@ -299,17 +299,21 @@ function emitFixSurvey() {
   initSurvey();
 };
 
-function emitContinueSurvey(payload) {
-  console.log('Event Received: Continue Survey', payload);
+// function emitContinueSurvey(payload) {
+//   console.log('Event Received: Continue Survey', payload);
 
-  const targetPath = surveyPage.value[payload.currentStep];
+//   const targetPath = surveyPage.value[payload.currentStep];
 
-  if (targetPath) {
-    console.log('Navigating to:', targetPath);
-    router.push(targetPath); // 해당 경로로 이동
-  } else {
-    console.error('Invalid currentStep:', payload.currentStep);
-  }
+//   if (targetPath) {
+//     console.log('Navigating to:', targetPath);
+//     router.push(targetPath); // 해당 경로로 이동
+//   } else {
+//     console.error('Invalid currentStep:', payload.currentStep);
+//   }
+// };
+function emitContinueSurvey() {
+  console.log('Event Received: Continue Survey');
+  router.push("/survey1");
 };
 
 function openDialog(title, text, onConfirm) {
