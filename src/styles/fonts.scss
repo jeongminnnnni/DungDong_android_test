@@ -15,4 +15,12 @@
      font-style: normal;
 }
 
+@font-face {
+     font-family: 'Pretendard';
+     src: url('@/assets/fonts/pretendard/woff2/Pretendard-Light.woff2') format('woff2'),
+          url('@/assets/fonts/pretendard/woff/Pretendard-Light.woff') format('woff');
+     font-weight: light;
+     font-style: normal;
+}
+
 // 필요에 따라 다른 스타일도 추가할 수 있습니다.
