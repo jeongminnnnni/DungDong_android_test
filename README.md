@@ -1,79 +1,185 @@
-# Vuetify (Default)
+<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
+<a id="readme-top"></a>
+<!--
+*** Thanks for checking out the Best-README-Template. If you have a suggestion
+*** that would make this better, please fork the repo and create a pull request
+*** or simply open an issue with the tag "enhancement".
+*** Don't forget to give the project a star!
+*** Thanks again! Now go create something AMAZING! :D
+-->
 
-This is the official scaffolding tool for Vuetify, designed to give you a head start in building your new Vuetify application. It sets up a base template with all the necessary configurations and standard directory structure, enabling you to begin development without the hassle of setting up the project from scratch.
 
-## ❗️ Important Links
 
-- 📄 [Docs](https://vuetifyjs.com/)
-- 🚨 [Issues](https://issues.vuetifyjs.com/)
-- 🏬 [Store](https://store.vuetifyjs.com/)
-- 🎮 [Playground](https://play.vuetifyjs.com/)
-- 💬 [Discord](https://community.vuetifyjs.com)
+<!-- PROJECT SHIELDS -->
+<!--
+*** I'm using markdown "reference style" links for readability.
+*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
+*** See the bottom of this document for the declaration of the reference variables
+*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
+*** https://www.markdownguide.org/basic-syntax/#reference-style-links
+-->
 
-## 💿 Install
+<!-- [![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![project_license][license-shield]][license-url] -->
 
-Set up your project using your preferred package manager. Use the corresponding command to install the dependencies:
 
-| Package Manager                                                | Command        |
-|---------------------------------------------------------------|----------------|
-| [yarn](https://yarnpkg.com/getting-started)                   | `yarn install` |
-| [npm](https://docs.npmjs.com/cli/v7/commands/npm-install)     | `npm install`  |
-| [pnpm](https://pnpm.io/installation)                          | `pnpm install` |
-| [bun](https://bun.sh/#getting-started)                        | `bun install`  |
 
-After completing the installation, your environment is ready for Vuetify development.
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/github_username/repo_name">
+    <img src="src/assets/logo.png" alt="Logo" width="80" height="80">
+  </a>
 
-## ✨ Features
+<h1 align="center">둥지동지</h1>
 
-- 🖼️ **Optimized Front-End Stack**: Leverage the latest Vue 3 and Vuetify 3 for a modern, reactive UI development experience. [Vue 3](https://v3.vuejs.org/) | [Vuetify 3](https://vuetifyjs.com/en/)
-- 🗃️ **State Management**: Integrated with [Pinia](https://pinia.vuejs.org/), the intuitive, modular state management solution for Vue.
-- 🚦 **Routing and Layouts**: Utilizes Vue Router for SPA navigation and vite-plugin-vue-layouts for organizing Vue file layouts. [Vue Router](https://router.vuejs.org/) | [vite-plugin-vue-layouts](https://github.com/JohnCampionJr/vite-plugin-vue-layouts)
-- ⚡ **Next-Gen Tooling**: Powered by Vite, experience fast cold starts and instant HMR (Hot Module Replacement). [Vite](https://vitejs.dev/)
-- 🧩 **Automated Component Importing**: Streamline your workflow with unplugin-vue-components, automatically importing components as you use them. [unplugin-vue-components](https://github.com/antfu/unplugin-vue-components)
+  <p align="center">
+    🖼️ 한 장의 이미지로 룸메이트 구하기!
+    <br />
+    <a href="https://ebee1205.github.io/DungDong/"><strong>둥지동지 바로가기</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/github_username/repo_name">View Demo</a>
+    &middot;
+    <a href="https://github.com/github_username/repo_name/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+    &middot;
+    <a href="https://github.com/github_username/repo_name/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+  </p>
+</div>
 
-These features are curated to provide a seamless development experience from setup to deployment, ensuring that your Vuetify application is both powerful and maintainable.
 
-## 💡 Usage
 
-This section covers how to start the development server and build your project for production.
+<!-- 프로젝트 소개 -->
+## 프로젝트 소개
 
-### Starting the Development Server
+[![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-To start the development server with hot-reload, run the following command. The server will be accessible at [http://localhost:3000](http://localhost:3000):
+둥지동지는 중앙대학교 다빈치 캠퍼스의 학우들이 룸메이트를 빠르고 편하게 구할 수 있도록 기획한 프로젝트입니다.<br>
+자신의 기숙사 생활에 대한 설문 결과를 한 장의 이미지로 출력하여 공유할 수 있는 편의기능을 제공하고 있습니다.
 
-```bash
-yarn dev
-```
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-(Repeat for npm, pnpm, and bun with respective commands.)
 
-> Add NODE_OPTIONS='--no-warnings' to suppress the JSON import warnings that happen as part of the Vuetify import mapping. If you are on Node [v21.3.0](https://nodejs.org/en/blog/release/v21.3.0) or higher, you can change this to NODE_OPTIONS='--disable-warning=5401'. If you don't mind the warning, you can remove this from your package.json dev script.
+### 😎 함께한 사람들
+둥지동지를 제작한 <칸타르동방구함위원회> 입니다. 저희는 중앙대 예술공학부의 동아리 [칸타르](https://www.instagram.com/cau_cantar/)에 기반을 두고있습니다.
 
-### Building for Production
+|  |  |  |  |
+|--------|------|-------|------|
+| <img src="src/assets/us/JEB.svg" width="64" height="64" style="margin: 4px;"> | 조은비 | `최초 기획` `프론트 개발` | [github](https://github.com/Ebee1205) [블로그](https://wavicle.tistory.com/) |
+| <img src="src/assets/us/JEB.svg" width="64" height="64" style="margin: 4px;"> | 백지오 | `UX/UI 디자인` `편집 디자인` | [github](URL) [포트폴리오](https://sites.google.com/view/jiographic) |
+| <img src="src/assets/us/JEB.svg" width="64" height="64" style="margin: 4px;"> | 고예경 | `QA` `UX 개선` `기획안 개선` | [github](https://github.com/jio311) [블로그](URL) |
+| <img src="src/assets/us/HJH.svg" width="64" height="64" style="margin: 4px;"> | 황준호 | `데이터 분석 및 통계` | [github](URL) [블로그](URL) |
 
-To build your project for production, use:
+그리고 <둥지동지> 이름을 지어준 김태희씨, 제작에 힘이 되어준 칸타르 친구들에게 감사인사를 드립니다.
 
-```bash
-yarn build
-```
 
-(Repeat for npm, pnpm, and bun with respective commands.)
 
-Once the build process is completed, your application will be ready for deployment in a production environment.
+### 📚 기술 스택
 
-## 💪 Support Vuetify Development
+[![Vue][Vue.js]][Vue-url] [![Vuetify][Vuetify]][Vuetify-url] 
+[![Firebase][Firebase]][Firebase-url]
+[![Github Pages][Github Pages]][Github-Pages-url] 
+[![Figma][Figma]][Figma-url] 
 
-This project is built with [Vuetify](https://vuetifyjs.com/en/), a UI Library with a comprehensive collection of Vue components. Vuetify is an MIT licensed Open Source project that has been made possible due to the generous contributions by our [sponsors and backers](https://vuetifyjs.com/introduction/sponsors-and-backers/). If you are interested in supporting this project, please consider:
 
-- [Requesting Enterprise Support](https://support.vuetifyjs.com/)
-- [Sponsoring John on Github](https://github.com/users/johnleider/sponsorship)
-- [Sponsoring Kael on Github](https://github.com/users/kaelwd/sponsorship)
-- [Supporting the team on Open Collective](https://opencollective.com/vuetify)
-- [Becoming a sponsor on Patreon](https://www.patreon.com/vuetify)
-- [Becoming a subscriber on Tidelift](https://tidelift.com/subscription/npm/vuetify)
-- [Making a one-time donation with Paypal](https://paypal.me/vuetify)
 
-## 📑 License
-[MIT](http://opensource.org/licenses/MIT)
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-Copyright (c) 2016-present Vuetify, LLC
+
+
+<!-- 시작하기 -->
+## 시작하기
+
+아래의 단계에 따라 프로젝트를 로컬에서 설정하고 실행할 수 있습니다.
+
+### 사전 요구사항
+
+이 프로젝트는 `Vuetify`와 `Vue.js`를 기반으로 하고 있습니다. 
+
+
+### 설치
+
+1. Firebase에서 API 키 발급 [https://firebase.google.com/docs/firestore](https://firebase.google.com/docs/firestore)
+2. 레포 클론하기
+   ```sh
+   git clone https://github.com/Ebee1205/DungDong.git
+   ```
+3. NPM 패키지 설치
+   ```sh
+   npm install
+   ```
+4. `.env` 파일 생성 후 Firebase API 키 입력
+   ```.env
+   // .env file
+   
+    VITE_FIREBASE_API_KEY = 
+    VITE_FIREBASE_AUTH_DOMAIN = 
+    VITE_FIREBASE_PROJECT_ID = 
+    VITE_FIREBASE_STORAGE_BUCKET = 
+    VITE_FIREBASE_MESSAGING_SENDER_ID = 
+    VITE_FIREBASE_APP_ID = 
+    VITE_FIREBASE_MEASUREMENT_ID = 
+   ```
+<!-- 5. Change git remote url to avoid accidental pushes to base project
+   ```sh
+   git remote set-url origin github_username/repo_name
+   git remote -v # confirm the changes
+   ``` -->
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- 로드맵 -->
+## 로드맵
+### 업데이트 내역
+
+
+### 제작기
+- 📝 둥동 기획- 어쩌고저쩌고 [25년 2월 3일]
+<!-- - 둥동 만들기 - 
+- 둥동 만들기 -->
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- 레퍼런스 -->
+## 레퍼런스
+
+* [썸네일 메이커](https://blog.wonkooklee.com/playground/thumbnail-maker/)
+* [Receiptify](https://receiptify.herokuapp.com)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge
+[contributors-url]: https://github.com/github_username/repo_name/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge
+[forks-url]: https://github.com/github_username/repo_name/network/members
+[stars-shield]: https://img.shields.io/github/stars/github_username/repo_name.svg?style=for-the-badge
+[stars-url]: https://github.com/github_username/repo_name/stargazers
+[issues-shield]: https://img.shields.io/github/issues/github_username/repo_name.svg?style=for-the-badge
+[issues-url]: https://github.com/github_username/repo_name/issues
+[license-shield]: https://img.shields.io/github/license/github_username/repo_name.svg?style=for-the-badge
+[license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
+
+[product-screenshot]: images/screenshot.png
+
+[Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
+[Vue-url]: https://vuejs.org/
+[Vuetify]: https://img.shields.io/badge/Vuetify-1867C0?style=for-the-badge&logo=vuetify&logoColor=AEDDFF
+[Vuetify-url]: https://vuetifyjs.com/
+[Figma]: https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white
+[Figma-url]: https://www.figma.com/
+[Firebase]: https://img.shields.io/badge/firebase-a08021?style=for-the-badge&logo=firebase&logoColor=ffcd34
+[Firebase-url]: https://firebase.google.com/
+[Github Pages]:https://img.shields.io/badge/github%20pages-121013?style=for-the-badge&logo=github&logoColor=white
+[Github-Pages-url]: https://pages.github.com/
