@@ -14,8 +14,8 @@
       ></v-slider>
     </v-row>
     <v-row no-gutters class="justify-space-between | pt-2">
-      <v-label class="small-label">항싱 이어폰</v-label>
-      <v-label class="small-label">작은 소리</v-label>
+      <v-label class="small-label">항상 이어폰</v-label>
+      <v-label class="small-label">작은소리 허용</v-label>
       <v-label class="small-label">스피커 모드</v-label>
     </v-row>
 
@@ -32,8 +32,8 @@
     </v-row>
     <v-row no-gutters class="justify-space-between | pt-2">
       <v-label class="small-label">전혀 안함</v-label>
-      <v-label class="small-label">공유 안함</v-label>
-      <v-label class="small-label">대부분 공유</v-label>
+      <v-label class="small-label">공동물품 구비</v-label>
+      <v-label class="small-label">완전 공유</v-label>
     </v-row>
 
     <v-row no-gutters justify="start" class="margin-top-42">
@@ -48,9 +48,9 @@
       ></v-slider>
     </v-row>
     <v-row no-gutters class="justify-space-between | pt-2">
-      <v-label class="small-label">매주</v-label>
-      <v-label class="small-label">비정기적</v-label>
-      <v-label class="small-label">안감</v-label>
+      <v-label class="small-label">잘 안들어옴</v-label>
+      <v-label class="small-label">매주마다</v-label>
+      <v-label class="small-label">상시 거주중</v-label>
     </v-row>
 
   </BoxContainer>

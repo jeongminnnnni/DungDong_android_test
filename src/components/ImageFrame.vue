@@ -72,8 +72,9 @@
                             </v-col>
                         </v-row>
                         <v-row no-gutters class="justify-space-between | pt-1" style="width: 362px;">
+                            <v-label>잘 안들어옴</v-label>
                             <v-label>매주마다</v-label>
-                            <v-label>학기중엔 본가 안 감</v-label>
+                            <v-label>상시 거주중</v-label>
                         </v-row>
                     </v-col>
                 </v-row>
@@ -94,8 +95,9 @@
                             </v-col>
                         </v-row>
                         <v-row no-gutters class="justify-space-between | pt-1" style="width: 362px;">
-                            <v-label>안함</v-label>
-                            <v-label>공용물품구비</v-label>
+                            <v-label>전혀 안함</v-label>
+                            <v-label>공동물품 구비</v-label>
+                            <v-label>완전 공유</v-label>
                         </v-row>
                     </v-col>
                 </v-row>
@@ -185,8 +187,9 @@
                             </v-col>
                         </v-row>
                         <v-row no-gutters class="justify-space-between | pt-4" style="width: 362px;">
-                            <v-label>무조건 이어폰 착용</v-label>
-                            <v-label>대부분 스피커 모드</v-label>
+                            <v-label>항상 이어폰</v-label>
+                            <v-label>작은소리 허용</v-label>
+                            <v-label>스피커 모드</v-label>
                         </v-row>
                     </v-col>
                 </v-row>
