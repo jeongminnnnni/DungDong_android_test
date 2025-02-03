@@ -23,7 +23,7 @@
       </v-card-title>
       <v-divider></v-divider>
       <v-card-text>
-        <div style="text-align: center; letter-spacing: -0.5px;">
+        <div style="text-align: left; letter-spacing: -0.5px;">
           본 서비스는 품질 향상과 인사이트 도출을 위해 
           응답을 수집하여 통계 및 분석에 활용합니다. 
           <br>위 내용은 해당 목적 외에는 사용되지 않으며, 

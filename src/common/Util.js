@@ -21,19 +21,16 @@ const Util = (function () {
                 let unit;
                 switch (c) {
                   case 0:
-                    unit = "일";
+                    unit = "주";
                     break;
                   case 1:
-                    unit = "개월";
+                    unit = "달";
                     break;
-                  case 2:
-                    unit = "년";
-                    break;
-                  case 3:
-                    unit = "주";  // 주 단위 추가
-                    break;
+                  // case 2:
+                  //   unit = "년";
+                  //   break;
                   default:
-                    unit = "일";  // 기본값 설정
+                    unit = "주";  // 기본값 설정
                 }
               
                 return `${ab}${unit}에 ${de}번`;

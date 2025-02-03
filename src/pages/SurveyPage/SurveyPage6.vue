@@ -50,7 +50,7 @@
     <v-row no-gutters class="justify-space-between | pt-2">
       <v-label class="small-label">잘 안들어옴</v-label>
       <v-label class="small-label">매주마다</v-label>
-      <v-label class="small-label">상시 거주중</v-label>
+      <v-label class="small-label">둥지 지킴이</v-label>
     </v-row>
 
   </BoxContainer>
