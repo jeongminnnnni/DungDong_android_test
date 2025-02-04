@@ -239,7 +239,9 @@ onMounted(async () => {
 });
 
 onUnmounted(() => {
-  // clearInterval(intervalId); 
+  if (intervalId) {
+    clearInterval(intervalId);
+  }
 })
 
 // ----- 함수 정의 ----- //
