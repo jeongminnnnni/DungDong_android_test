@@ -176,7 +176,6 @@ const survey = ref({
   notes: ""           // 기타 참고사항 (서술형 문자열)
 });
 
-const parsedSurvey = ref(null)
 
 // ----- 라이프 사이클 ----- //
 onMounted(() => {
@@ -329,11 +328,12 @@ function submitSurveyToFB() {
   console.log('get existingSurvey', existingSurvey);
 
   if (existingSurvey) {
-    parsedSurvey.value = JSON.parse(existingSurvey);
+    const pureSurvey = JSON.parse(JSON.stringify(existingSurvey));
+
     if (!lastDocumentId.value) {
-      // submitSurvey(parsedSurvey.value); // TODO 배포시에 주석 풀기
+      submitSurvey(pureSurvey); // TODO 배포시에 주석 풀기
     } else {
-      // updateSurvey(parsedSurvey.value); // TODO 배포시에 주석 풀기
+      updateSurvey(pureSurvey); // TODO 배포시에 주석 풀기
     }
   } else {
     console.error("No survey data to submit.");
@@ -356,6 +356,32 @@ const submitSurvey = async (survey) => {
     localStorage.setItem('surveyId', null);
   }
 };
+
+// const updateSurvey = async (updates) => {
+//   if (!lastDocumentId.value) {
+//     console.error("No document ID found. Submitting a survey first.");
+//     return;
+//   }
+
+//   try {
+//     const surveyRef = doc(db, "surveys", lastDocumentId.value);
+    
+//     // Firestore에서 해당 문서가 존재하는지 확인
+//     const docSnap = await getDoc(surveyRef);
+    
+//     if (!docSnap.exists()) {
+//       console.error("Document does not exist. Creating a new one instead.");
+//       await submitSurvey(updates); // 문서가 없으면 새 문서로 추가
+//       return;
+//     }
+
+//     // Firestore 문서 업데이트 실행
+//     await updateDoc(surveyRef, updates);
+//     console.log("Survey updated successfully with ID:", lastDocumentId.value);
+//   } catch (error) {
+//     console.error("Error updating survey:", error);
+//   }
+// };
 
 // 문서 ID를 사용하여 해당 문서를 업데이트하는 함수
 const updateSurvey = async (updates) => {
