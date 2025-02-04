@@ -2,7 +2,7 @@
   "name": "FindingRoomMate",
   "private": true,
   "type": "module",
-  "version": "0.2.6",
+  "version": "0.3.2",
   "scripts": {
     "dev": "vite --mode development",
     "dev-build": "vite build --mode development",
