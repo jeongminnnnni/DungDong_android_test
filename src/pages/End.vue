@@ -239,6 +239,7 @@ onMounted(async () => {
 });
 
 onUnmounted(() => {
+  // TODO intervalId 없음 오류 해결
   if (intervalId) {
     clearInterval(intervalId);
   }
