@@ -100,7 +100,7 @@
     </v-row>
     <v-row no-gutters justify="center" class="mb-12 | pl-5 | pr-5">
       <v-col cols="auto">
-        <v-btn variant="text" density="compact" href="https://github.com/Ebee1205/DungDong?tab=readme-ov-file#%EC%A0%9C%EC%9E%91%EA%B8%B0" target="_blank" class="link-label | mr-3">
+        <v-btn variant="text" density="compact" href="https://github.com/Ebee1205/DungDong?tab=readme-ov-file#-%EC%9E%91%EC%97%85%EA%B8%B0" target="_blank" class="link-label | mr-3">
           둥동 작업기
         </v-btn>
       </v-col>
