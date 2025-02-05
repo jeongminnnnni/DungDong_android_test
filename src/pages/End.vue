@@ -185,7 +185,7 @@ const loading = ref(false); // 로딩 상태 관리
 const captureRef = ref(null); // 캡처할 컴포넌트의 참조
 const capturedImage = ref(''); // 캡처된 이미지의 URL 저장
 
-
+let intervalId = null
 const ads = ref([
   { num: 1, url: '', img: './ad/ad_1.jpeg'},
   { num: 2, url: '', img: './ad/ad_2.jpeg'},
@@ -239,7 +239,6 @@ onMounted(async () => {
 });
 
 onUnmounted(() => {
-  // TODO intervalId 없음 오류 해결
   if (intervalId) {
     clearInterval(intervalId);
   }
