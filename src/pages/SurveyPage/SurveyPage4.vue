@@ -89,8 +89,8 @@ import { useRouter, useRoute } from "vue-router";
 import { routes } from "@/router"
 import BoxContainer from "@/components/BoxContainer.vue";
 
-const title = '수면시간'
-const desc = '수면시간을 맞추는 것은 공동생활에 중요해요.<br>당신은 부엉이인가요? 아침새인가요?'
+const title = '수면 패턴'
+const desc = '수면 패턴을 맞추는 것은 공동생활에 중요해요.<br>당신은 부엉이인가요? 아침새인가요?'
 
 const wakeUp = ref('00:00');
 const wakeUpHour = ref('00');
