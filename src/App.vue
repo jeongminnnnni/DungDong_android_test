@@ -331,9 +331,9 @@ function submitSurveyToFB() {
     const parseSurvey = JSON.parse(existingSurvey);
 
     if (!lastDocumentId.value) {
-      // submitSurvey(parseSurvey); // TODO 배포시에 주석 풀기
+      submitSurvey(parseSurvey); // TODO 배포시에 주석 풀기
     } else {
-      // updateSurvey(parseSurvey); // TODO 배포시에 주석 풀기
+      updateSurvey(parseSurvey); // TODO 배포시에 주석 풀기
     }
   } else {
     console.error("No survey data to submit.");
