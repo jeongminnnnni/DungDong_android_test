@@ -42,11 +42,6 @@
     <a href="https://ebee1205.github.io/DungDong/"><strong>둥지동지 바로가기</strong></a>
     <br />
     <br />
-    <a href="https://github.com/github_username/repo_name">View Demo</a>
-    &middot;
-    <a href="https://github.com/github_username/repo_name/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
-    &middot;
-    <a href="https://github.com/github_username/repo_name/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
   </p>
 </div>
 
@@ -58,22 +53,38 @@
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
 둥지동지는 중앙대학교 다빈치 캠퍼스의 학우들이 룸메이트를 빠르고 편하게 구할 수 있도록 기획한 프로젝트입니다.<br>
-자신의 기숙사 생활에 대한 설문 결과를 한 장의 이미지로 출력하여 공유할 수 있는 편의기능을 제공하고 있습니다.
+자신의 기숙사 생활에 대한 설문을 기반으로 구인글에 사용할 이미지를 자동으로 생성해줍니다.
+모바일 웹에 최적화된 UI로 누구나 간편하게 사용할 수 있습니다.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+### 🎯 주요기능
+✅  **기숙사 룸메이트 구인 설문 제공**  
+  사용자가 설문을 통해 자신의 선호사항을 입력할 수 있습니다.
+
+✅ **설문 결과 기반 타이틀 생성**  
+  입력된 응답을 바탕으로 사용자의 소개 제목을 자동으로 생성합니다.
+  
+✅ **최종 결과 이미지 생성 및 다운로드 지원**  
+  설문 결과를 한 장의 이미지(1000 x 1000px)로 생성하여 다운로드 할 수 있습니다.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 ### 😎 함께한 사람들
-둥지동지를 제작한 <칸타르동방구함위원회> 입니다. 저희는 중앙대 예술공학부의 동아리 [칸타르](https://www.instagram.com/cau_cantar/)에 기반을 두고있습니다.
+둥지동지를 제작한 **<칸타르동방구함위원회>** 를 소개합니다. 중앙대 **예술공학부**의 종합예술동아리 [칸타르](https://www.instagram.com/cau_cantar/)를 기반에 두고 모였습니다. 
+<br>덧붙여, <둥지동지> 이름을 지어준 김태희씨, 제작에 힘이 되어준 칸타르 친구들에게 감사인사를 드립니다.
 
-|  |  |  |  |
+|  | 이름 | 역할 | 비고 |
 |--------|------|-------|------|
 | <img src="src/assets/us/JEB.svg" width="64" height="64" style="margin: 4px;"> | 조은비 | `최초 기획` `프론트 개발` | [github](https://github.com/Ebee1205) [블로그](https://wavicle.tistory.com/) |
-| <img src="src/assets/us/JEB.svg" width="64" height="64" style="margin: 4px;"> | 백지오 | `UX/UI 디자인` `편집 디자인` | [github](URL) [포트폴리오](https://sites.google.com/view/jiographic) |
-| <img src="src/assets/us/JEB.svg" width="64" height="64" style="margin: 4px;"> | 고예경 | `QA` `UX 개선` `기획안 개선` | [github](https://github.com/jio311) [블로그](URL) |
+| <img src="src/assets/us/BJO.svg" width="64" height="64" style="margin: 4px;"> | 백지오 | `UX/UI 디자인` `편집 디자인` | [github](URL) [포트폴리오](https://sites.google.com/view/jiographic) |
+| <img src="src/assets/us/GYG.svg" width="64" height="64" style="margin: 4px;"> | 고예경 | `QA` `UX 개선` `기획안 개선` | [github](https://github.com/jio311) [블로그](URL) |
 | <img src="src/assets/us/HJH.svg" width="64" height="64" style="margin: 4px;"> | 황준호 | `데이터 분석 및 통계` | [github](URL) [블로그](URL) |
 
-그리고 <둥지동지> 이름을 지어준 김태희씨, 제작에 힘이 되어준 칸타르 친구들에게 감사인사를 드립니다.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
@@ -84,17 +95,12 @@
 [![Github Pages][Github Pages]][Github-Pages-url] 
 [![Figma][Figma]][Figma-url] 
 
-
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
 <!-- 시작하기 -->
 ## 시작하기
-
-아래의 단계에 따라 프로젝트를 로컬에서 설정하고 실행할 수 있습니다.
-
 ### 사전 요구사항
 
 이 프로젝트는 `Vuetify`와 `Vue.js`를 기반으로 하고 있습니다. 
@@ -134,15 +140,35 @@
 
 
 <!-- 로드맵 -->
-## 로드맵
-### 업데이트 내역
+## 🛠️ 로드맵
+### 🏗️ 예정된 기능
+- [ ] **이어하기 기능 추가**  
+  설문 진행 중이거나 완료된 결과를 저장하고 나중에 이어서 작업할 수 있도록 개선할 예정입니다.
+
+- [ ] **관별 색상 차별화 적용**  
+  기숙사 관(건물)별로 최종 결과 이미지의 색상을 다르게 적용하여 구별이 쉽도록 개선할 계획입니다.
+
+추후 업데이트를 통해 더욱 직관적이고 편리한 기능을 제공할 예정이니 많은 관심 부탁드립니다!
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-### 제작기
-- 📝 둥동 기획- 어쩌고저쩌고 [25년 2월 3일]
+
+### 🚀 업데이트 내역
+자세한 업데이트 내용은 릴리즈 노트를 참고해 주세요!
+
+|버전	|출시 날짜	|주요 업데이트
+|-----|-----|-----|
+1.0.0	|2025.02.07	|최초 정식 배포 (기본 기능 제공)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+### 📝 작업기
+- 📌 둥동 기획- 어쩌고저쩌고 [25년 2월 3일]
 <!-- - 둥동 만들기 - 
 - 둥동 만들기 -->
-
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -150,7 +176,7 @@
 
 <!-- 레퍼런스 -->
 ## 레퍼런스
-
+이 프로젝트는 아래의 프로젝트에서 영감을 받아 제작되었습니다.
 * [썸네일 메이커](https://blog.wonkooklee.com/playground/thumbnail-maker/)
 * [Receiptify](https://receiptify.herokuapp.com)
 

@@ -18,15 +18,13 @@ export default createVuetify({
     themes: {
       light: {
         colors: {
+          surface: '#FBFBFB', // 배경색을 설정
           background: '#FBFBFB', // 배경색을 설정
         },
         variables: {
-          'body-font-family': 'Pretendard, sans-serif',
+          'body-font-family': '"Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif',
         },
       }
     }
-  },
-  typography: {
-    fontFamily: 'Pretendard, sans-serif' // 여기에 폰트 추가
   },
 })

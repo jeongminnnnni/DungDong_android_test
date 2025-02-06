@@ -100,12 +100,12 @@
     </v-row>
     <v-row no-gutters justify="center" class="mb-12 | pl-5 | pr-5">
       <v-col cols="auto">
-        <v-btn variant="text" density="compact" href="https://github.com/Ebee1205/DungDong" target="_blank" class="link-label | mr-3">
+        <v-btn variant="text" density="compact" href="https://github.com/Ebee1205/DungDong?tab=readme-ov-file#-%EC%9E%91%EC%97%85%EA%B8%B0" target="_blank" class="link-label | mr-3">
           둥동 작업기
         </v-btn>
       </v-col>
       <v-col cols="auto">
-        <v-btn variant="text" density="compact" href="https://github.com/Ebee1205/DungDong" target="_blank" class="link-label">
+        <v-btn variant="text" density="compact" href="https://github.com/Ebee1205/DungDong?tab=readme-ov-file#-%ED%95%A8%EA%BB%98%ED%95%9C-%EC%82%AC%EB%9E%8C%EB%93%A4" target="_blank" class="link-label">
           제작자 소개
         </v-btn>
       </v-col>
@@ -185,7 +185,7 @@ const loading = ref(false); // 로딩 상태 관리
 const captureRef = ref(null); // 캡처할 컴포넌트의 참조
 const capturedImage = ref(''); // 캡처된 이미지의 URL 저장
 
-
+let intervalId = null
 const ads = ref([
   { num: 1, url: '', img: './ad/ad_1.jpeg'},
   { num: 2, url: '', img: './ad/ad_2.jpeg'},
@@ -239,7 +239,9 @@ onMounted(async () => {
 });
 
 onUnmounted(() => {
-  // clearInterval(intervalId); 
+  if (intervalId) {
+    clearInterval(intervalId);
+  }
 })
 
 // ----- 함수 정의 ----- //

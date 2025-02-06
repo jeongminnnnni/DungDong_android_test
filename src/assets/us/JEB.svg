@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg id="_레이어_2" data-name="레이어 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 148.22 114.12">
+<svg id="_레이어_2" data-name="레이어 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 148.22 169.07">
   <defs>
     <style>
       .cls-1 {
@@ -7,33 +7,38 @@
       }
 
       .cls-2 {
-        fill: #ab76fb;
+        fill: #ff4074;
       }
 
       .cls-3 {
-        fill: #452018;
+        fill: #ab76fb;
       }
 
       .cls-4 {
-        fill: #549169;
+        fill: #c9a063;
+      }
+
+      .cls-5 {
+        fill: #452018;
       }
     </style>
   </defs>
   <g id="_레이어_1-2" data-name="레이어 1">
     <g>
       <g>
-        <path class="cls-4" d="m136.24,25.94c0,40.07-32.46,72.56-72.56,72.56-9.1,0-17.82-1.7-25.85-4.75-1.37-.52-2.72-1.08-4.04-1.7-5.88-2.64-11.33-6.06-16.21-10.12t-.02-.02c-3.77-3.6-6.94-7.84-9.35-12.52-3.32-6.44-5.18-13.75-5.18-21.46s1.9-15.23,5.34-21.73c.05-.09.09-.17.14-.27h127.72Z"/>
-        <path class="cls-4" d="m97.06,47.01c0,25.96-21.04,47.03-47.01,47.03-3.22,0-6.35-.33-9.38-.94-2.36-.47-4.65-1.13-6.87-1.96-6.1-2.23-11.61-5.72-16.21-10.12t-.02-.02c-3.77-3.6-6.94-7.84-9.35-12.52-3.32-6.44-5.18-13.75-5.18-21.46s1.9-15.23,5.34-21.73c.05-.09.09-.17.14-.27C16.37,10.12,32.02,0,50.05,0s33.67,10.12,41.53,25.01c.05.09.09.17.14.27,3.44,6.5,5.34,13.89,5.34,21.73Z"/>
-        <path class="cls-1" d="m55.95,61.35H19.96c0-9.94,8.06-17.99,17.99-17.99,9.94,0,17.99,8.06,17.99,17.99Z"/>
-        <rect class="cls-3" x="27.55" y="26.52" width="3.57" height="10.72" rx="1.5" ry="1.5" transform="translate(-9.98 50.09) rotate(-72.23)"/>
-        <rect class="cls-3" x="52.59" y="32.58" width="3.57" height="10.72" rx="1.5" ry="1.5" transform="translate(1.65 78.15) rotate(-72.23)"/>
+        <rect class="cls-4" x="73.48" y="138.24" width="8.91" height="15.77"/>
+        <rect class="cls-4" x="98.02" y="138.24" width="8.91" height="15.77"/>
+        <path class="cls-2" d="m117.46,140.42h-47.13c-28.22,0-51.09-22.87-51.09-51.09v-38.25C19.24,22.87,42.11,0,70.33,0h0c28.22,0,51.09,22.87,51.09,51.09v85.38c0,2.18-1.77,3.96-3.96,3.96Z"/>
+        <path class="cls-1" d="m70.33,66.75h-32.07c0-8.86,7.18-16.04,16.04-16.04,8.86,0,16.04,7.18,16.04,16.04Z"/>
+        <circle class="cls-5" cx="49.49" cy="27.62" r="3.21"/>
+        <circle class="cls-5" cx="65.52" cy="38.76" r="3.21"/>
       </g>
       <g>
-        <rect class="cls-2" x="-1.89" y="98.15" width="37.16" height="8.91" rx="4.45" ry="4.45" transform="translate(-49.06 22.09) rotate(-30)"/>
-        <rect class="cls-2" x="26.82" y="98.15" width="37.16" height="8.91" rx="4.45" ry="4.45" transform="translate(-45.22 36.44) rotate(-30)"/>
-        <rect class="cls-2" x="55.53" y="98.15" width="37.16" height="8.91" rx="4.45" ry="4.45" transform="translate(-41.37 50.8) rotate(-30)"/>
-        <rect class="cls-2" x="84.24" y="98.15" width="37.16" height="8.91" rx="4.45" ry="4.45" transform="translate(-37.53 65.16) rotate(-30)"/>
-        <rect class="cls-2" x="112.95" y="98.15" width="37.16" height="8.91" rx="4.45" ry="4.45" transform="translate(-33.68 79.51) rotate(-30)"/>
+        <rect class="cls-3" x="-1.89" y="153.1" width="37.16" height="8.91" rx="4.45" ry="4.45" transform="translate(-76.54 29.45) rotate(-30)"/>
+        <rect class="cls-3" x="26.82" y="153.1" width="37.16" height="8.91" rx="4.45" ry="4.45" transform="translate(-72.69 43.81) rotate(-30)"/>
+        <rect class="cls-3" x="55.53" y="153.1" width="37.16" height="8.91" rx="4.45" ry="4.45" transform="translate(-68.85 58.16) rotate(-30)"/>
+        <rect class="cls-3" x="84.24" y="153.1" width="37.16" height="8.91" rx="4.45" ry="4.45" transform="translate(-65 72.52) rotate(-30)"/>
+        <rect class="cls-3" x="112.95" y="153.1" width="37.16" height="8.91" rx="4.45" ry="4.45" transform="translate(-61.16 86.87) rotate(-30)"/>
       </g>
     </g>
   </g>

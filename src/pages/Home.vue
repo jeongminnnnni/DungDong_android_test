@@ -34,7 +34,7 @@
 
     <v-row 
       v-if="sNewStart"
-      no-gutters justify="center" class="margin-42 | mt-10"
+      no-gutters justify="center" class="margin-42 | mt-12"
     >
       <v-btn 
         @click="handleClickStartBtn"
@@ -46,7 +46,7 @@
     </v-row>
     <v-row 
       v-else="sNewStart"
-      no-gutters justify="center" class="margin-42 | mt-10"
+      no-gutters justify="center" class="margin-42 | mt-12"
     >
       <v-btn 
         @click="handleClickRestartBtn"
@@ -87,11 +87,11 @@ onMounted(() => {
   localStorage.setItem('userProgress', JSON.stringify({ currentStep: 0}));
   console.log("set localStorage userProgress:", localStorage.getItem('userProgress'));
 
-  if (localStorage.getItem('appInitialized') === 'true') {
-    sCtnStart.value = true;
-  } else {
-    sCtnStart.value = false;
-  }
+  // if (localStorage.getItem('appInitialized') === 'true') {
+  //   sCtnStart.value = true;
+  // } else {
+  //   sCtnStart.value = false;
+  // }
 
 });
 

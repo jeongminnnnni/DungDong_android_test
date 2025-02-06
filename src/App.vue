@@ -176,7 +176,6 @@ const survey = ref({
   notes: ""           // 기타 참고사항 (서술형 문자열)
 });
 
-const parsedSurvey = ref(null)
 
 // ----- 라이프 사이클 ----- //
 onMounted(() => {
@@ -296,7 +295,6 @@ function emitRestartSurvey() {
 function emitFixSurvey() {
   console.log('Event Received: Fix Survey');
   router.push("/survey7");
-  initSurvey();
 };
 
 // function emitContinueSurvey(payload) {
@@ -329,11 +327,12 @@ function submitSurveyToFB() {
   console.log('get existingSurvey', existingSurvey);
 
   if (existingSurvey) {
-    parsedSurvey.value = JSON.parse(existingSurvey);
+    const parseSurvey = JSON.parse(existingSurvey);
+
     if (!lastDocumentId.value) {
-      // submitSurvey(parsedSurvey.value); // TODO 배포시에 주석 풀기
+      submitSurvey(parseSurvey); // TODO 배포시에 주석 풀기
     } else {
-      // updateSurvey(parsedSurvey.value); // TODO 배포시에 주석 풀기
+      updateSurvey(parseSurvey); // TODO 배포시에 주석 풀기
     }
   } else {
     console.error("No survey data to submit.");
@@ -346,6 +345,7 @@ function submitSurveyToFB() {
 
 // 설문 데이터를 Firestore에 저장하는 함수
 const submitSurvey = async (survey) => {
+  console.log(typeof survey, survey);
   try {
     const docRef = await addDoc(collection(db, "surveys"), survey);
     console.log("Survey submitted successfully with ID:", docRef.id);
