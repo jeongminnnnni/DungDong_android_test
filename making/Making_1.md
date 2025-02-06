@@ -24,7 +24,11 @@
 
 바쁠때는 안하던 공부도 재밌어지는법. 룸메이트 신청 문자를 받고 아이디어가 떠올라 내친김에 프로토타입까지 만들었습니다. 둥지동지의 첫 번째 프로토타입은 FastAPI와 파이썬 라이브러리로 후다닥 만들었습니다. 
 
-<iframe title="'wavicle'에서 업로드한 동영상" width="640" height="360" src="https://play-tv.kakao.com/embed/player/cliplink/452844611?service=player_share" allowfullscreen frameborder="0" scrolling="no" allow="autoplay; fullscreen; encrypted-media"></iframe>
+<br>
+
+https://play-tv.kakao.com/embed/player/cliplink/452844611?service=player_share
+
+<br>
 
 보다시피 디자인은 제대로 입히지 않은 그야말로 날 것의 상태였습니다. 더 멋진 서비스로 발전시키고 싶었지만 여름방학이 얼마남지 않았기 때문에 겨울을 기약하며 첫 프로토타입은 메모장에 고이 보관되었습니다.
 
