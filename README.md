@@ -79,8 +79,8 @@
 |  | 이름 | 역할 | 비고 |
 |--------|------|-------|------|
 | <img src="src/assets/us/JEB.svg" width="64" height="64" style="margin: 4px;"> | 조은비 | `최초 기획` `프론트 개발` | [github](https://github.com/Ebee1205) [블로그](https://wavicle.tistory.com/) |
-| <img src="src/assets/us/BJO.svg" width="64" height="64" style="margin: 4px;"> | 백지오 | `UX/UI 디자인` `편집 디자인` | [github](URL) [포트폴리오](https://sites.google.com/view/jiographic) |
-| <img src="src/assets/us/GYG.svg" width="64" height="64" style="margin: 4px;"> | 고예경 | `QA` `UX 개선` `기획안 개선` | [github](https://github.com/jio311) [블로그](URL) |
+| <img src="src/assets/us/BJO.svg" width="64" height="64" style="margin: 4px;"> | 백지오 | `UX/UI 디자인` `편집 디자인` | [github](https://github.com/jio311) [포트폴리오](https://sites.google.com/view/jiographic) |
+| <img src="src/assets/us/GYG.svg" width="64" height="64" style="margin: 4px;"> | 고예경 | `QA` `UX 개선` `기획안 개선` | [github](https://github.com/ZakZak0112) |
 | <img src="src/assets/us/HJH.svg" width="64" height="64" style="margin: 4px;"> | 황준호 | `데이터 분석 및 통계` | [github](URL) [블로그](URL) |
 
 
@@ -159,14 +159,16 @@
 
 |버전	|출시 날짜	|주요 업데이트
 |-----|-----|-----|
-1.0.0	|2025.02.07	|최초 정식 배포 (기본 기능 제공)
+0.4.0	|2025.02.07	| 베타버전 배포
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
 ### 📝 작업기
-- 📌 둥동 기획- 어쩌고저쩌고 [25년 2월 3일]
+- 📌 [둥지동지의 시작 - @조은비 [25년 2월 3일]](making/Making_1.md)
+- 📌 둥지동지 다시 기획하기 - @조은비 [공개 예정]
+- 📌 둥지동지 디자인 작업기 - @백지오 [공개 예정]
 <!-- - 둥동 만들기 - 
 - 둥동 만들기 -->
 
