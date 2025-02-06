@@ -295,7 +295,6 @@ function emitRestartSurvey() {
 function emitFixSurvey() {
   console.log('Event Received: Fix Survey');
   router.push("/survey7");
-  initSurvey();
 };
 
 // function emitContinueSurvey(payload) {
