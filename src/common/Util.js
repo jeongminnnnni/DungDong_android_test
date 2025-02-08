@@ -126,28 +126,33 @@ const Util = (function () {
                 // 기상 및 취침 시각 추출
                 const wakeupHour = parseInt(wakeUp.split(':')[0], 10);
                 const bedTimeHour = parseInt(bedTime.split(':')[0], 10);
+
+                // 0시는 24시로 취급
+                if (bedTimeHour === 24) {
+                  bedTimeHour = 0;
+                }
               
                 // 1) 각 태그에 대한 점수 계산
                 const scoreOwl = (bedTimeHour >= 0 && bedTimeHour < 6)
-                  ? (1 + bedTimeHour)     // 0시에 취침하면 1점, 5시에 취침하면 6점
+                  ? (1 + bedTimeHour)     // 0시 혹은 24시에 취침하면 1점, 5시에 취침하면 6점
                   : 0;
               
                 const scoreBaby = (bedTimeHour >= 20 && bedTimeHour < 23)
-                  ? (26 - bedTimeHour)    // 20시면 6점, 23시면 3점
+                  ? (26 - bedTimeHour)    // 20시면 6점, 22시면 4점
                   : 0;
               
                 const scoreMorning = (wakeupHour >= 4 && wakeupHour <= 8)
-                  ? (8 - wakeupHour + 1)  // 4시면 5점, 8시면 1점
+                  ? (9 - wakeupHour)  // 4시면 5점, 8시면 1점
                   : 0;
               
                 const scoreSleep = (wakeupHour >= 10 && wakeupHour < 15)
-                  ? (wakeupHour - 9)      // 10시면 1점, 14시면 5점
+                  ? (wakeupHour - 8)      // 10시면 2점, 14시면 6점
                   : 0;
               
                 // 그냥새는 기본 0점, 혹은 다른 계산 로직을 추가해도 됨
                 const scoreStandard = (wakeupHour >= 8 && wakeupHour <= 9 && bedTimeHour >= 23 && bedTimeHour <= 24)
-                ? 3     // 8-9시 기상, 11-12시 취침 시 3점
-                : 1;    // 그 외의 시간은 기본 1점
+                ? 2    // 8-9시 기상, 11-12시 취침 시 3점
+                : 0;    // 그 외의 시간은 기본 1점
               
                 // 2) 서브픽스를 객체 리스트로 관리
                 const suffixOptions = [
