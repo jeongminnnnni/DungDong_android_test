@@ -100,7 +100,7 @@ const Util = (function () {
                 const isCasual = share >= 3 && (noise >= 2 || clean >= 2) && selectTag.length <= 1;
                 const isLively = (noise >= 3 && home <= 1) || noise >= 3;
                 const isQuiet = (home >= 3 && average(share, noise) <= 1) || average(share, noise) <= 1;
-                const isDetailed = noise <= 1 && clean >= 3 || selectTag.length >= 3;
+                const isDetailed = noise <= 1 && clean >= 3 || selectTag.length >= 4;
               
                 if (isLively) {
                   prefix = "흥많은";
