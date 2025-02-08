@@ -126,6 +126,7 @@ const sleepHabitItem = ref([
   { title: '잠꼬대', value: 1},
   { title: '코골이', value: 2},
   { title: '이갈이', value: 3},
+  { title: '불규칙한 수면패턴', value: 4},
 ]);
 
 

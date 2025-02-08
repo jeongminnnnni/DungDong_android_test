@@ -57,8 +57,12 @@ const Util = (function () {
                     return "잠꼬대";
                   case 2:
                     return "코골이";
+                  case 3:
+                    return "이갈이";
+                  case 4:
+                    return "불규칙한 수면패턴";
                   default:
-                    return "이갈이";  // 기본값 설정
+                    return "없음";  // 기본값 설정
                 }
             },
 
@@ -77,7 +81,7 @@ const Util = (function () {
                     case 5:
                     return "공과대학";
                     default:
-                    return "미선택"; 
+                    return "비공개"; 
                 }
             },
             
