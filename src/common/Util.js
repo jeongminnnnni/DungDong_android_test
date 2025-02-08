@@ -86,7 +86,7 @@ const Util = (function () {
               
                 let prefix = "무던한"; 
                 let prefixId = "MU"; 
-                let suffix = "그냥새";
+                let suffix = "보통새";
                 let suffixId = "standard";
               
                 // 설문 결과에서 값을 추출
@@ -129,7 +129,7 @@ const Util = (function () {
                   : 0;
               
                 const scoreBaby = (bedTimeHour >= 20 && bedTimeHour < 23)
-                  ? (25 - bedTimeHour)    // 20시면 5점, 22시면 3점
+                  ? (26 - bedTimeHour)    // 20시면 6점, 23시면 3점
                   : 0;
               
                 const scoreMorning = (wakeupHour >= 4 && wakeupHour <= 8)
@@ -141,7 +141,9 @@ const Util = (function () {
                   : 0;
               
                 // 그냥새는 기본 0점, 혹은 다른 계산 로직을 추가해도 됨
-                const scoreStandard = 1;  
+                const scoreStandard = (wakeupHour >= 8 && wakeupHour <= 9 && bedTimeHour >= 23 && bedTimeHour <= 24)
+                ? 3     // 8-9시 기상, 11-12시 취침 시 3점
+                : 1;    // 그 외의 시간은 기본 1점
               
                 // 2) 서브픽스를 객체 리스트로 관리
                 const suffixOptions = [
@@ -149,7 +151,7 @@ const Util = (function () {
                   { tag: "아기새",   id: "baby",     score: scoreBaby },
                   { tag: "아침새",   id: "morning",  score: scoreMorning },
                   { tag: "늦잠새",   id: "sleep",    score: scoreSleep },
-                  { tag: "그냥새",   id: "standard", score: scoreStandard },
+                  { tag: "보통새",   id: "standard", score: scoreStandard },
                 ];
               
                 // 3) 점수 확인 (디버깅용)
