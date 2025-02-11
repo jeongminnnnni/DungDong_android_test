@@ -50,7 +50,7 @@
 <!-- 프로젝트 소개 -->
 ## 프로젝트 소개
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+![둥지동지 스크린샷](src/assets/main_product_img.png)
 
 둥지동지는 중앙대학교 다빈치 캠퍼스의 학우들이 룸메이트를 빠르고 편하게 구할 수 있도록 기획한 프로젝트입니다.<br>
 자신의 기숙사 생활에 대한 설문을 기반으로 구인글에 사용할 이미지를 자동으로 생성해줍니다.
