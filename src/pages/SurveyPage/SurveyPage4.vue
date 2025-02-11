@@ -172,6 +172,7 @@ watch(
 
 watch(sleepHabit, (newValue, oldValue) => {
   console.log(`--- sleepHabit changed from ${oldValue} to ${newValue}`);
+  updateLocalStorage('sleepHabit', newValue)
 });
 
 // ----- 함수 정의 ----- //
