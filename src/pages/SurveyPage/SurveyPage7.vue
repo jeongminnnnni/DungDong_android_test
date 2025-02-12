@@ -58,10 +58,11 @@ const selectTag = ref([])
 const tagItem = ref([
   { title: '매트선호', value: '매트선호'},
   { title: '룸메와 거리두기 필요', value: '룸메와 거리두기 필요'},
-  { title: '공부중', value: '공부중'},
+  { title: '취준/자격증', value: '취준/자격증'},
   { title: '고요를 즐김', value: '고요를 즐김'},
   { title: '배달음식러버', value: '배달음식러버'},
   { title: '잦은 밤샘', value: '잦은 밤샘'},
+  { title: '끝없는과제', value: '끝없는과제'},
   { title: '길거나 잦은 통화', value: '길거나 잦은 통화'},
   { title: '환기 자주 필요', value: '환기 자주 필요'},
   { title: '방에 자주 비움', value: '방을 자주 비움'},
