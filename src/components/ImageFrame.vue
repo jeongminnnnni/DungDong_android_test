@@ -229,7 +229,7 @@
                         class="icon-chip"
                     >
                         <v-chip
-                                variant="outlined" color="#FF5858" border="md"
+                                variant="outlined" :color="getColor" border="md"
                                 asdf
                             >
                             <v-icon icon="mdi-tag-text-outline"></v-icon>
@@ -244,7 +244,7 @@
                             v-for="(tag, index) in props.survey.selectTag"
                             :key="index"
                             outlined
-                            variant="outlined" color="#FF5858" border="md"
+                            variant="outlined" :color="getColor" border="md"
                             class="tag-chip"
                         >
                         {{ tag }}
@@ -256,7 +256,7 @@
                         class="icon-chip"
                     >
                         <v-chip
-                                variant="outlined" color="#FF5858" border="md"
+                                variant="outlined" :color="getColor" border="md"
                                 asdf
                             >
                             <v-icon icon="mdi-plus"></v-icon>
@@ -284,6 +284,8 @@ const props = defineProps({
 
 const survey = ref(null)
 
+const getColor = ref('#FF5858'); 
+
 // ----- 라이프 사이클 ----- //
 onMounted(() => {
     console.log('component get survey object', props.survey);
@@ -293,6 +295,11 @@ onMounted(() => {
 onUnmounted(() => {
 
 })
+
+watch(() => props.survey.color, (newColor) => {
+    getColor.value = newColor;
+}, { immediate: true });
+
 
 // ----- 함수 정의 ----- //
 
@@ -309,7 +316,7 @@ onUnmounted(() => {
 }
 
 .text-subtitle {
-    color: #FF5858;
+    color: v-bind('getColor');
     text-align: right;
     font-size: 48px;
     font-style: normal;
@@ -318,7 +325,7 @@ onUnmounted(() => {
 }
 
 .text-bodytitle {
-    color: #FF5858;
+    color: v-bind('getColor');
     font-size: 26px;
     font-style: normal;
     font-weight: 700;
@@ -385,7 +392,7 @@ onUnmounted(() => {
 }
 
 .tag-chip :deep(.v-chip) {
-  border-color: #ff5858 !important; /* 테두리 색상 변경 */
+  border-color: v-bind('getColor') !important; /* 테두리 색상 변경 */
   color: #000000 !important; /* 텍스트 색상 */
   height: 40px;
   min-width: 40px;
@@ -413,7 +420,7 @@ onUnmounted(() => {
 }
 
 :deep(.v-chip .v-icon) {
-  color: #FF5858 !important; /* 아이콘 색상 */
+    color:  v-bind('getColor') !important; /* 아이콘 색상 */
 }
 
 .progress-bar {
@@ -436,7 +443,7 @@ onUnmounted(() => {
 }
 
 .circle.active {
-  background-color: #ff5858; /* 현재 단계 배경색 */
+    background-color: v-bind('getColor'); /* 현재 단계 배경색 */
 }
 
 .line {
