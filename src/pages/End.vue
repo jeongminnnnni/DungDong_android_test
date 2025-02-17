@@ -226,6 +226,15 @@ const survey = ref({
 
 const parsedSurvey = ref(null)
 
+const colorMap = {
+    '예지 1동': '#FF45CA', 
+    '예지 2동': '#FD9301', 
+    '예지 3동': '#00CA8E', 
+    '명덕 1동': '#FF435C', 
+    '명덕 2동': '#0E6BEC', 
+    '명덕 3동': '#19BE00', 
+};
+
 // ----- 라이프 사이클 ----- //
 onBeforeMount(() => {
 });
@@ -259,6 +268,7 @@ function loadSurveyData() {
   
     // 데이터 매핑 및 할당
     survey.value.dorm = parsedSurvey.value.dorm;
+    survey.value.color = colorMap[survey.value.dorm] || '#FF5858';
     survey.value.birth = parsedSurvey.value.birth
       ? parsedSurvey.value.birth === 0
         ? "비공개"
