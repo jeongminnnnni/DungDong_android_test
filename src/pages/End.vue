@@ -44,6 +44,15 @@
 
     <v-row no-gutters justify="center" class="margin-48 | pl-14 | pr-14">
       <v-btn 
+        @click="downloadImage(capturedImage)"
+        color="#FFFFFF" rounded="xl" width="100%"
+        class="w-text-btn"
+      >
+        이미지 다운로드
+      </v-btn>
+    </v-row>
+    <v-row no-gutters justify="center" class="margin-48 | pl-14 | pr-14 | pt-2">
+      <v-btn 
         @click="handleClickFixBtn"
         color="#FF5858" rounded="xl" width="100%"
         class="text-btn"
@@ -333,29 +342,56 @@ async function startCaptureProcess() {
   loading.value = false; // 로딩 종료
 }
 
-// 캡처 실행 함수
 async function captureAndSetImage() {
   if (!captureRef.value) {
     console.error("캡처할 요소가 존재하지 않습니다.");
+    toastMessage.value = "캡처할 요소가 없습니다.";
+    showToast.value = true;
     return;
   }
+
   try {
     const canvas = await html2canvas(captureRef.value, {
       allowTaint: true,
       useCORS: true, 
-      scale: 2,       
+      scale: window.devicePixelRatio || 2, // 고해상도 지원
       logging: true,  
       width: captureRef.value.offsetWidth,  
       height: captureRef.value.offsetHeight
     });
-    capturedImage.value = canvas.toDataURL("image/png");
-    console.log("캡처 완료");
+
+    // Blob으로 변환하여 다운로드 가능하도록 처리
+    canvas.toBlob((blob) => {
+      if (!blob) {
+        console.error("Blob 생성 실패");
+        toastMessage.value = "이미지 생성에 실패했습니다.";
+        showToast.value = true;
+        return;
+      }
+
+      const url = URL.createObjectURL(blob);
+      capturedImage.value = url; // Vue 상태 업데이트
+
+      console.log("캡처 완료");
+    }, "image/png");
+
   } catch (error) {
     console.error("캡처 중 오류 발생:", error.message);
     toastMessage.value = "캡처 중 오류가 발생했습니다.";
     showToast.value = true;
   }
 }
+
+function downloadImage(url) {
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "dung-dong-result.png";
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
+
 
 // 클립보드에 이미지 복사
 async function handleClickCopyBtn() {
