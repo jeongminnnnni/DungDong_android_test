@@ -1,0 +1,62 @@
+name: 버그 또는 기능 요청
+description: 버그 제보 또는 새로운 기능을 요청하려면 이 템플릿을 사용해주세요.
+labels: [needs-triage]
+body:
+  - type: dropdown
+    id: issue_type
+    attributes:
+      label: 📂 이슈 유형
+      description: 어떤 종류의 이슈인가요?
+      options:
+        - 버그 제보
+        - 기능 요청
+        - 문서 개선
+        - 기타
+    validations:
+      required: true
+
+  - type: input
+    id: title
+    attributes:
+      label: 📝 이슈 제목
+      description: 이슈를 간단히 요약해주세요.
+      placeholder: 예) 로그인 오류 발생
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: 📋 내용 설명
+      description: 어떤 문제가 발생했거나 어떤 기능이 필요한지 자세히 적어주세요.
+      placeholder: 문제의 상황이나 필요한 기능에 대한 설명을 입력해주세요.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: 🛠 재현 방법 (버그인 경우)
+      description: 문제가 어떻게 발생했는지 단계별로 알려주세요.
+      placeholder: |
+        1. ...
+        2. ...
+        3. ...
+    validations:
+      required: false
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: ✅ 기대 결과
+      description: 어떤 동작을 기대했는지 작성해주세요.
+    validations:
+      required: false
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: 📎 참고 자료 (선택)
+      description: 스크린샷, 로그, 관련 링크 등이 있다면 첨부해주세요.
+    validations:
+      required: false
