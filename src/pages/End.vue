@@ -382,13 +382,39 @@ async function captureAndSetImage() {
   }
 }
 
-function downloadImage(url) {
-  const link = document.createElement("a");
-  link.href = url;
-  link.download = "dung-dong-result.png";
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
+async function downloadImage(url) {
+  try {
+    const isAndroid = /Android/i.test(navigator.userAgent);
+
+    // 안드로이드일 경우, Blob URL을 Base64로 변환하여 다운로드
+    if (isAndroid) {
+      const response = await fetch(url);
+      const blob = await response.blob();
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64data = reader.result;
+        const link = document.createElement('a');
+        link.href = base64data;
+        link.download = "dung-dong-result.png";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      };
+      reader.readAsDataURL(blob);
+    } else {
+      // 기존 다운로드 방식
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "dung-dong-result.png";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  } catch (error) {
+    console.error("이미지 다운로드 중 오류 발생:", error);
+    toastMessage.value = "이미지 다운로드에 실패했습니다.";
+    showToast.value = true;
+  }
 }
 
 
